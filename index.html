@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amrutha Priya | Portfolio</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:0;background:#0b1020;color:#e8ebff}
+    .wrap{max-width:980px;margin:0 auto;padding:28px}
+    a{color:#9cc4ff;text-decoration:none}
+    .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;background:rgba(255,255,255,.08);margin:6px 6px 0 0}
+    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;padding:16px;margin:14px 0}
+    h1{margin:0 0 6px 0;font-size:34px}
+    h2{margin:0 0 10px 0}
+    p{margin:6px 0;opacity:.9;line-height:1.5}
+    ul{margin:8px 0 0 18px}
+    .btn{display:inline-block;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.14);color:#e8ebff}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>Amrutha Priya</h1>
+        <p>Java Full-Stack Developer | Spring Boot | React | AWS</p>
+        <div>
+          <span class="pill">Java</span>
+          <span class="pill">Spring Boot</span>
+          <span class="pill">REST APIs</span>
+          <span class="pill">React</span>
+          <span class="pill">TypeScript</span>
+          <span class="pill">SQL</span>
+        </div>
+      </div>
+      <div>
+        <p><b>Email:</b> abollineni2023@fau.edu</p>
+        <p><b>GitHub:</b> <a href="https://github.com/abollineni2023">github.com/abollineni2023</a></p>
+        <p><a class="btn" href="./resume.pdf">Download Resume</a></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>About</h2>
+      <p>
+        I build full-stack applications using Java (Spring Boot) and React with a focus on clean API design,
+        maintainable UI components, and production-ready engineering practices.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <b>Employee Management</b> – Spring Boot + React CRUD App
+            (<a href="https://github.com/abollineni2023/employee-management">GitHub</a>)
+          </li>
+          <li>
+            <b>TA Applicant</b> – Add your repo link here
+            (Example: <a href="https://github.com/abollineni2023/TA-Applicant">GitHub</a>)
+          </li>
+          <li>
+            <b>SkillCred</b> – Add your repo link here
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Skills</h2>
+        <p><b>Backend:</b> Java, Spring Boot, JPA, REST, Validation</p>
+        <p><b>Frontend:</b> React, TypeScript, HTML, CSS</p>
+        <p><b>Database:</b> SQL, PostgreSQL/H2</p>
+        <p><b>Tools:</b> GitHub, Docker (basic), CI/CD (basic)</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email: abollineni2023@fau.edu</p>
+      <p>GitHub: <a href="https://github.com/abollineni2023">abollineni2023</a></p>
+    </div>
+  </div>
+</body>
+</html>
