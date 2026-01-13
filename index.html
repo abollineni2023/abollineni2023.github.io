@@ -1,366 +1,132 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amrutha Priya | Software Developer Portfolio</title>
-
-  <style>
-    :root{
-      --bg1:#050914;
-      --bg2:#0b1020;
-      --card:rgba(255,255,255,.08);
-      --border:rgba(255,255,255,.18);
-      --text:#e8ebff;
-      --muted:rgba(232,235,255,.78);
-    }
-
-    body{
-      margin:0;
-      font-family: system-ui, Segoe UI, Arial;
-      color:var(--text);
-      min-height:100vh;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(59,130,246,.45), transparent 55%),
-        radial-gradient(circle at 85% 20%, rgba(6,182,212,.38), transparent 50%),
-        radial-gradient(circle at 70% 90%, rgba(168,85,247,.28), transparent 55%),
-        linear-gradient(135deg, var(--bg1), var(--bg2) 65%);
-    }
-
-    .wrap{max-width:1100px;margin:0 auto;padding:34px 18px 50px}
-    a{color:#9cc4ff;text-decoration:none}
-    a:hover{opacity:.9}
-
-    .hero{
-      display:flex;
-      gap:22px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
-
-    .hero-left{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .avatar{
-      width:110px;height:110px;border-radius:22px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.08);
-      object-fit:cover;
-      box-shadow:0 18px 40px rgba(0,0,0,.35);
-    }
-
-    h1{margin:0;font-size:40px;letter-spacing:.3px}
-    .subtitle{margin-top:6px;color:var(--muted);line-height:1.5}
-
-    .pillrow{margin-top:10px}
-    .pill{
-      display:inline-block;
-      padding:7px 12px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background:rgba(255,255,255,.10);
-      margin:6px 6px 0 0;
-      font-size:13.5px;
-      color:rgba(232,235,255,.92);
-    }
-
-    .hero-right{
-      min-width:260px;
-      text-align:left;
-    }
-
-    .btn{
-      display:inline-block;
-      padding:11px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.22);
-      background:linear-gradient(135deg,#3b82f6,#06b6d4);
-      color:white;
-      font-weight:700;
-      box-shadow:0 14px 30px rgba(0,0,0,.25);
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn2{
-      display:inline-block;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.12);
-      color:var(--text);
-      font-weight:650;
-      margin-left:10px;
-    }
-
-    .card{
-      background:var(--card);
-      backdrop-filter: blur(10px);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:18px;
-      margin:14px 0;
-      box-shadow:0 18px 40px rgba(0,0,0,.25);
-    }
-
-    h2{margin:0 0 10px 0;font-size:20px}
-    p{margin:8px 0;color:rgba(232,235,255,.88);line-height:1.6}
-    ul{margin:8px 0 0 18px;color:rgba(232,235,255,.88);line-height:1.6}
-    li{margin:6px 0}
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    @media(max-width:900px){ .grid{grid-template-columns:1fr} }
-
-    .kpi{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:10px
-    }
-    .kpi .box{
-      flex:1;
-      min-width:170px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:16px;
-      padding:12px;
-      background:rgba(0,0,0,.18);
-    }
-    .kpi .label{font-size:12.5px;color:rgba(232,235,255,.75)}
-    .kpi .value{font-size:16px;font-weight:750;margin-top:4px;color:rgba(232,235,255,.95)}
-
-    .proj{
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:16px;
-      padding:14px;
-      background:rgba(0,0,0,.14);
-      margin-top:10px;
-    }
-    .proj-title{margin:0;font-weight:800}
-    .proj-meta{margin:6px 0;color:rgba(232,235,255,.75);font-size:13.5px}
-
-    .footer{
-      margin-top:18px;
-      text-align:center;
-      color:rgba(232,235,255,.7);
-      font-size:13px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Amrutha Priya | Software Developer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;
+  font-family:system-ui,Segoe UI,Arial;
+  background:#0b1020;
+  color:#e8ebff;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px 60px;
+}
+.header{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.photo{
+  width:110px;height:110px;
+  border-radius:16px;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,.15);
+}
+h1{margin:0;font-size:34px}
+.sub{
+  opacity:.85;
+  margin-top:6px;
+}
+.badges span{
+  display:inline-block;
+  margin:6px 6px 0 0;
+  padding:6px 10px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05);
+  font-size:13px;
+}
+.section{
+  margin-top:26px;
+  padding:18px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+}
+h2{margin-top:0}
+ul{margin:8px 0 0 18px;line-height:1.6}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="container">
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-left">
-        <!-- Upload your image to this repo as profile.jpg -->
-        <img class="avatar" src="./profile.jpg" alt="Amrutha Priya" />
-
-        <div>
-          <h1>Amrutha Priya</h1>
-
-          <!-- Choose ONE headline (keep the one that matches your experience best) -->
-          <div class="subtitle">
-            <b>Software Developer</b> | Java Full-Stack | React / Angular | Spring Boot | Azure DevOps | AWS (Basics)
-            <br/>
-            <span style="color:rgba(232,235,255,.72)">
-              (If you want “7+ years” on the site, keep it only if it matches your total professional timeline.)
-            </span>
-          </div>
-
-          <div class="pillrow">
-            <span class="pill">Java</span>
-            <span class="pill">Spring Boot</span>
-            <span class="pill">REST APIs</span>
-            <span class="pill">React</span>
-            <span class="pill">Angular</span>
-            <span class="pill">TypeScript</span>
-            <span class="pill">Azure DevOps</span>
-            <span class="pill">CI/CD</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <p style="margin:0"><b>Email:</b> abollineni2023@fau.edu</p>
-        <p style="margin:6px 0 12px 0"><b>GitHub:</b> <a href="https://github.com/abollineni2023">github.com/abollineni2023</a></p>
-        <a class="btn" href="./resume.pdf">Download Resume</a>
-        <a class="btn2" href="https://github.com/abollineni2023/abollineni2023.github.io">Portfolio Repo</a>
-      </div>
+<div class="header">
+  <img src="profile.jpg" class="photo">
+  <div>
+    <h1>Amrutha Priya</h1>
+    <div class="sub">Software Developer | Java | Front-End Specialist | React | Angular | Spring Boot</div>
+    <div class="sub">📧 abollineni2023@fau.edu | 🌐 github.com/abollineni2023</div>
+    <div class="badges">
+      <span>Java</span><span>React</span><span>Angular</span><span>Spring Boot</span>
+      <span>TypeScript</span><span>REST APIs</span><span>Azure DevOps</span><span>CI/CD</span>
     </div>
-
-    <!-- ABOUT -->
-    <div class="card">
-      <h2>About</h2>
-      <p>
-        Software Developer with strong experience building and maintaining production web applications.
-        I specialize in <b>front-end development (React/Angular)</b> and integrating <b>REST APIs</b> with scalable UI components.
-        I work closely with backend, QA, and DevOps teams in Agile environments and focus on performance, clean code,
-        and reliable deployments.
-      </p>
-
-      <div class="kpi">
-        <div class="box">
-          <div class="label">Strengths</div>
-          <div class="value">UI Engineering • API Integration • Performance</div>
-        </div>
-        <div class="box">
-          <div class="label">Delivery Style</div>
-          <div class="value">Agile Sprints • CI/CD • Production Support</div>
-        </div>
-        <div class="box">
-          <div class="label">Focus</div>
-          <div class="value">Maintainable UI • Reusable Components</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECTS + SKILLS -->
-    <div class="grid">
-      <div class="card">
-        <h2>Projects</h2>
-
-        <div class="proj">
-          <p class="proj-title">Employee Management (Full-Stack)</p>
-          <p class="proj-meta">Spring Boot • REST • React • TypeScript • CRUD • Search</p>
-          <ul>
-            <li>Built an employee portal with create/update/delete flows and search.</li>
-            <li>Integrated REST APIs with UI forms and validations.</li>
-            <li>Structured code for clean architecture and maintainability.</li>
-          </ul>
-          <p style="margin-top:10px">
-            <a href="https://github.com/abollineni2023/employee-management">GitHub →</a>
-          </p>
-        </div>
-
-        <div class="proj">
-          <p class="proj-title">TA Applicant (Angular Project)</p>
-          <p class="proj-meta">Angular • TypeScript • Forms • Components</p>
-          <ul>
-            <li>Showcases component-driven UI design and frontend workflows.</li>
-            <li>Add the correct repo link below.</li>
-          </ul>
-          <p style="margin-top:10px">
-            <a href="https://github.com/abollineni2023">GitHub →</a>
-          </p>
-        </div>
-
-        <p style="margin-top:12px;color:rgba(232,235,255,.75)">
-          Tip: Add 2–3 strong repos and keep each project description short and outcome-focused.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>Skills</h2>
-        <p><b>Frontend:</b> React, Angular, TypeScript, JavaScript (ES6+), HTML5, CSS3, Responsive UI</p>
-        <p><b>Backend:</b> Java, Spring Boot (Basics/Intermediate), REST APIs, Validation</p>
-        <p><b>Testing:</b> Jasmine, Karma, Jest, React Testing Library</p>
-        <p><b>DevOps / Tools:</b> Azure DevOps, Git, CI/CD pipelines, Agile/Scrum</p>
-        <p><b>Cloud:</b> Azure Fundamentals (AZ-900), AWS (Basics)</p>
-
-        <div style="margin-top:10px">
-          <span class="pill">Reusable Components</span>
-          <span class="pill">Lazy Loading</span>
-          <span class="pill">Code Splitting</span>
-          <span class="pill">API Integration</span>
-          <span class="pill">Performance Tuning</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- EDUCATION + CERTIFICATIONS -->
-    <div class="grid">
-      <div class="card">
-        <h2>Education</h2>
-        <p>
-          <b>Master of Science in Computer Science and Engineering</b><br/>
-          Florida Atlantic University, Boca Raton, FL <span style="color:rgba(232,235,255,.75)">| May 2025</span>
-        </p>
-        <p>
-          <b>Bachelor of Technology in Computer Science and Engineering</b><br/>
-          Vivekananda College of Engineering for Women, Tamil Nadu, India
-          <span style="color:rgba(232,235,255,.75)">| 2017 – 2021</span>
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>Certifications</h2>
-        <ul>
-          <li><b>Microsoft Certified: Azure Fundamentals (AZ-900)</b></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- EXPERIENCE -->
-    <div class="card">
-      <h2>Professional Experience</h2>
-
-      <p style="margin:0"><b>Atos Syntel Pvt Ltd – India</b></p>
-      <p style="margin:6px 0 0 0;color:rgba(232,235,255,.78)">
-        Associate Consultant | Java Front-End Developer <span style="opacity:.8">| Sep 2022 – Aug 2023</span>
-      </p>
-      <ul>
-        <li>Built enterprise UI modules using <b>React</b> and <b>Angular</b> with focus on performance and accessibility.</li>
-        <li>Integrated dynamic <b>REST APIs</b> to deliver real-time dashboards and data-driven interfaces.</li>
-        <li>Developed reusable components using scalable architecture principles and design patterns.</li>
-        <li>Configured <b>Azure DevOps CI/CD</b> pipelines to automate builds, checks, and deployments.</li>
-        <li>Created unit/integration tests using <b>Jest</b> and <b>React Testing Library</b>.</li>
-        <li>Supported production releases and resolved critical UI/UX issues post-deployment.</li>
-      </ul>
-
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.14);margin:14px 0"/>
-
-      <p style="margin:0"><b>Syntax Tree Software Solutions Pvt. Ltd.</b></p>
-      <p style="margin:6px 0 0 0;color:rgba(232,235,255,.78)">
-        Front-End Developer (Full-Time) <span style="opacity:.8">| Aug 2019 – Jul 2022</span>
-      </p>
-      <ul>
-        <li>Developed and maintained production-grade apps using <b>Angular</b>, <b>TypeScript</b>, and <b>RESTful APIs</b>.</li>
-        <li>Delivered modular features in <b>Agile</b> sprint cycles with cross-functional teams.</li>
-        <li>Improved UI performance using <b>lazy loading</b>, state management, and code splitting.</li>
-        <li>Used <b>Azure DevOps</b> and <b>Git</b> for CI/CD workflows, releases, and environment support.</li>
-        <li>Performed code reviews and unit testing using <b>Jasmine</b> and <b>Karma</b>.</li>
-      </ul>
-
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.14);margin:14px 0"/>
-
-      <p style="margin:0"><b>Syntax Tree Software Solutions Pvt. Ltd.</b></p>
-      <p style="margin:6px 0 0 0;color:rgba(232,235,255,.78)">
-        Front-End Developer Intern <span style="opacity:.8">| Jan 2019 – Jul 2019</span>
-      </p>
-      <ul>
-        <li>Supported frontend development using <b>Angular</b>, <b>JavaScript</b>, <b>HTML5</b>, and <b>CSS3</b>.</li>
-        <li>Built basic UI components and integrated APIs for dynamic screens.</li>
-        <li>Assisted with debugging, styling, and cross-browser testing.</li>
-      </ul>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="card">
-      <h2>Contact</h2>
-      <p><b>Email:</b> abollineni2023@fau.edu</p>
-      <p><b>GitHub:</b> <a href="https://github.com/abollineni2023">abollineni2023</a></p>
-      <p style="color:rgba(232,235,255,.75)">
-        If you add LinkedIn, include it here too.
-      </p>
-    </div>
-
-    <div class="footer">
-      © <span id="y"></span> Amrutha Priya • Built with GitHub Pages
-    </div>
-
   </div>
+</div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+<div class="section">
+<h2>About</h2>
+<p>
+Software Developer with strong experience in building scalable, maintainable web applications.
+Specialized in front-end engineering and REST API integration, delivering high-quality user
+interfaces and enterprise-grade solutions within Agile teams.
+</p>
+</div>
+
+<div class="section">
+<h2>Professional Experience</h2>
+
+<p><b>Atos Syntel Pvt Ltd – India</b><br>
+Java Front-End Developer | 2022 – 2024</p>
+<ul>
+<li>Built enterprise UI modules using React and Angular for high-traffic business applications.</li>
+<li>Integrated REST APIs to deliver real-time dashboards and data-driven user experiences.</li>
+<li>Designed reusable components following scalable front-end architecture principles.</li>
+<li>Automated builds and deployments using Azure DevOps CI/CD pipelines.</li>
+<li>Wrote unit and integration tests using Jest and React Testing Library.</li>
+<li>Provided production support and resolved critical UI issues post-deployment.</li>
+</ul>
+
+<p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
+Front-End Developer | 2019 – 2022</p>
+<ul>
+<li>Developed production-grade web applications using Angular, TypeScript, and REST APIs.</li>
+<li>Improved performance through lazy loading, code splitting, and UI optimization.</li>
+<li>Participated in Agile ceremonies and collaborated with backend and QA teams.</li>
+<li>Performed code reviews and implemented unit tests using Jasmine and Karma.</li>
+</ul>
+
+<p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
+Front-End Developer Intern | 2018 – 2019</p>
+<ul>
+<li>Assisted in building responsive UI components using Angular, HTML, CSS, and JavaScript.</li>
+<li>Supported debugging, cross-browser testing, and UI enhancements.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Education</h2>
+<p><b>Master of Science – Computer Science & Engineering</b><br>
+Florida Atlantic University, Boca Raton, FL | 2023 – 2025</p>
+
+<p><b>Bachelor of Technology – Computer Science & Engineering</b><br>
+Vivekananda College of Engineering for Women, India | 2017 – 2021</p>
+</div>
+
+<div class="section">
+<h2>Certifications</h2>
+<ul>
+<li>Microsoft Certified: Azure Fundamentals (AZ-900)</li>
+</ul>
+</div>
+
+</div>
 </body>
 </html>
+        
