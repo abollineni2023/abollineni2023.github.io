@@ -1,13 +1,4 @@
 <!doctype html>
-<!--
-  Portfolio Website (Single-file, with Animations) — NO Projects Section
-  Author: Amrutha Priya
-  Role: Java Full Stack Developer
-  Hosting: GitHub Pages (index.html)
-  Assets needed:
-   - profile.jpg
-   - resume.pdf (optional)
--->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -28,7 +19,6 @@
 }
 
 *{ box-sizing:border-box; }
-
 html{ scroll-behavior:smooth; }
 
 body{
@@ -39,9 +29,7 @@ body{
   overflow-x:hidden;
 }
 
-/* =========================
-   Animated background orbs
-   ========================= */
+/* ===== Animated background orbs (ALWAYS visible) ===== */
 .bg-orbs{
   position:fixed;
   inset:0;
@@ -55,7 +43,7 @@ body{
   height:420px;
   border-radius:50%;
   filter: blur(55px);
-  opacity:0.25;
+  opacity:0.22;
   background: radial-gradient(circle at 30% 30%, rgba(34,197,94,0.65), rgba(34,197,94,0.05));
   animation: floatOrb 10s ease-in-out infinite;
 }
@@ -65,18 +53,27 @@ body{
 
 @keyframes floatOrb{
   0%,100%{ transform: translate3d(0,0,0) scale(1); }
-  50%{ transform: translate3d(20px,-18px,0) scale(1.06); }
+  50%{ transform: translate3d(22px,-20px,0) scale(1.06); }
 }
 
-/* =========================
-   Layout
-   ========================= */
+/* ===== Layout ===== */
 .container{
   max-width:980px;
   margin:auto;
   padding:42px 18px 70px;
 }
 
+/* ===== Fade-in on page load (WORKS even without JS) ===== */
+.page-in{
+  opacity:0;
+  transform: translateY(10px);
+  animation: pageEnter .75s ease forwards;
+}
+@keyframes pageEnter{
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* ===== Sections ===== */
 .section{
   margin-top:22px;
   padding:22px;
@@ -103,13 +100,10 @@ ul{
   line-height:1.75;
   color:var(--sub);
 }
-
 a{ color:#bbf7d0; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* =========================
-   Header
-   ========================= */
+/* ===== Header ===== */
 .header{
   display:flex;
   align-items:center;
@@ -122,18 +116,18 @@ a:hover{ text-decoration:underline; }
   box-shadow:var(--shadow);
 }
 
+/* Animated glow ring around photo */
 .photo-wrap{
-  position:relative;
   width:124px;
   height:124px;
   border-radius:20px;
   padding:2px;
   background: linear-gradient(120deg, rgba(34,197,94,0.2), rgba(34,197,94,0.9), rgba(34,197,94,0.2));
-  animation: glowPulse 4.5s ease-in-out infinite;
+  animation: glowPulse 4.2s ease-in-out infinite;
 }
 @keyframes glowPulse{
   0%,100%{ filter: drop-shadow(0 0 0 rgba(34,197,94,0)); }
-  50%{ filter: drop-shadow(0 0 18px rgba(34,197,94,0.35)); }
+  50%{ filter: drop-shadow(0 0 20px rgba(34,197,94,0.45)); }
 }
 .photo{
   width:120px;
@@ -144,14 +138,23 @@ a:hover{ text-decoration:underline; }
   background:#111827;
 }
 
-.sub{
-  color:var(--muted);
-  margin-top:6px;
-}
+.sub{ color:var(--muted); margin-top:6px; }
 
-.badges{
-  margin-top:10px;
+/* ===== Typing animation for headline ===== */
+.type{
+  display:inline-block;
+  border-right:2px solid rgba(167,243,208,0.85);
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation: typing 2.2s steps(55, end) forwards, caret .7s step-end infinite;
+  max-width:100%;
 }
+@keyframes typing{ to{ width: 100%; } }
+@keyframes caret{ 50%{ border-color: transparent; } }
+
+/* ===== Badges hover animation ===== */
+.badges{ margin-top:10px; }
 .badges span{
   display:inline-block;
   margin:8px 8px 0 0;
@@ -169,9 +172,7 @@ a:hover{ text-decoration:underline; }
   border-color:rgba(34,197,94,0.95);
 }
 
-/* =========================
-   Sticky Navigation (no Projects)
-   ========================= */
+/* ===== Sticky Navigation ===== */
 .nav{
   position:sticky;
   top:0;
@@ -190,11 +191,7 @@ a:hover{ text-decoration:underline; }
   justify-content:space-between;
 }
 
-.nav .links{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
+.nav .links{ display:flex; gap:10px; flex-wrap:wrap; }
 .nav a{
   display:inline-block;
   padding:8px 12px;
@@ -212,11 +209,7 @@ a:hover{ text-decoration:underline; }
   text-decoration:none;
 }
 
-.nav .cta{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
+.nav .cta{ display:flex; gap:10px; flex-wrap:wrap; }
 .btn{
   display:inline-block;
   padding:8px 12px;
@@ -233,12 +226,10 @@ a:hover{ text-decoration:underline; }
   text-decoration:none;
 }
 
-/* =========================
-   Reveal Animations (scroll)
-   ========================= */
+/* ===== Scroll reveal (JS adds .show) ===== */
 .reveal{
   opacity:0;
-  transform: translateY(16px);
+  transform: translateY(14px);
   transition: opacity .7s ease, transform .7s ease;
 }
 .reveal.show{
@@ -246,9 +237,7 @@ a:hover{ text-decoration:underline; }
   transform: translateY(0);
 }
 
-/* =========================
-   Contact
-   ========================= */
+/* ===== Contact cards ===== */
 .contact-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -266,18 +255,9 @@ a:hover{ text-decoration:underline; }
   transform: translateY(-2px);
   border-color:rgba(34,197,94,0.85);
 }
-.contact-item .label{
-  color:var(--muted);
-  font-size:13px;
-}
-.contact-item .value{
-  margin-top:6px;
-  color:#ecfdf5;
-  font-weight:600;
-  word-break:break-word;
-}
+.label{ color:var(--muted); font-size:13px; }
+.value{ margin-top:6px; color:#ecfdf5; font-weight:600; word-break:break-word; }
 
-/* Footer */
 .footer{
   margin-top:18px;
   text-align:center;
@@ -297,7 +277,7 @@ a:hover{ text-decoration:underline; }
 /* Accessibility: reduce motion */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
-  .orb, .photo-wrap{ animation:none !important; }
+  .orb, .photo-wrap, .type{ animation:none !important; }
   .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
   .nav a, .btn, .badges span, .contact-item{ transition:none !important; }
 }
@@ -306,25 +286,28 @@ a:hover{ text-decoration:underline; }
 
 <body>
 
-<!-- Animated background -->
+<!-- Animated background (this proves animations are working) -->
 <div class="bg-orbs" aria-hidden="true">
   <div class="orb o1"></div>
   <div class="orb o2"></div>
   <div class="orb o3"></div>
 </div>
 
-<div class="container">
+<div class="container page-in">
 
   <!-- Header -->
-  <div class="header reveal" id="top">
+  <div class="header reveal show" id="top">
     <div class="photo-wrap">
       <img src="profile.jpg" class="photo" alt="Amrutha Priya - Profile Photo">
     </div>
 
     <div>
       <h1>Amrutha Priya</h1>
-      <div class="sub">Java Full Stack Developer | Spring Boot | React | Angular | REST APIs</div>
-      <div class="sub">
+
+      <!-- Typing animation line -->
+      <div class="sub type">Java Full Stack Developer | Spring Boot | React | Angular | REST APIs</div>
+
+      <div class="sub" style="margin-top:10px;">
         📧 <a href="mailto:abollineni2023@fau.edu">abollineni2023@fau.edu</a>
         &nbsp;|&nbsp; 🌐 <a href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">github.com/abollineni2023</a>
       </div>
@@ -339,7 +322,7 @@ a:hover{ text-decoration:underline; }
   </div>
 
   <!-- Navigation -->
-  <div class="nav reveal">
+  <div class="nav reveal show">
     <div class="links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
@@ -349,7 +332,6 @@ a:hover{ text-decoration:underline; }
     </div>
 
     <div class="cta">
-      <!-- Optional: upload resume.pdf to repo root -->
       <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
       <a class="btn" href="#contact">Reach Out</a>
     </div>
@@ -372,29 +354,29 @@ a:hover{ text-decoration:underline; }
     <p><b>Atos Syntel Pvt Ltd – India</b><br>
     Java Full Stack Developer | 2022 – 2024</p>
     <ul>
-      <li>Designed and developed full stack enterprise applications using Java, Spring Boot, React, and Angular.</li>
-      <li>Built RESTful APIs for business workflows and integrated them with dynamic front-end dashboards.</li>
-      <li>Developed reusable UI components and implemented scalable front-end architecture principles.</li>
-      <li>Optimized application performance through efficient state management, caching, and API design improvements.</li>
-      <li>Implemented CI/CD pipelines using Azure DevOps for automated builds, deployments, and release workflows.</li>
-      <li>Wrote unit and integration tests using JUnit, Jest, and React Testing Library to ensure high reliability.</li>
-      <li>Provided production support, debugging, and resolution of high-priority defects under tight SLAs.</li>
+      <li>Designed and developed full stack applications using Java, Spring Boot, React, and Angular.</li>
+      <li>Built REST APIs and integrated them with interactive dashboards and business workflows.</li>
+      <li>Created reusable UI components and improved front-end architecture for maintainability.</li>
+      <li>Optimized performance via efficient state management and API improvements.</li>
+      <li>Implemented CI/CD pipelines using Azure DevOps for automated deployments.</li>
+      <li>Wrote unit + integration tests using JUnit, Jest, and React Testing Library.</li>
+      <li>Provided production support and resolved high-priority issues.</li>
     </ul>
 
     <p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
     Front-End Developer | 2019 – 2022</p>
     <ul>
-      <li>Developed production web applications using Angular, TypeScript, JavaScript, and REST APIs.</li>
-      <li>Improved performance via lazy loading, code splitting, and front-end optimization techniques.</li>
-      <li>Collaborated with backend teams on API integration, feature delivery, and end-to-end troubleshooting.</li>
-      <li>Implemented unit tests using Jasmine and Karma; participated in code reviews and UI quality improvements.</li>
+      <li>Developed enterprise web apps using Angular, TypeScript, JavaScript, and REST APIs.</li>
+      <li>Improved performance using lazy loading, code splitting, and UI optimizations.</li>
+      <li>Worked with backend and QA teams to deliver end-to-end features.</li>
+      <li>Added unit tests using Jasmine and Karma; participated in code reviews.</li>
     </ul>
 
     <p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
     Front-End Developer Intern | 2018 – 2019</p>
     <ul>
       <li>Built responsive UI components using Angular, HTML, CSS, and JavaScript.</li>
-      <li>Supported debugging, cross-browser testing, and UI enhancements for production releases.</li>
+      <li>Supported debugging and cross-browser testing.</li>
     </ul>
   </div>
 
@@ -404,7 +386,6 @@ a:hover{ text-decoration:underline; }
     <p><b>Master of Science – Computer Science & Engineering</b><br>
       Florida Atlantic University, Boca Raton, FL | 2023 – 2025
     </p>
-
     <p style="margin-top:10px"><b>Bachelor of Technology – Computer Science & Engineering</b><br>
       Vivekananda College of Engineering for Women, India | 2017 – 2021
     </p>
@@ -428,7 +409,6 @@ a:hover{ text-decoration:underline; }
         <div class="label">Email</div>
         <div class="value"><a href="mailto:abollineni2023@fau.edu">abollineni2023@fau.edu</a></div>
       </div>
-
       <div class="contact-item">
         <div class="label">GitHub</div>
         <div class="value"><a href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">github.com/abollineni2023</a></div>
@@ -446,18 +426,26 @@ a:hover{ text-decoration:underline; }
 /* Footer year */
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* Scroll reveal animations */
+/* Scroll reveal: add .show when section enters view */
 const reveals = document.querySelectorAll(".reveal");
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-      io.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
 
-reveals.forEach(el => io.observe(el));
+/* If IntersectionObserver is not supported, show everything */
+if(!("IntersectionObserver" in window)){
+  reveals.forEach(el => el.classList.add("show"));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => {
+    if(!el.classList.contains("show")) io.observe(el);
+  });
+}
 </script>
 
 </body>
