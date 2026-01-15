@@ -1,4 +1,18 @@
 <!doctype html>
+<!--
+  Portfolio Website (Single-file)
+  Author: Amrutha Priya
+  Role: Java Full Stack Developer
+  Hosting: GitHub Pages (index.html)
+  Assets needed:
+   - profile.jpg
+   - projects/banking.png
+   - projects/secure-user.png
+   - projects/kafka.png
+   - projects/fullstack.png
+   - projects/utilities.png
+   (You can rename images, just update the src paths below)
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,24 +20,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* =========================
+   Base / Theme
+   ========================= */
+:root{
+  --bg1:#0f172a;
+  --bg2:#052e16;
+  --card:rgba(15,23,42,0.92);
+  --border:#064e3b;
+  --glow:#22c55e;
+  --text:#e5e7eb;
+  --muted:#a7f3d0;
+  --sub:#d1fae5;
+  --shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+*{ box-sizing:border-box; }
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
-  font-family: "Segoe UI", system-ui, Arial;
-  background: linear-gradient(135deg,#0f172a,#052e16);
-  color:#e5e7eb;
+  font-family:"Segoe UI", system-ui, Arial;
+  background: linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:var(--text);
 }
 
+/* =========================
+   Layout
+   ========================= */
 .container{
-  max-width:950px;
+  max-width:980px;
   margin:auto;
-  padding:50px 20px 70px;
+  padding:42px 18px 70px;
 }
 
+.section{
+  margin-top:22px;
+  padding:22px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+h1{
+  margin:0;
+  font-size:36px;
+  color:#ecfdf5;
+  letter-spacing:0.2px;
+}
+
+h2{
+  margin:0 0 10px 0;
+  font-size:20px;
+  color:#ecfdf5;
+}
+
+p{ color:var(--sub); margin:8px 0 0; line-height:1.65; }
+
+ul{
+  margin:10px 0 0 18px;
+  line-height:1.75;
+  color:var(--sub);
+}
+
+a{
+  color:#bbf7d0;
+  text-decoration:none;
+}
+a:hover{ text-decoration:underline; }
+
+/* =========================
+   Top Header
+   ========================= */
 .header{
   display:flex;
   align-items:center;
-  gap:24px;
+  gap:22px;
   flex-wrap:wrap;
+  padding:18px;
+  border-radius:16px;
+  background:rgba(15,23,42,0.55);
+  border:1px solid rgba(6,78,59,0.8);
+  box-shadow:var(--shadow);
 }
 
 .photo{
@@ -31,134 +113,465 @@ body{
   height:120px;
   border-radius:18px;
   object-fit:cover;
-  border:2px solid #22c55e;
+  border:2px solid var(--glow);
   background:#111827;
 }
 
-h1{
-  margin:0;
-  font-size:36px;
-  color:#ecfdf5;
-}
-
 .sub{
-  color:#a7f3d0;
+  color:var(--muted);
   margin-top:6px;
 }
 
+.badges{
+  margin-top:10px;
+}
 .badges span{
   display:inline-block;
   margin:8px 8px 0 0;
   padding:7px 12px;
   border-radius:999px;
-  border:1px solid #22c55e;
+  border:1px solid var(--glow);
   background:rgba(34,197,94,0.1);
   font-size:13px;
-  color:#a7f3d0;
+  color:var(--muted);
 }
 
-.section{
-  margin-top:28px;
-  padding:22px;
-  border-radius:16px;
-  background:rgba(15,23,42,0.9);
-  border:1px solid #064e3b;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
+/* =========================
+   Sticky Navigation
+   ========================= */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  margin-top:18px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(15,23,42,0.82);
+  border:1px solid rgba(6,78,59,0.9);
+  backdrop-filter: blur(10px);
+  box-shadow:0 8px 18px rgba(0,0,0,.22);
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
 }
 
-h2{
-  margin-top:0;
-  font-size:20px;
-  color:#ecfdf5;
+.nav .links{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-ul{
-  margin:10px 0 0 18px;
-  line-height:1.7;
+.nav a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(34,197,94,0.35);
+  background:rgba(34,197,94,0.08);
   color:#d1fae5;
+  font-size:14px;
+}
+.nav a:hover{
+  border-color:rgba(34,197,94,0.9);
+  background:rgba(34,197,94,0.14);
+  text-decoration:none;
 }
 
-p{color:#d1fae5;}
+.nav .cta{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(34,197,94,0.9);
+  background:rgba(34,197,94,0.14);
+  color:#ecfdf5;
+  font-size:14px;
+}
+.btn:hover{
+  background:rgba(34,197,94,0.2);
+  text-decoration:none;
+}
+
+/* =========================
+   Projects Grid
+   ========================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+  margin-top:12px;
+}
+
+.card{
+  border-radius:16px;
+  border:1px solid rgba(6,78,59,0.9);
+  background:rgba(15,23,42,0.65);
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  transition:transform .18s ease, border-color .18s ease;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(34,197,94,0.95);
+}
+
+.cover{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  display:block;
+  border-bottom:1px solid rgba(6,78,59,0.65);
+}
+
+.card .content{
+  padding:14px;
+}
+
+.title{
+  font-size:16px;
+  font-weight:700;
+  color:#ecfdf5;
+  margin:0;
+}
+
+.stack{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.meta{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.pill{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(34,197,94,0.4);
+  background:rgba(34,197,94,0.08);
+  color:#d1fae5;
+  font-size:12px;
+}
+
+.card a.repo{
+  display:inline-block;
+  margin-top:12px;
+  font-size:14px;
+  color:#bbf7d0;
+}
+
+/* =========================
+   Contact
+   ========================= */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+.contact-item{
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(6,78,59,0.9);
+  background:rgba(15,23,42,0.65);
+}
+.contact-item .label{
+  color:var(--muted);
+  font-size:13px;
+}
+.contact-item .value{
+  margin-top:6px;
+  color:#ecfdf5;
+  font-weight:600;
+  word-break:break-word;
+}
+
+/* =========================
+   Footer
+   ========================= */
+.footer{
+  margin-top:18px;
+  text-align:center;
+  color:rgba(209,250,229,0.75);
+  font-size:13px;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 900px){
+  .grid{ grid-template-columns:repeat(2, 1fr); }
+}
+
+@media (max-width: 640px){
+  .container{ padding:28px 14px 60px; }
+  h1{ font-size:30px; }
+  .photo{ width:100px; height:100px; }
+  .grid{ grid-template-columns:1fr; }
+  .nav{ gap:8px; }
+  .contact-grid{ grid-template-columns:1fr; }
+}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<div class="header">
-  <img src="profile.jpg" class="photo">
-  <div>
-    <h1>Amrutha Priya</h1>
-    <div class="sub">Java Full Stack Developer | Spring Boot | React | Angular | REST APIs</div>
-    <div class="sub">📧 abollineni2023@fau.edu | 🌐 github.com/abollineni2023</div>
+  <!-- =========================
+       Header
+       ========================= -->
+  <div class="header" id="top">
+    <img src="profile.jpg" class="photo" alt="Amrutha Priya - Profile Photo">
 
-    <div class="badges">
-      <span>Java</span><span>Spring Boot</span><span>Microservices</span>
-      <span>React</span><span>Angular</span><span>TypeScript</span>
-      <span>REST APIs</span><span>MySQL</span><span>Azure</span>
-      <span>Docker</span><span>CI/CD</span>
+    <div>
+      <h1>Amrutha Priya</h1>
+      <div class="sub">Java Full Stack Developer | Spring Boot | React | Angular | REST APIs</div>
+      <div class="sub">
+        📧 <a href="mailto:abollineni2023@fau.edu">abollineni2023@fau.edu</a>
+        &nbsp;|&nbsp; 🌐 <a href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">github.com/abollineni2023</a>
+      </div>
+
+      <div class="badges">
+        <span>Java</span><span>Spring Boot</span><span>Microservices</span>
+        <span>React</span><span>Angular</span><span>TypeScript</span>
+        <span>REST APIs</span><span>MySQL</span><span>Azure</span>
+        <span>Docker</span><span>CI/CD</span>
+      </div>
     </div>
   </div>
+
+  <!-- =========================
+       Navigation (Sticky)
+       ========================= -->
+  <div class="nav">
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="cta">
+      <!-- Optional: add resume.pdf in repo root and this will work -->
+      <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
+      <a class="btn" href="#projects">See Projects</a>
+    </div>
+  </div>
+
+  <!-- =========================
+       About
+       ========================= -->
+  <div class="section" id="about">
+    <h2>About</h2>
+    <p>
+      Java Full Stack Developer with strong experience designing and developing scalable web
+      applications using Spring Boot, REST APIs, React, and Angular. Passionate about clean
+      architecture, performance optimization, and delivering enterprise-grade solutions in Agile
+      environments.
+    </p>
+  </div>
+
+  <!-- =========================
+       Experience
+       ========================= -->
+  <div class="section" id="experience">
+    <h2>Professional Experience</h2>
+
+    <p><b>Atos Syntel Pvt Ltd – India</b><br>
+    Java Full Stack Developer | 2022 – 2024</p>
+    <ul>
+      <li>Designed and developed full stack enterprise applications using Java, Spring Boot, React, and Angular.</li>
+      <li>Built RESTful APIs for business workflows and integrated them with dynamic front-end dashboards.</li>
+      <li>Developed reusable UI components and implemented scalable front-end architecture principles.</li>
+      <li>Optimized application performance through efficient state management, caching, and API design improvements.</li>
+      <li>Implemented CI/CD pipelines using Azure DevOps for automated builds, deployments, and release workflows.</li>
+      <li>Wrote unit and integration tests using JUnit, Jest, and React Testing Library to ensure high reliability.</li>
+      <li>Provided production support, debugging, and resolution of high-priority defects under tight SLAs.</li>
+    </ul>
+
+    <p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
+    Front-End Developer | 2019 – 2022</p>
+    <ul>
+      <li>Developed production web applications using Angular, TypeScript, JavaScript, and REST APIs.</li>
+      <li>Improved performance via lazy loading, code splitting, and front-end optimization techniques.</li>
+      <li>Collaborated with backend teams on API integration, feature delivery, and end-to-end troubleshooting.</li>
+      <li>Implemented unit tests using Jasmine and Karma; participated in code reviews and UI quality improvements.</li>
+    </ul>
+
+    <p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
+    Front-End Developer Intern | 2018 – 2019</p>
+    <ul>
+      <li>Built responsive UI components using Angular, HTML, CSS, and JavaScript.</li>
+      <li>Supported debugging, cross-browser testing, and UI enhancements for production releases.</li>
+    </ul>
+  </div>
+
+  <!-- =========================
+       Projects
+       ========================= -->
+  <div class="section" id="projects">
+    <h2>Projects</h2>
+    <p>
+      A curated set of Java Full Stack projects demonstrating Spring Boot APIs, secure authentication,
+      microservices patterns, event-driven messaging, and end-to-end UI integration.
+    </p>
+
+    <!--
+      IMPORTANT:
+      Put your project cover images in a folder named /projects
+      Example:
+        projects/banking.png
+        projects/secure-user.png
+      If you use different file names, update the src paths below.
+    -->
+    <div class="grid">
+
+      <!-- Project 1 -->
+      <div class="card">
+        <img class="cover" src="projects/banking.png" alt="Banking Service - REST API Cover">
+        <div class="content">
+          <p class="title">Banking Service – REST API</p>
+          <div class="stack">Spring Boot • JPA/Hibernate • MySQL • Swagger • JUnit</div>
+          <div class="meta">
+            <span class="pill">REST APIs</span>
+            <span class="pill">CRUD</span>
+            <span class="pill">Pagination</span>
+          </div>
+          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card">
+        <img class="cover" src="projects/secure-user.png" alt="Secure User Management Cover">
+        <div class="content">
+          <p class="title">Secure User Management</p>
+          <div class="stack">Spring Boot • Spring Security • JWT • MySQL • Role-Based Access</div>
+          <div class="meta">
+            <span class="pill">JWT</span>
+            <span class="pill">RBAC</span>
+            <span class="pill">Security</span>
+          </div>
+          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="card">
+        <img class="cover" src="projects/microservices.png" alt="Microservices E-Commerce Cover">
+        <div class="content">
+          <p class="title">Microservices E-Commerce System</p>
+          <div class="stack">Spring Boot • Spring Cloud • API Gateway • Eureka • Docker</div>
+          <div class="meta">
+            <span class="pill">Microservices</span>
+            <span class="pill">Gateway</span>
+            <span class="pill">Docker</span>
+          </div>
+          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="card">
+        <img class="cover" src="projects/kafka.png" alt="Kafka Event System Cover">
+        <div class="content">
+          <p class="title">Kafka Event System</p>
+          <div class="stack">Spring Boot • Kafka • Producers/Consumers • Event-Driven Design</div>
+          <div class="meta">
+            <span class="pill">Kafka</span>
+            <span class="pill">Events</span>
+            <span class="pill">Async</span>
+          </div>
+          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="card">
+        <img class="cover" src="projects/fullstack.png" alt="Full Stack Java App Cover">
+        <div class="content">
+          <p class="title">Full Stack Java App</p>
+          <div class="stack">Spring Boot REST API • React/Angular • Auth • CRUD • UI</div>
+          <div class="meta">
+            <span class="pill">Full Stack</span>
+            <span class="pill">UI</span>
+            <span class="pill">APIs</span>
+          </div>
+          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="card">
+        <img class="cover" src="projects/utilities.png" alt="Java Utilities Toolkit Cover">
+        <div class="content">
+          <p class="title">Java Utilities Toolkit</p>
+          <div class="stack">Core Java • File Processing • CSV Parser • Log Analyzer</div>
+          <div class="meta">
+            <span class="pill">Core Java</span>
+            <span class="pill">Utilities</span>
+            <span class="pill">Clean Code</span>
+          </div>
+          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================
+       Education
+       ========================= -->
+  <div class="section" id="education">
+    <h2>Education</h2>
+    <p><b>Master of Science – Computer Science & Engineering</b><br>
+      Florida Atlantic University, Boca Raton, FL | 2023 – 2025
+    </p>
+
+    <p style="margin-top:10px"><b>Bachelor of Technology – Computer Science & Engineering</b><br>
+      Vivekananda College of Engineering for Women, India | 2017 – 2021
+    </p>
+  </div>
+
+  <!-- =========================
+       Contact
+       ========================= -->
+  <div class="section" id="contact">
+    <h2>Contact</h2>
+    <p>Best way to reach me is email. I’m open to Java Full Stack roles (Spring Boot + React/Angular).</p>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:abollineni2023@fau.edu">abollineni2023@fau.edu</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="label">GitHub</div>
+        <div class="value"><a href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">github.com/abollineni2023</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © <span id="year"></span> Amrutha Priya • Java Full Stack Developer
+  </div>
+
 </div>
 
-<div class="section">
-<h2>About</h2>
-<p>
-Java Full Stack Developer with strong experience designing and developing scalable web
-applications using Spring Boot, REST APIs, React, and Angular. Passionate about clean
-architecture, performance optimization, and delivering enterprise-grade solutions in Agile
-environments.
-</p>
-</div>
+<!-- Tiny script only for current year (optional) -->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-<div class="section">
-<h2>Professional Experience</h2>
-
-<p><b>Atos Syntel Pvt Ltd – India</b><br>
-Java Full Stack Developer | 2022 – 2024</p>
-<ul>
-<li>Designed and developed full stack enterprise applications using Java, Spring Boot, React, and Angular.</li>
-<li>Built RESTful APIs for business workflows and integrated them with dynamic front-end dashboards.</li>
-<li>Developed reusable UI components and implemented scalable front-end architecture.</li>
-<li>Optimized application performance through efficient state management and API design.</li>
-<li>Implemented CI/CD pipelines using Azure DevOps for automated builds and deployments.</li>
-<li>Wrote unit and integration tests using JUnit, Jest, and React Testing Library.</li>
-<li>Provided production support and resolved high-priority defects.</li>
-</ul>
-
-<p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
-Front-End Developer | 2019 – 2022</p>
-<ul>
-<li>Developed production web applications using Angular, TypeScript, JavaScript, and REST APIs.</li>
-<li>Improved performance via lazy loading, code splitting, and front-end optimization.</li>
-<li>Collaborated with backend teams on API integration and feature delivery.</li>
-<li>Implemented unit tests using Jasmine and Karma.</li>
-</ul>
-
-<p style="margin-top:14px"><b>Syntax Tree Software Solutions Pvt. Ltd.</b><br>
-Front-End Developer Intern | 2018 – 2019</p>
-<ul>
-<li>Built responsive UI components using Angular, HTML, CSS, and JavaScript.</li>
-<li>Supported debugging, cross-browser testing, and UI enhancements.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>Education</h2>
-<p><b>Master of Science – Computer Science & Engineering</b><br>
-Florida Atlantic University, Boca Raton, FL | 2023 – 2025</p>
-
-<p><b>Bachelor of Technology – Computer Science & Engineering</b><br>
-Vivekananda College of Engineering for Women, India | 2017 – 2021</p>
-</div>
-
-<div class="section">
-<h2>Certifications</h2>
-<ul>
-<li>Microsoft Certified: Azure Fundamentals (AZ-900)</li>
-</ul>
-</div>
-
-</div>
 </body>
 </html>
