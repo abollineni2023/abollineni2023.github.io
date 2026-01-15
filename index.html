@@ -1,17 +1,12 @@
 <!doctype html>
 <!--
-  Portfolio Website (Single-file)
+  Portfolio Website (Single-file, with Animations) — NO Projects Section
   Author: Amrutha Priya
   Role: Java Full Stack Developer
   Hosting: GitHub Pages (index.html)
   Assets needed:
    - profile.jpg
-   - projects/banking.png
-   - projects/secure-user.png
-   - projects/kafka.png
-   - projects/fullstack.png
-   - projects/utilities.png
-   (You can rename images, just update the src paths below)
+   - resume.pdf (optional)
 -->
 <html lang="en">
 <head>
@@ -20,9 +15,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* =========================
-   Base / Theme
-   ========================= */
 :root{
   --bg1:#0f172a;
   --bg2:#052e16;
@@ -37,15 +29,43 @@
 
 *{ box-sizing:border-box; }
 
-html{
-  scroll-behavior:smooth;
-}
+html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
   font-family:"Segoe UI", system-ui, Arial;
   background: linear-gradient(135deg,var(--bg1),var(--bg2));
   color:var(--text);
+  overflow-x:hidden;
+}
+
+/* =========================
+   Animated background orbs
+   ========================= */
+.bg-orbs{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  overflow:hidden;
+}
+.orb{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  filter: blur(55px);
+  opacity:0.25;
+  background: radial-gradient(circle at 30% 30%, rgba(34,197,94,0.65), rgba(34,197,94,0.05));
+  animation: floatOrb 10s ease-in-out infinite;
+}
+.orb.o1{ top:-120px; left:-140px; animation-duration: 11s; }
+.orb.o2{ top:40%; right:-180px; animation-duration: 13s; }
+.orb.o3{ bottom:-180px; left:35%; animation-duration: 12s; }
+
+@keyframes floatOrb{
+  0%,100%{ transform: translate3d(0,0,0) scale(1); }
+  50%{ transform: translate3d(20px,-18px,0) scale(1.06); }
 }
 
 /* =========================
@@ -72,29 +92,23 @@ h1{
   color:#ecfdf5;
   letter-spacing:0.2px;
 }
-
 h2{
   margin:0 0 10px 0;
   font-size:20px;
   color:#ecfdf5;
 }
-
 p{ color:var(--sub); margin:8px 0 0; line-height:1.65; }
-
 ul{
   margin:10px 0 0 18px;
   line-height:1.75;
   color:var(--sub);
 }
 
-a{
-  color:#bbf7d0;
-  text-decoration:none;
-}
+a{ color:#bbf7d0; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
 /* =========================
-   Top Header
+   Header
    ========================= */
 .header{
   display:flex;
@@ -108,12 +122,25 @@ a:hover{ text-decoration:underline; }
   box-shadow:var(--shadow);
 }
 
+.photo-wrap{
+  position:relative;
+  width:124px;
+  height:124px;
+  border-radius:20px;
+  padding:2px;
+  background: linear-gradient(120deg, rgba(34,197,94,0.2), rgba(34,197,94,0.9), rgba(34,197,94,0.2));
+  animation: glowPulse 4.5s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{ filter: drop-shadow(0 0 0 rgba(34,197,94,0)); }
+  50%{ filter: drop-shadow(0 0 18px rgba(34,197,94,0.35)); }
+}
 .photo{
   width:120px;
   height:120px;
   border-radius:18px;
   object-fit:cover;
-  border:2px solid var(--glow);
+  border:2px solid rgba(34,197,94,0.55);
   background:#111827;
 }
 
@@ -134,10 +161,16 @@ a:hover{ text-decoration:underline; }
   background:rgba(34,197,94,0.1);
   font-size:13px;
   color:var(--muted);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.badges span:hover{
+  transform: translateY(-2px);
+  background:rgba(34,197,94,0.18);
+  border-color:rgba(34,197,94,0.95);
 }
 
 /* =========================
-   Sticky Navigation
+   Sticky Navigation (no Projects)
    ========================= */
 .nav{
   position:sticky;
@@ -162,7 +195,6 @@ a:hover{ text-decoration:underline; }
   gap:10px;
   flex-wrap:wrap;
 }
-
 .nav a{
   display:inline-block;
   padding:8px 12px;
@@ -171,8 +203,10 @@ a:hover{ text-decoration:underline; }
   background:rgba(34,197,94,0.08);
   color:#d1fae5;
   font-size:14px;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
 }
 .nav a:hover{
+  transform: translateY(-1px);
   border-color:rgba(34,197,94,0.9);
   background:rgba(34,197,94,0.14);
   text-decoration:none;
@@ -191,82 +225,25 @@ a:hover{ text-decoration:underline; }
   background:rgba(34,197,94,0.14);
   color:#ecfdf5;
   font-size:14px;
+  transition: transform .18s ease, background .18s ease;
 }
 .btn:hover{
+  transform: translateY(-1px);
   background:rgba(34,197,94,0.2);
   text-decoration:none;
 }
 
 /* =========================
-   Projects Grid
+   Reveal Animations (scroll)
    ========================= */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:14px;
-  margin-top:12px;
+.reveal{
+  opacity:0;
+  transform: translateY(16px);
+  transition: opacity .7s ease, transform .7s ease;
 }
-
-.card{
-  border-radius:16px;
-  border:1px solid rgba(6,78,59,0.9);
-  background:rgba(15,23,42,0.65);
-  overflow:hidden;
-  box-shadow:0 10px 24px rgba(0,0,0,.18);
-  transition:transform .18s ease, border-color .18s ease;
-}
-.card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(34,197,94,0.95);
-}
-
-.cover{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  display:block;
-  border-bottom:1px solid rgba(6,78,59,0.65);
-}
-
-.card .content{
-  padding:14px;
-}
-
-.title{
-  font-size:16px;
-  font-weight:700;
-  color:#ecfdf5;
-  margin:0;
-}
-
-.stack{
-  margin-top:8px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-}
-
-.meta{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-  flex-wrap:wrap;
-}
-
-.pill{
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(34,197,94,0.4);
-  background:rgba(34,197,94,0.08);
-  color:#d1fae5;
-  font-size:12px;
-}
-
-.card a.repo{
-  display:inline-block;
-  margin-top:12px;
-  font-size:14px;
-  color:#bbf7d0;
+.reveal.show{
+  opacity:1;
+  transform: translateY(0);
 }
 
 /* =========================
@@ -283,6 +260,11 @@ a:hover{ text-decoration:underline; }
   border-radius:14px;
   border:1px solid rgba(6,78,59,0.9);
   background:rgba(15,23,42,0.65);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.contact-item:hover{
+  transform: translateY(-2px);
+  border-color:rgba(34,197,94,0.85);
 }
 .contact-item .label{
   color:var(--muted);
@@ -295,9 +277,7 @@ a:hover{ text-decoration:underline; }
   word-break:break-word;
 }
 
-/* =========================
-   Footer
-   ========================= */
+/* Footer */
 .footer{
   margin-top:18px;
   text-align:center;
@@ -305,32 +285,41 @@ a:hover{ text-decoration:underline; }
   font-size:13px;
 }
 
-/* =========================
-   Responsive
-   ========================= */
-@media (max-width: 900px){
-  .grid{ grid-template-columns:repeat(2, 1fr); }
-}
-
+/* Responsive */
 @media (max-width: 640px){
   .container{ padding:28px 14px 60px; }
   h1{ font-size:30px; }
+  .photo-wrap{ width:104px; height:104px; }
   .photo{ width:100px; height:100px; }
-  .grid{ grid-template-columns:1fr; }
-  .nav{ gap:8px; }
   .contact-grid{ grid-template-columns:1fr; }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .orb, .photo-wrap{ animation:none !important; }
+  .reveal{ transition:none !important; transform:none !important; opacity:1 !important; }
+  .nav a, .btn, .badges span, .contact-item{ transition:none !important; }
 }
 </style>
 </head>
 
 <body>
+
+<!-- Animated background -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
 <div class="container">
 
-  <!-- =========================
-       Header
-       ========================= -->
-  <div class="header" id="top">
-    <img src="profile.jpg" class="photo" alt="Amrutha Priya - Profile Photo">
+  <!-- Header -->
+  <div class="header reveal" id="top">
+    <div class="photo-wrap">
+      <img src="profile.jpg" class="photo" alt="Amrutha Priya - Profile Photo">
+    </div>
 
     <div>
       <h1>Amrutha Priya</h1>
@@ -349,42 +338,35 @@ a:hover{ text-decoration:underline; }
     </div>
   </div>
 
-  <!-- =========================
-       Navigation (Sticky)
-       ========================= -->
-  <div class="nav">
+  <!-- Navigation -->
+  <div class="nav reveal">
     <div class="links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
       <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
     </div>
 
     <div class="cta">
-      <!-- Optional: add resume.pdf in repo root and this will work -->
+      <!-- Optional: upload resume.pdf to repo root -->
       <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
-      <a class="btn" href="#projects">See Projects</a>
+      <a class="btn" href="#contact">Reach Out</a>
     </div>
   </div>
 
-  <!-- =========================
-       About
-       ========================= -->
-  <div class="section" id="about">
+  <!-- About -->
+  <div class="section reveal" id="about">
     <h2>About</h2>
     <p>
-      Java Full Stack Developer with strong experience designing and developing scalable web
-      applications using Spring Boot, REST APIs, React, and Angular. Passionate about clean
-      architecture, performance optimization, and delivering enterprise-grade solutions in Agile
-      environments.
+      Java Full Stack Developer with strong experience designing and developing scalable web applications
+      using Spring Boot, REST APIs, React, and Angular. Passionate about clean architecture, performance
+      optimization, and delivering enterprise-grade solutions in Agile environments.
     </p>
   </div>
 
-  <!-- =========================
-       Experience
-       ========================= -->
-  <div class="section" id="experience">
+  <!-- Experience -->
+  <div class="section reveal" id="experience">
     <h2>Professional Experience</h2>
 
     <p><b>Atos Syntel Pvt Ltd – India</b><br>
@@ -416,123 +398,8 @@ a:hover{ text-decoration:underline; }
     </ul>
   </div>
 
-  <!-- =========================
-       Projects
-       ========================= -->
-  <div class="section" id="projects">
-    <h2>Projects</h2>
-    <p>
-      A curated set of Java Full Stack projects demonstrating Spring Boot APIs, secure authentication,
-      microservices patterns, event-driven messaging, and end-to-end UI integration.
-    </p>
-
-    <!--
-      IMPORTANT:
-      Put your project cover images in a folder named /projects
-      Example:
-        projects/banking.png
-        projects/secure-user.png
-      If you use different file names, update the src paths below.
-    -->
-    <div class="grid">
-
-      <!-- Project 1 -->
-      <div class="card">
-        <img class="cover" src="projects/banking.png" alt="Banking Service - REST API Cover">
-        <div class="content">
-          <p class="title">Banking Service – REST API</p>
-          <div class="stack">Spring Boot • JPA/Hibernate • MySQL • Swagger • JUnit</div>
-          <div class="meta">
-            <span class="pill">REST APIs</span>
-            <span class="pill">CRUD</span>
-            <span class="pill">Pagination</span>
-          </div>
-          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="card">
-        <img class="cover" src="projects/secure-user.png" alt="Secure User Management Cover">
-        <div class="content">
-          <p class="title">Secure User Management</p>
-          <div class="stack">Spring Boot • Spring Security • JWT • MySQL • Role-Based Access</div>
-          <div class="meta">
-            <span class="pill">JWT</span>
-            <span class="pill">RBAC</span>
-            <span class="pill">Security</span>
-          </div>
-          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="card">
-        <img class="cover" src="projects/microservices.png" alt="Microservices E-Commerce Cover">
-        <div class="content">
-          <p class="title">Microservices E-Commerce System</p>
-          <div class="stack">Spring Boot • Spring Cloud • API Gateway • Eureka • Docker</div>
-          <div class="meta">
-            <span class="pill">Microservices</span>
-            <span class="pill">Gateway</span>
-            <span class="pill">Docker</span>
-          </div>
-          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="card">
-        <img class="cover" src="projects/kafka.png" alt="Kafka Event System Cover">
-        <div class="content">
-          <p class="title">Kafka Event System</p>
-          <div class="stack">Spring Boot • Kafka • Producers/Consumers • Event-Driven Design</div>
-          <div class="meta">
-            <span class="pill">Kafka</span>
-            <span class="pill">Events</span>
-            <span class="pill">Async</span>
-          </div>
-          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
-        </div>
-      </div>
-
-      <!-- Project 5 -->
-      <div class="card">
-        <img class="cover" src="projects/fullstack.png" alt="Full Stack Java App Cover">
-        <div class="content">
-          <p class="title">Full Stack Java App</p>
-          <div class="stack">Spring Boot REST API • React/Angular • Auth • CRUD • UI</div>
-          <div class="meta">
-            <span class="pill">Full Stack</span>
-            <span class="pill">UI</span>
-            <span class="pill">APIs</span>
-          </div>
-          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
-        </div>
-      </div>
-
-      <!-- Project 6 -->
-      <div class="card">
-        <img class="cover" src="projects/utilities.png" alt="Java Utilities Toolkit Cover">
-        <div class="content">
-          <p class="title">Java Utilities Toolkit</p>
-          <div class="stack">Core Java • File Processing • CSV Parser • Log Analyzer</div>
-          <div class="meta">
-            <span class="pill">Core Java</span>
-            <span class="pill">Utilities</span>
-            <span class="pill">Clean Code</span>
-          </div>
-          <a class="repo" href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">View on GitHub →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- =========================
-       Education
-       ========================= -->
-  <div class="section" id="education">
+  <!-- Education -->
+  <div class="section reveal" id="education">
     <h2>Education</h2>
     <p><b>Master of Science – Computer Science & Engineering</b><br>
       Florida Atlantic University, Boca Raton, FL | 2023 – 2025
@@ -543,10 +410,16 @@ a:hover{ text-decoration:underline; }
     </p>
   </div>
 
-  <!-- =========================
-       Contact
-       ========================= -->
-  <div class="section" id="contact">
+  <!-- Certifications -->
+  <div class="section reveal" id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Microsoft Certified: Azure Fundamentals (AZ-900)</li>
+    </ul>
+  </div>
+
+  <!-- Contact -->
+  <div class="section reveal" id="contact">
     <h2>Contact</h2>
     <p>Best way to reach me is email. I’m open to Java Full Stack roles (Spring Boot + React/Angular).</p>
 
@@ -555,6 +428,7 @@ a:hover{ text-decoration:underline; }
         <div class="label">Email</div>
         <div class="value"><a href="mailto:abollineni2023@fau.edu">abollineni2023@fau.edu</a></div>
       </div>
+
       <div class="contact-item">
         <div class="label">GitHub</div>
         <div class="value"><a href="https://github.com/abollineni2023" target="_blank" rel="noreferrer">github.com/abollineni2023</a></div>
@@ -568,9 +442,22 @@ a:hover{ text-decoration:underline; }
 
 </div>
 
-<!-- Tiny script only for current year (optional) -->
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+/* Footer year */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Scroll reveal animations */
+const reveals = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+reveals.forEach(el => io.observe(el));
 </script>
 
 </body>
