@@ -43,7 +43,7 @@
     a:hover{text-decoration:underline}
 
     .container{
-      max-width:1100px;
+      max-width:1150px;
       margin:auto;
       padding:26px 18px 70px;
     }
@@ -125,11 +125,11 @@
       text-decoration:none;
     }
 
-    /* Hero */
+    /* ===== Portfolio-style Hero (updated) ===== */
     .hero{
       margin-top:18px;
-      padding:26px;
-      border-radius:20px;
+      padding:28px;
+      border-radius:22px;
       border:1px solid rgba(34,197,94,0.18);
       background:
         radial-gradient(900px 420px at 10% 10%, rgba(34,197,94,0.20), transparent 60%),
@@ -143,7 +143,7 @@
       content:"";
       position:absolute;
       inset:-2px;
-      border-radius:22px;
+      border-radius:24px;
       background: linear-gradient(90deg, transparent, rgba(34,197,94,0.35), transparent);
       opacity:0.6;
       transform: translateX(-45%);
@@ -155,13 +155,26 @@
       50%{ transform: translateX(45%); opacity:0.85; }
     }
 
+    /* NEW: hero layout spacing */
     .hero-grid{
-      display:grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap:18px;
+      display:flex;
+      gap:60px;
       align-items:center;
+      justify-content:space-between;
       position:relative;
       z-index:1;
+    }
+    .hero-content{
+      max-width:560px;
+    }
+
+    /* NEW: nice entrance animation */
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(24px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+    .hero-content, .profile-tile{
+      animation: fadeUp .9s ease-out both;
     }
 
     .kicker{
@@ -179,7 +192,7 @@
 
     h1{
       margin:14px 0 0;
-      font-size:44px;
+      font-size:46px;
       line-height:1.06;
       letter-spacing:0.2px;
     }
@@ -233,18 +246,21 @@
       transform: translateY(-2px);
       background: rgba(34,197,94,0.14);
       border-color: rgba(34,197,94,0.75);
+      text-decoration:none;
     }
 
-    /* Profile tile */
+    /* Profile tile (updated image sizing and style) */
     .profile-tile{
+      width:380px;
       border-radius:18px;
       border:1px solid rgba(34,197,94,0.20);
       background: rgba(6, 16, 18, 0.55);
       padding:16px;
       box-shadow: 0 16px 40px rgba(0,0,0,.35);
     }
+
     .avatar-wrap{
-      border-radius:18px;
+      border-radius:20px;
       padding:2px;
       background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(34,197,94,0.9), rgba(0,255,157,0.14));
       animation: pulseGlow 4.3s ease-in-out infinite;
@@ -253,15 +269,22 @@
       0%,100%{ filter: drop-shadow(0 0 0 rgba(34,197,94,0)); }
       50%{ filter: drop-shadow(0 0 22px rgba(34,197,94,0.40)); }
     }
+
+    /* NEW: bigger avatar and premium look */
     .avatar{
       display:block;
       width:100%;
-      height:230px;
-      border-radius:16px;
+      height:300px;
+      border-radius:18px;
       object-fit:cover;
-      border:1px solid rgba(34,197,94,0.25);
+      border:2px solid rgba(34,197,94,0.70);
+      box-shadow:
+        0 0 0 1px rgba(34,197,94,0.35),
+        0 30px 60px rgba(0,0,0,0.45);
       background:#0b1220;
+      transition: transform .2s ease;
     }
+    .avatar:hover{ transform: scale(1.01); }
 
     .quick{
       margin-top:12px;
@@ -310,6 +333,12 @@
       letter-spacing:.2px;
     }
     .card p{ margin:0 0 10px; color: rgba(214,247,231,0.92); line-height:1.7; }
+
+    /* NEW: portfolio gradient for the "below-hero" cards */
+    .section-card{
+      background: linear-gradient(180deg, rgba(15,23,42,0.85), rgba(2,44,34,0.82));
+      border-radius:18px;
+    }
 
     .tags{
       display:flex;
@@ -386,7 +415,13 @@
 
     /* Responsive */
     @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
+      .hero-grid{
+        flex-direction:column-reverse;
+        gap:18px;
+        text-align:center;
+      }
+      .hero-content{ max-width:100%; }
+      .profile-tile{ width:min(420px, 100%); }
       .avatar{ height:260px; }
     }
     @media (max-width: 760px){
@@ -403,7 +438,7 @@
       .avatar-wrap{ animation:none !important; }
       .role{ animation:none !important; width:auto !important; border-right:none !important; }
       .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
-      .nav a, .btn, .tag, .card, .hero-actions a{ transition:none !important; }
+      .nav a, .btn, .tag, .card, .hero-actions a, .avatar{ transition:none !important; }
     }
   </style>
 </head>
@@ -428,7 +463,6 @@
       </div>
 
       <div class="cta">
-        <!-- If you upload resume.pdf to repo root, this button will work -->
         <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
         <a class="btn" href="mailto:b.amruthapriya@gmail.com">Email</a>
       </div>
@@ -437,7 +471,8 @@
     <!-- Hero -->
     <section class="hero reveal show" id="about">
       <div class="hero-grid">
-        <div>
+
+        <div class="hero-content">
           <div class="kicker">⚡ Portfolio • Software Developer</div>
 
           <h1><span class="grad">Amrutha Priya</span></h1>
@@ -458,8 +493,8 @@
 
         <aside class="profile-tile">
           <div class="avatar-wrap">
-            <!-- Put profile.jpg in repo root -->
-            <img class="avatar" src="profile.jpg" alt="Amrutha Priya - Profile Photo">
+            <!-- IMPORTANT: match your file name exactly -->
+            <img class="avatar" src="Profile.jpg" alt="Amrutha Priya - Profile Photo">
           </div>
 
           <div class="quick">
@@ -489,16 +524,17 @@
             </div>
           </div>
         </aside>
+
       </div>
     </section>
 
-    <!-- Summary (more details from resume) -->
+    <!-- Summary cards (now portfolio-styled) -->
     <section class="grid">
-      <div class="card reveal">
+      <div class="card reveal section-card">
         <h2>What I’m Known For</h2>
         <p>
-          Building reliable server-side solutions, designing secure and high-performance APIs, and crafting
-          responsive user experiences for enterprise platforms. :contentReference[oaicite:1]{index=1}
+          Building reliable server-side solutions, designing secure and high-performance APIs, and crafting responsive
+          user experiences for enterprise platforms.
         </p>
         <div class="tags">
           <span class="tag">Production Support</span>
@@ -508,11 +544,11 @@
         </div>
       </div>
 
-      <div class="card reveal">
+      <div class="card reveal section-card">
         <h2>Cloud & Delivery</h2>
         <p>
           Hands-on exposure to cloud environments and modern delivery practices, including CI/CD and container-based
-          deployments, with a strong focus on stability and maintainability. :contentReference[oaicite:2]{index=2}
+          deployments, with a focus on stability, maintainability, and release readiness.
         </p>
         <div class="tags">
           <span class="tag">CI/CD</span>
@@ -526,10 +562,10 @@
     <!-- Skills -->
     <section class="card reveal" id="skills" style="margin-top:14px;">
       <h2>Technical Skills</h2>
-      <p>High-level snapshot of tools and technologies used across roles. :contentReference[oaicite:3]{index=3}</p>
+      <p>High-level snapshot of tools and technologies used across roles.</p>
 
       <div class="grid" style="margin-top:12px;">
-        <div class="card" style="grid-column: span 6; background:var(--card2);">
+        <div class="card section-card" style="grid-column: span 6;">
           <h2>Core</h2>
           <div class="tags">
             <span class="tag">SDLC</span><span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Waterfall</span><span class="tag">TDD</span>
@@ -537,49 +573,28 @@
           </div>
         </div>
 
-        <div class="card" style="grid-column: span 6; background:var(--card2);">
+        <div class="card section-card" style="grid-column: span 6;">
           <h2>Frontend</h2>
           <div class="tags">
             <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap</span>
-            <span class="tag">AngularJS</span><span class="tag">ReactJS</span><span class="tag">Redux</span>
-            <span class="tag">JSP</span><span class="tag">NodeJS</span>
+            <span class="tag">Angular</span><span class="tag">React</span><span class="tag">Redux</span>
           </div>
         </div>
 
-        <div class="card" style="grid-column: span 6; background:var(--card2);">
-          <h2>Backend & Integration</h2>
+        <div class="card section-card" style="grid-column: span 6;">
+          <h2>Backend</h2>
           <div class="tags">
             <span class="tag">Spring Boot</span><span class="tag">Spring MVC</span><span class="tag">Spring Data</span><span class="tag">Spring Security</span>
-            <span class="tag">Hibernate</span><span class="tag">J2EE</span><span class="tag">RESTful APIs</span><span class="tag">JMS</span><span class="tag">JDBC</span>
-            <span class="tag">Microservices</span>
+            <span class="tag">Hibernate</span><span class="tag">J2EE</span><span class="tag">REST APIs</span><span class="tag">JDBC</span>
           </div>
         </div>
 
-        <div class="card" style="grid-column: span 6; background:var(--card2);">
-          <h2>Data, Cloud, DevOps</h2>
+        <div class="card section-card" style="grid-column: span 6;">
+          <h2>Data & DevOps</h2>
           <div class="tags">
-            <span class="tag">MySQL</span><span class="tag">Postgres</span><span class="tag">Oracle</span><span class="tag">DB2</span><span class="tag">MongoDB</span>
+            <span class="tag">MySQL</span><span class="tag">Postgres</span><span class="tag">Oracle</span><span class="tag">MongoDB</span>
             <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span>
-            <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Helm</span>
-            <span class="tag">Jenkins</span><span class="tag">GitLab</span>
-          </div>
-        </div>
-
-        <div class="card" style="grid-column: span 6; background:var(--card2);">
-          <h2>Quality & Observability</h2>
-          <div class="tags">
-            <span class="tag">JUnit</span><span class="tag">Mockito</span><span class="tag">Selenium</span><span class="tag">Postman</span><span class="tag">JMeter</span>
-            <span class="tag">SonarQube</span><span class="tag">ELK</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Log4J</span>
-          </div>
-        </div>
-
-        <div class="card" style="grid-column: span 6; background:var(--card2);">
-          <h2>Security & Tools</h2>
-          <div class="tags">
-            <span class="tag">OAuth 2.0</span><span class="tag">JWT</span>
-            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">SVN</span><span class="tag">Bitbucket/Stash</span>
-            <span class="tag">IntelliJ</span><span class="tag">Eclipse</span><span class="tag">VS Code</span><span class="tag">STS</span>
-            <span class="tag">Linux/Unix</span><span class="tag">JSON</span><span class="tag">XML</span>
+            <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Jenkins</span>
           </div>
         </div>
       </div>
@@ -588,7 +603,7 @@
     <!-- Experience -->
     <section class="card reveal" id="experience" style="margin-top:14px;">
       <h2>Experience</h2>
-      <p>Client engagements and roles across enterprise delivery environments. :contentReference[oaicite:4]{index=4}</p>
+      <p>Client engagements and roles across enterprise delivery environments.</p>
 
       <div class="timeline">
 
@@ -650,7 +665,7 @@
 
         <div class="step">
           <div class="top">
-            <strong>Syntax Tree Software Solutions — Associate Software Engineer</strong>
+            <strong>Syntax Tree Software Solutions — Software Engineer</strong>
             <span class="time">Sept 2018 – Nov 2019</span>
           </div>
           <ul class="bullets">
@@ -664,7 +679,7 @@
 
         <div class="step">
           <div class="top">
-            <strong>Syntax Tree Software Solutions — Software Intern</strong>
+            <strong>Syntax Tree Software Solutions — Software Engineer Intern</strong>
             <span class="time">Jan 2018 – Aug 2018</span>
           </div>
           <ul class="bullets">
@@ -678,32 +693,32 @@
       </div>
     </section>
 
-    <!-- Education -->
+    <!-- Education + Cert -->
     <section class="grid" id="education">
-      <div class="card reveal">
+      <div class="card reveal section-card">
         <h2>Education</h2>
         <p><strong>Master of Computer Applications (MCA) — Computer Science</strong><br/>
-          Florida Atlantic University — May 2025
+          Florida Atlantic University
         </p>
-        <p style="margin-top:10px;"><strong>Bachelor’s Degree — Computer Engineering</strong><br/>
-          Vivekananda College of Engineering for Women — June 2019
+        <p style="margin-top:10px;"><strong>Bachelor’s Degree — Computer Engineering (CSE)</strong><br/>
+          Vivekananda College of Engineering for Women
         </p>
       </div>
 
-      <div class="card reveal" id="certs">
+      <div class="card reveal section-card" id="certs">
         <h2>Certification</h2>
         <p><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong><br/>
           Issued by Microsoft
         </p>
         <p style="margin-top:10px;">
-          Validated foundational knowledge of cloud concepts, security, governance, core Azure services,
-          pricing models, compliance principles, and service-level agreements.
+          Validated foundational knowledge of cloud concepts, security, governance, core Azure services, pricing models,
+          compliance principles, and service-level agreements.
         </p>
       </div>
     </section>
 
     <!-- Contact -->
-    <section class="card reveal" id="contact" style="margin-top:14px;">
+    <section class="card reveal section-card" id="contact" style="margin-top:14px;">
       <h2>Contact</h2>
       <p>If you’d like to connect about Software Developer opportunities, email is the fastest way to reach me.</p>
 
