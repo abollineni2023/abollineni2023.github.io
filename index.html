@@ -9,6 +9,7 @@
     :root{
       --bg0:#05070b;
       --bg1:#070c10;
+
       --panel: rgba(255,255,255,0.06);
       --panel2: rgba(255,255,255,0.04);
       --stroke: rgba(255,255,255,0.10);
@@ -22,9 +23,8 @@
       --shadow: 0 28px 80px rgba(0,0,0,.55);
       --shadow2: 0 18px 50px rgba(0,0,0,.40);
 
-      --radius: 22px;
-      --radius2: 16px;
-
+      --r: 22px;
+      --r2: 16px;
       --max: 1180px;
     }
 
@@ -42,9 +42,10 @@
       overflow-x:hidden;
     }
     a{color:inherit}
+
     .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
 
-    /* ===== Background motion (subtle, premium) ===== */
+    /* ambient motion background */
     .ambient{
       position:fixed; inset:-60px; z-index:-1; pointer-events:none;
       background:
@@ -60,45 +61,31 @@
       50%{ transform: translate3d(0,-16px,0) scale(1.02); }
     }
 
-    /* ===== Sticky top nav (Squarespace feel) ===== */
-    .topbar{
-      position:sticky; top:14px; z-index:50;
-      padding:10px;
-    }
+    /* sticky nav */
+    .topbar{ position:sticky; top:14px; z-index:50; padding:10px; }
     .navshell{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 14px;
-      border-radius:999px;
+      padding:12px 14px; border-radius:999px;
       background: rgba(8, 12, 16, 0.62);
       border:1px solid rgba(34,197,94,0.22);
       backdrop-filter: blur(12px);
       box-shadow: 0 14px 44px rgba(0,0,0,.35);
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      padding-left:6px; white-space:nowrap;
-    }
+    .brand{ display:flex; align-items:center; gap:10px; padding-left:6px; white-space:nowrap; }
     .dot{
-      width:10px;height:10px;border-radius:999px;
-      background:var(--green);
+      width:10px;height:10px;border-radius:999px; background:var(--green);
       box-shadow:0 0 18px rgba(34,197,94,.55);
     }
     .brand strong{font-size:13.5px; letter-spacing:.2px}
 
-    .navlinks{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
-    }
+    .navlinks{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
     .navlinks a{
-      font-size:13px;
-      padding:8px 12px;
-      border-radius:999px;
+      font-size:13px; padding:8px 12px; border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
-      text-decoration:none;
-      opacity:.86;
+      text-decoration:none; opacity:.86;
       transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
-      position:relative;
-      overflow:hidden;
+      position:relative; overflow:hidden;
     }
     .navlinks a:hover{
       transform: translateY(-1px);
@@ -107,20 +94,14 @@
       opacity:1;
     }
 
-    .cta{
-      display:flex; gap:10px; flex-wrap:wrap;
-      padding-right:6px;
-    }
+    .cta{ display:flex; gap:10px; flex-wrap:wrap; padding-right:6px; }
     .btn{
-      font-size:13px;
-      padding:8px 12px;
-      border-radius:999px;
+      font-size:13px; padding:8px 12px; border-radius:999px;
       border:1px solid rgba(34,197,94,0.55);
       background: rgba(34,197,94,0.10);
       text-decoration:none;
       transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      position:relative;
-      overflow:hidden;
+      position:relative; overflow:hidden;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -128,27 +109,20 @@
       border-color: rgba(34,197,94,0.85);
     }
 
-    /* ===== button/nav shine ===== */
+    /* shine effect */
     .btn::after, .navlinks a::after{
-      content:"";
-      position:absolute; top:-50%; left:-70%;
+      content:""; position:absolute; top:-50%; left:-70%;
       width:60%; height:200%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
       transform: rotate(18deg);
-      opacity:0;
-      transition: opacity .18s ease;
-      pointer-events:none;
+      opacity:0; transition: opacity .18s ease; pointer-events:none;
     }
-    .btn:hover::after, .navlinks a:hover::after{
-      opacity:1;
-      animation: shine .9s ease forwards;
-    }
+    .btn:hover::after, .navlinks a:hover::after{ opacity:1; animation: shine .9s ease forwards; }
     @keyframes shine{ from{ left:-70%; } to{ left:140%; } }
 
-    /* ===== Section layout (Squarespace rhythm) ===== */
     section{
       margin-top:34px;
-      border-radius: var(--radius);
+      border-radius: var(--r);
       border:1px solid var(--stroke);
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
       box-shadow: var(--shadow2);
@@ -159,8 +133,7 @@
 
     .eyebrow{
       display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
+      padding:8px 12px; border-radius:999px;
       border:1px solid rgba(34,197,94,0.28);
       background: rgba(34,197,94,0.08);
       color: rgba(244,255,249,0.85);
@@ -175,11 +148,8 @@
     }
     .grad{
       background: linear-gradient(90deg, #f6fff9, #bff7df, #7fffd3);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
     }
-
     .lead{
       margin:14px 0 0;
       font-size: clamp(15px, 1.6vw, 18px);
@@ -188,7 +158,7 @@
       max-width: 68ch;
     }
 
-    /* ===== Hero: full-screen vibe ===== */
+    /* hero */
     .hero{
       min-height: calc(100vh - 110px);
       display:flex; align-items:center;
@@ -218,13 +188,9 @@
     @keyframes typing{ to{ width:100%; } }
     @keyframes caret{ 50%{ border-color:transparent; } }
 
-    .hero-actions{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:18px;
-    }
+    .hero-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .pill{
-      padding:10px 14px;
-      border-radius:999px;
+      padding:10px 14px; border-radius:999px;
       border:1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.03);
       text-decoration:none;
@@ -242,20 +208,17 @@
       border-color: rgba(34,197,94,0.65);
     }
     .pill::after{
-      content:"";
-      position:absolute; top:-50%; left:-70%;
+      content:""; position:absolute; top:-50%; left:-70%;
       width:60%; height:200%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
       transform: rotate(18deg);
-      opacity:0;
-      transition: opacity .18s ease;
-      pointer-events:none;
+      opacity:0; transition: opacity .18s ease; pointer-events:none;
     }
     .pill:hover::after{ opacity:1; animation: shine .9s ease forwards; }
 
-    /* ===== Profile tile ===== */
+    /* profile */
     .profile{
-      border-radius: var(--radius);
+      border-radius: var(--r);
       border: 1px solid rgba(34,197,94,0.22);
       background: rgba(8,12,16,0.55);
       padding:16px;
@@ -300,14 +263,10 @@
     .label{ font-size:12px; color: rgba(191,247,223,0.86); }
     .val{ margin-top:3px; font-size:13px; color: rgba(244,255,249,0.92); line-height:1.4; }
 
-    /* ===== Feature blocks (not resume cards) ===== */
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
+    /* feature grid */
+    .split{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
     .feature{
-      border-radius: var(--radius2);
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       padding:20px;
@@ -320,11 +279,7 @@
       border-color: rgba(34,197,94,0.35);
       background: rgba(34,197,94,0.06);
     }
-    .feature h3{
-      margin:0 0 8px;
-      font-size:16px;
-      letter-spacing:.1px;
-    }
+    .feature h3{ margin:0 0 8px; font-size:16px; letter-spacing:.1px; }
     .feature p{ margin:0; color: var(--muted); line-height:1.75; }
 
     .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
@@ -343,19 +298,14 @@
       background: rgba(34,197,94,0.08);
     }
 
-    /* ===== Experience: modern timeline ===== */
+    /* timeline */
     .timeline{ display:grid; gap:12px; margin-top:16px; }
     .job{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
       padding:18px;
-      border-radius: var(--radius2);
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       transition: transform .16s ease, border-color .16s ease, background .16s ease;
-      position:relative;
-      overflow:hidden;
     }
     .job:hover{
       transform: translateY(-4px);
@@ -363,35 +313,17 @@
       background: rgba(34,197,94,0.06);
     }
     .jobtop{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
     }
     .job strong{ font-size:14.5px; }
     .job .time{ font-size:12px; color: rgba(191,247,223,0.80); white-space:nowrap; }
-
     .bullets{ margin:0; padding-left:18px; color: rgba(244,255,249,0.88); line-height:1.75; }
     .bullets li{ margin:6px 0; }
 
-    /* ===== Contact ===== */
-    .contactline{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:14px;
-    }
+    /* reveal */
+    .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.show{ opacity:1; transform: translateY(0); }
 
-    /* ===== Scroll reveal ===== */
-    .reveal{
-      opacity:0;
-      transform: translateY(18px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
-    .reveal.show{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    /* ===== Footer ===== */
     footer{
       margin-top:30px;
       padding:18px 0 30px;
@@ -400,7 +332,6 @@
       font-size:13px;
     }
 
-    /* ===== Responsive ===== */
     @media (max-width: 980px){
       .hero{ min-height:auto; }
       .hero-grid{ grid-template-columns: 1fr; }
@@ -411,7 +342,6 @@
       .brand{ display:none; }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
       .ambient{ animation:none !important; }
@@ -424,14 +354,10 @@
 <body>
   <div class="ambient"></div>
 
-  <!-- NAV -->
   <div class="topbar">
     <div class="wrap">
       <div class="navshell reveal show">
-        <div class="brand">
-          <span class="dot"></span>
-          <strong>Amrutha Priya</strong>
-        </div>
+        <div class="brand"><span class="dot"></span><strong>Amrutha Priya</strong></div>
 
         <nav class="navlinks">
           <a href="#home">Home</a>
@@ -444,14 +370,13 @@
         </nav>
 
         <div class="cta">
-          <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
           <a class="btn" href="mailto:b.amruthapriya@gmail.com">Email</a>
+          <a class="btn" href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
   <section class="hero" id="home">
     <div class="wrap">
       <div class="section-inner">
@@ -463,9 +388,8 @@
             <div class="type">Software Developer • Spring Boot • React / Angular • APIs • Production Support</div>
 
             <p class="lead">
-              Java Full Stack Developer with 7+ years of experience building and supporting scalable web and enterprise applications.
-              I work across backend services, UI development, integrations, deployments, and production stability—focused on clean architecture,
-              performance, and reliable delivery.
+              I build reliable enterprise applications end-to-end—backend services, API layers, modern UI, deployments,
+              and production stability. My focus is clean architecture, performance, and smooth delivery across Agile teams.
             </p>
 
             <div class="hero-actions">
@@ -477,8 +401,8 @@
 
           <aside class="profile reveal show">
             <div class="imgframe">
-              <!-- IMPORTANT: keep file name EXACTLY profile.jpg in repo root -->
-              <img class="avatar" src="profile.jpg" alt="Amrutha Priya - Profile Photo">
+              <!-- IMPORTANT: In your repo, image must be named EXACTLY: profile.jpg -->
+              <img class="avatar" src="profile.jpg" alt="Amrutha Priya profile photo">
             </div>
 
             <div class="rows">
@@ -491,8 +415,8 @@
                 <div class="val"><a href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">linkedin.com/in/amruthapriya98</a></div>
               </div>
               <div class="row">
-                <div class="label">Now</div>
-                <div class="val">Client: Citi Bank • Nov 2024 – Present</div>
+                <div class="label">Current Client</div>
+                <div class="val">Citi Bank • Nov 2024 – Present</div>
               </div>
             </div>
           </aside>
@@ -502,48 +426,31 @@
     </div>
   </section>
 
-  <!-- FOCUS (Squarespace-like feature rows) -->
   <section id="focus">
     <div class="wrap">
       <div class="section-inner reveal">
-        <div class="eyebrow">What I do best</div>
+        <div class="eyebrow">What I do</div>
         <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Enterprise delivery with clean systems & polished UX</h2>
         <p class="lead" style="margin-top:10px;">
-          I build server-side services, API layers, and modern interfaces that work reliably in real production environments.
-          I’m comfortable owning tasks end-to-end: requirements → build → deploy → support.
+          I take ownership across requirements → implementation → deployments → production fixes. I build systems that are stable, readable, and easy to extend.
         </p>
 
         <div class="split" style="margin-top:18px;">
           <div class="feature">
             <h3>Backend & APIs</h3>
-            <p>Spring Boot services, REST endpoints, validation, security patterns, integration readiness, and stable error handling.</p>
-            <div class="chips">
-              <span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">Security</span><span class="chip">Microservices</span>
-            </div>
+            <p>Service layers, validations, structured responses, secure endpoints, and integrations that won’t break under production pressure.</p>
           </div>
-
           <div class="feature">
-            <h3>Front-end & Experience</h3>
-            <p>Responsive interfaces with React/Angular, consistent UI patterns, and smooth API integration for dashboards and workflows.</p>
-            <div class="chips">
-              <span class="chip">React</span><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">UI Integration</span>
-            </div>
+            <h3>Front-end Experience</h3>
+            <p>Responsive UI in React/Angular, consistent components, smooth integrations, and dashboards that feel fast and clean.</p>
           </div>
-
           <div class="feature">
-            <h3>Delivery & Reliability</h3>
-            <p>Release readiness, production support, root-cause analysis, monitoring/logging, and stability improvements.</p>
-            <div class="chips">
-              <span class="chip">CI/CD</span><span class="chip">Monitoring</span><span class="chip">Prod Support</span><span class="chip">Performance</span>
-            </div>
+            <h3>Quality & Stability</h3>
+            <p>Bug fixing, refactoring, error handling, monitoring, and root-cause analysis with a focus on long-term reliability.</p>
           </div>
-
           <div class="feature">
-            <h3>Data & Messaging</h3>
-            <p>Relational databases, query tuning, and messaging basics to support enterprise-scale workflows.</p>
-            <div class="chips">
-              <span class="chip">SQL</span><span class="chip">Postgres</span><span class="chip">Oracle</span><span class="chip">Kafka</span>
-            </div>
+            <h3>Delivery</h3>
+            <p>Release readiness, CI/CD exposure, collaboration with QA/DevOps, and sprint-based delivery with predictable outcomes.</p>
           </div>
         </div>
 
@@ -551,119 +458,101 @@
     </div>
   </section>
 
-  <!-- SKILLS (clean chips) -->
   <section id="skills">
     <div class="wrap">
       <div class="section-inner reveal">
-        <div class="eyebrow">Skills</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Core technical stack</h2>
-        <p class="lead" style="margin-top:10px;">A focused stack that supports enterprise web applications from UI to backend to delivery.</p>
+        <div class="eyebrow">Stack</div>
+        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Tools I use</h2>
 
         <div class="chips" style="margin-top:18px;">
-          <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Spring MVC</span><span class="chip">Hibernate</span>
-          <span class="chip">REST APIs</span><span class="chip">Microservices</span>
+          <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">Microservices</span>
           <span class="chip">React</span><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
-          <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Bootstrap</span>
-          <span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">Oracle</span><span class="chip">MongoDB</span>
-          <span class="chip">Kafka</span><span class="chip">SQS</span>
-          <span class="chip">AWS</span><span class="chip">Azure</span>
+          <span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">Oracle</span>
+          <span class="chip">Kafka</span><span class="chip">AWS</span><span class="chip">Azure</span>
           <span class="chip">Docker</span><span class="chip">Kubernetes</span>
           <span class="chip">Jenkins</span><span class="chip">Git</span>
           <span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Postman</span>
-          <span class="chip">ELK</span><span class="chip">Grafana</span><span class="chip">Prometheus</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE (premium timeline) -->
   <section id="experience">
     <div class="wrap">
       <div class="section-inner reveal">
         <div class="eyebrow">Experience</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Roles & client work</h2>
-        <p class="lead" style="margin-top:10px;">Highlights written to feel portfolio-grade (not resume blocks) while staying recruiter-friendly.</p>
+        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Client work</h2>
 
         <div class="timeline">
           <div class="job">
             <div class="jobtop">
-              <strong>Client: Citi Bank — Software Developer</strong>
+              <strong>Citi Bank — Software Developer</strong>
               <span class="time">Nov 2024 – Present</span>
             </div>
             <ul class="bullets">
-              <li>Building and enhancing enterprise web workflows used across internal business operations.</li>
-              <li>Implementing server-side validations, service orchestration, and structured API responses.</li>
-              <li>Improving stability by refactoring modules and strengthening exception handling patterns.</li>
-              <li>Supporting releases and resolving production issues with SLA-focused turnaround.</li>
-              <li>Partnering with QA/DevOps/BA teams across Agile ceremonies and release cycles.</li>
+              <li>Building enterprise web workflows across UI + service layers.</li>
+              <li>Implementing validations, service orchestration, and structured API responses.</li>
+              <li>Improving stability via refactoring and stronger exception handling.</li>
+              <li>Supporting releases and resolving production issues within SLAs.</li>
+              <li>Working with QA/DevOps/BA teams through Agile cycles.</li>
             </ul>
           </div>
 
           <div class="job">
             <div class="jobtop">
-              <strong>Client: Verizon (Remote) — Software Developer</strong>
+              <strong>Verizon (Remote) — Software Developer</strong>
               <span class="time">Sept 2023 – Oct 2024</span>
             </div>
             <ul class="bullets">
-              <li>Worked on billing, payments, and account lifecycle workflows in a large enterprise environment.</li>
-              <li>Maintained backend components supporting business processing, integrations, and stability improvements.</li>
-              <li>Performed production troubleshooting, root-cause analysis, and permanent fixes for recurring issues.</li>
-              <li>Supported deployment cycles and post-release monitoring during peak usage periods.</li>
-              <li>Contributed to code quality through reviews, testing support, and documentation updates.</li>
+              <li>Worked on billing and payment workflow modules in an enterprise environment.</li>
+              <li>Handled production troubleshooting and root-cause analysis for recurring issues.</li>
+              <li>Supported release readiness and post-deployment monitoring.</li>
+              <li>Improved maintainability through modular updates and documentation.</li>
             </ul>
           </div>
 
           <div class="job">
             <div class="jobtop">
-              <strong>Client: LTI Mindtree — Software Developer</strong>
+              <strong>LTI Mindtree — Software Developer</strong>
               <span class="time">Oct 2021 – Jul 2023</span>
             </div>
             <ul class="bullets">
-              <li>Implemented features supporting enterprise business workflows across UI and service layers.</li>
-              <li>Enhanced API integration and refined data handling to improve end-to-end responsiveness.</li>
-              <li>Stabilized legacy areas by tightening validations, handling edge cases, and improving logging.</li>
-              <li>Collaborated across sprint planning, estimations, and delivery checkpoints with stakeholders.</li>
-              <li>Supported production fixes and release readiness activities across multiple deployments.</li>
+              <li>Implemented enterprise workflow features and strengthened validation logic.</li>
+              <li>Enhanced integration behavior for smoother UI + service alignment.</li>
+              <li>Supported stabilization fixes and delivery checkpoints across releases.</li>
             </ul>
           </div>
 
           <div class="job">
             <div class="jobtop">
-              <strong>Client: Atos Syntel — Associate Software Developer</strong>
+              <strong>Atos Syntel — Associate Software Developer</strong>
               <span class="time">Dec 2019 – Sept 2021</span>
             </div>
             <ul class="bullets">
-              <li>Handled assigned development tasks across modules with focus on correctness and maintainability.</li>
-              <li>Implemented backend business rules, validations, and structured responses for UI consumption.</li>
-              <li>Worked with QA to close defects early and improve release stability.</li>
-              <li>Supported debugging using logs and production behavior to resolve issues efficiently.</li>
-              <li>Documented functional flows and contributed to knowledge sharing within the team.</li>
+              <li>Handled assigned module tasks with focus on correctness and maintainability.</li>
+              <li>Worked closely with QA to close defects and improve release stability.</li>
+              <li>Supported debugging and documentation to help production support workflows.</li>
             </ul>
           </div>
 
           <div class="job">
             <div class="jobtop">
-              <strong>Syntax Tree Software Solutions — Associate Software Developer</strong>
+              <strong>Syntax Tree — Associate Software Developer</strong>
               <span class="time">Sept 2018 – Nov 2019</span>
             </div>
             <ul class="bullets">
-              <li>Supported development of application features using Java, REST services, and frontend technologies.</li>
-              <li>Assisted with backend debugging, API integration, UI enhancements, and system testing.</li>
-              <li>Prepared and optimized SQL queries supporting reporting and workflow requirements.</li>
-              <li>Resolved defects and improved code structure for long-term maintainability.</li>
-              <li>Gained strong exposure to enterprise SDLC practices and delivery workflows.</li>
+              <li>Supported feature work using Java + REST + frontend technologies.</li>
+              <li>Assisted with API integration, UI updates, and system testing.</li>
             </ul>
           </div>
 
           <div class="job">
             <div class="jobtop">
-              <strong>Syntax Tree Software Solutions — Software Engineer Intern</strong>
+              <strong>Syntax Tree — Software Engineer Intern</strong>
               <span class="time">Jan 2018 – Aug 2018</span>
             </div>
             <ul class="bullets">
-              <li>Assisted with UI updates, testing support, and documentation under mentor guidance.</li>
-              <li>Learned enterprise coding standards, version control workflows, and defect tracking basics.</li>
-              <li>Supported cross-browser testing and small improvements to UI components.</li>
+              <li>Assisted with testing, documentation, and minor UI enhancements.</li>
             </ul>
           </div>
         </div>
@@ -672,7 +561,6 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -693,7 +581,6 @@
     </div>
   </section>
 
-  <!-- CERTIFICATION -->
   <section id="certs">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -711,7 +598,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -721,7 +607,7 @@
           If you’re hiring for Java Full Stack / Software Developer roles, email is the fastest way to reach me.
         </p>
 
-        <div class="contactline">
+        <div class="hero-actions">
           <a class="pill primary" href="mailto:b.amruthapriya@gmail.com">Email →</a>
           <a class="pill" href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">LinkedIn →</a>
         </div>
@@ -734,10 +620,9 @@
   </footer>
 
   <script>
-    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // reveal on scroll
+    // reveal animation
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -749,7 +634,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => { if(!el.classList.contains("show")) io.observe(el); });
 
-    // smooth scroll for nav (keeps URL clean-ish)
+    // smooth scroll for nav (keeps URL clean)
     document.querySelectorAll('.navlinks a').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -761,34 +646,6 @@
         history.replaceState(null, "", id);
       });
     });
-
-    // active nav highlight
-    const navLinks = Array.from(document.querySelectorAll('.navlinks a'));
-    const sections = navLinks.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
-
-    const setActive = (id) => {
-      navLinks.forEach(l => {
-        l.style.opacity = "0.86";
-        l.style.borderColor = "rgba(255,255,255,0.10)";
-        l.style.background = "rgba(255,255,255,0.03)";
-      });
-      const active = navLinks.find(l => l.getAttribute('href') === id);
-      if(active){
-        active.style.opacity = "1";
-        active.style.borderColor = "rgba(34,197,94,0.55)";
-        active.style.background = "rgba(34,197,94,0.10)";
-      }
-    };
-
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(en => {
-        if(en.isIntersecting){
-          setActive("#" + en.target.id);
-        }
-      });
-    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
-
-    sections.forEach(s => obs.observe(s));
   </script>
 </body>
 </html>
