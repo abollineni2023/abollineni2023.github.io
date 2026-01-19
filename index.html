@@ -3,26 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Amrutha Priya | Software Developer</title>
+  <title>Amrutha Priya | Java Full Stack Developer</title>
 
   <style>
     :root{
-      --bg0:#050a12;
-      --bg1:#061a12;
-      --bg2:#062a1a;
-
-      --card: rgba(10, 18, 22, 0.74);
-      --card2: rgba(10, 18, 22, 0.58);
+      --bg:#05080f;
+      --bg2:#071a14;
+      --card: rgba(10, 16, 24, 0.62);
+      --card2: rgba(10, 16, 24, 0.48);
       --border: rgba(34,197,94,0.22);
+      --text:#eafff6;
+      --muted:#bff7df;
+      --sub:#d7fff0;
 
-      --text:#eafaf2;
-      --muted:#b7f7db;
-      --sub:#d6f7e7;
-
-      --accent:#22c55e;
-      --accent2:#00ff9d;
-
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --g1: rgba(34,197,94,0.22);
+      --g2: rgba(0,255,157,0.12);
+      --shadow: 0 24px 70px rgba(0,0,0,.55);
     }
 
     *{box-sizing:border-box}
@@ -32,10 +28,10 @@
       font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(900px 500px at 18% 12%, rgba(34,197,94,0.18), transparent 60%),
-        radial-gradient(780px 420px at 88% 22%, rgba(0,255,157,0.10), transparent 60%),
-        radial-gradient(950px 520px at 45% 95%, rgba(34,197,94,0.10), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 45%, var(--bg2));
+        radial-gradient(900px 520px at 18% 12%, var(--g1), transparent 60%),
+        radial-gradient(820px 520px at 86% 22%, var(--g2), transparent 62%),
+        radial-gradient(1000px 560px at 50% 96%, rgba(34,197,94,0.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
 
@@ -43,12 +39,31 @@
     a:hover{text-decoration:underline}
 
     .container{
-      max-width:1150px;
+      max-width:1180px;
       margin:auto;
-      padding:26px 18px 70px;
+      padding:22px 18px 70px;
     }
 
-    /* Topbar */
+    /* ===== Premium animated background layer ===== */
+    .bg-anim{
+      position:fixed;
+      inset:-40px;
+      z-index:-1;
+      background:
+        radial-gradient(600px 420px at 20% 20%, rgba(34,197,94,0.20), transparent 65%),
+        radial-gradient(520px 420px at 80% 30%, rgba(0,255,157,0.14), transparent 66%),
+        radial-gradient(700px 520px at 55% 88%, rgba(34,197,94,0.10), transparent 68%);
+      filter: blur(22px);
+      opacity:.85;
+      animation: floaty 10s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translate3d(0,0,0) scale(1); }
+      50%{ transform: translate3d(0,-18px,0) scale(1.02); }
+    }
+
+    /* ===== Topbar ===== */
     .topbar{
       position:sticky;
       top:10px;
@@ -56,25 +71,26 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:10px;
       padding:12px 14px;
-      border-radius:14px;
-      background:rgba(7, 16, 18, 0.55);
+      border-radius:16px;
+      background: rgba(8, 14, 18, 0.58);
       border:1px solid rgba(34,197,94,0.18);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 50px rgba(0,0,0,.35);
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      min-width:220px;
       white-space:nowrap;
+      min-width:220px;
     }
     .dot{
       width:10px;height:10px;border-radius:999px;
-      background:var(--accent);
-      box-shadow:0 0 20px rgba(34,197,94,0.6);
+      background:#22c55e;
+      box-shadow:0 0 20px rgba(34,197,94,.6);
     }
     .brand strong{font-size:14px;letter-spacing:.3px}
 
@@ -95,7 +111,7 @@
     .nav a:hover{
       transform: translateY(-1px);
       border-color: rgba(34,197,94,0.65);
-      background: rgba(34,197,94,0.11);
+      background: rgba(34,197,94,0.12);
       text-decoration:none;
     }
 
@@ -113,10 +129,10 @@
       background: rgba(34,197,94,0.12);
       color:var(--text);
       transition: transform .16s ease, background .16s ease, border-color .16s ease;
-      text-decoration:none;
       display:inline-flex;
       align-items:center;
       gap:8px;
+      text-decoration:none;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -125,62 +141,51 @@
       text-decoration:none;
     }
 
-    /* ===== Portfolio-style Hero (updated) ===== */
+    /* ===== Hero ===== */
     .hero{
-      margin-top:18px;
-      padding:28px;
-      border-radius:22px;
+      margin-top:16px;
+      padding:30px;
+      border-radius:24px;
       border:1px solid rgba(34,197,94,0.18);
       background:
-        radial-gradient(900px 420px at 10% 10%, rgba(34,197,94,0.20), transparent 60%),
-        radial-gradient(800px 420px at 90% 30%, rgba(0,255,157,0.10), transparent 60%),
-        rgba(8, 18, 20, 0.55);
+        radial-gradient(980px 460px at 10% 12%, rgba(34,197,94,0.22), transparent 60%),
+        radial-gradient(840px 460px at 90% 30%, rgba(0,255,157,0.12), transparent 60%),
+        rgba(8, 14, 18, 0.55);
       box-shadow: var(--shadow);
-      overflow:hidden;
       position:relative;
+      overflow:hidden;
     }
+
+    /* Animated light sweep */
     .hero::before{
       content:"";
       position:absolute;
       inset:-2px;
-      border-radius:24px;
+      border-radius:26px;
       background: linear-gradient(90deg, transparent, rgba(34,197,94,0.35), transparent);
-      opacity:0.6;
-      transform: translateX(-45%);
-      animation: sweep 6.2s ease-in-out infinite;
+      opacity:0.55;
+      transform: translateX(-48%);
+      animation: sweep 6.5s ease-in-out infinite;
       pointer-events:none;
     }
     @keyframes sweep{
-      0%,100%{ transform: translateX(-45%); opacity:0.35; }
-      50%{ transform: translateX(45%); opacity:0.85; }
+      0%,100%{ transform: translateX(-48%); opacity:0.30; }
+      50%{ transform: translateX(48%); opacity:0.85; }
     }
 
-    /* NEW: hero layout spacing */
     .hero-grid{
-      display:flex;
-      gap:60px;
-      align-items:center;
-      justify-content:space-between;
       position:relative;
       z-index:1;
-    }
-    .hero-content{
-      max-width:560px;
-    }
-
-    /* NEW: nice entrance animation */
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(24px); }
-      to { opacity:1; transform: translateY(0); }
-    }
-    .hero-content, .profile-tile{
-      animation: fadeUp .9s ease-out both;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:58px;
     }
 
     .kicker{
       display:inline-flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
       padding:8px 12px;
       border-radius:999px;
       border:1px solid rgba(34,197,94,0.25);
@@ -192,8 +197,8 @@
 
     h1{
       margin:14px 0 0;
-      font-size:46px;
-      line-height:1.06;
+      font-size:48px;
+      line-height:1.05;
       letter-spacing:0.2px;
     }
     .grad{
@@ -203,16 +208,16 @@
       color:transparent;
     }
 
-    .role{
-      margin-top:12px;
+    /* subtle typing headline */
+    .roleline{
+      margin-top:10px;
       color: var(--muted);
       font-size:15px;
-      display:inline-block;
-      border-right:2px solid rgba(167,243,208,0.9);
       white-space:nowrap;
       overflow:hidden;
+      border-right:2px solid rgba(167,243,208,0.9);
       width:0;
-      animation: typing 2.2s steps(60, end) forwards, caret .7s step-end infinite;
+      animation: typing 2.1s steps(60,end) forwards, caret .7s step-end infinite;
     }
     @keyframes typing{ to{ width:100%; } }
     @keyframes caret{ 50%{ border-color:transparent; } }
@@ -221,13 +226,13 @@
       margin:12px 0 0;
       color: var(--sub);
       line-height:1.7;
-      max-width:62ch;
+      max-width:64ch;
     }
 
     .hero-actions{
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
+      gap:10px;
       margin-top:16px;
     }
     .hero-actions a{
@@ -249,40 +254,40 @@
       text-decoration:none;
     }
 
-    /* Profile tile (updated image sizing and style) */
+    /* ===== Right profile tile ===== */
     .profile-tile{
-      width:380px;
-      border-radius:18px;
+      width:390px;
+      border-radius:20px;
       border:1px solid rgba(34,197,94,0.20);
-      background: rgba(6, 16, 18, 0.55);
+      background: rgba(6, 12, 16, 0.58);
       padding:16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      box-shadow: 0 18px 50px rgba(0,0,0,.40);
+      transform: translateZ(0);
     }
 
     .avatar-wrap{
-      border-radius:20px;
+      border-radius:22px;
       padding:2px;
       background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(34,197,94,0.9), rgba(0,255,157,0.14));
-      animation: pulseGlow 4.3s ease-in-out infinite;
+      animation: glowPulse 4.2s ease-in-out infinite;
     }
-    @keyframes pulseGlow{
+    @keyframes glowPulse{
       0%,100%{ filter: drop-shadow(0 0 0 rgba(34,197,94,0)); }
-      50%{ filter: drop-shadow(0 0 22px rgba(34,197,94,0.40)); }
+      50%{ filter: drop-shadow(0 0 24px rgba(34,197,94,0.42)); }
     }
 
-    /* NEW: bigger avatar and premium look */
     .avatar{
       display:block;
       width:100%;
-      height:300px;
-      border-radius:18px;
+      height:320px;
+      border-radius:20px;
       object-fit:cover;
+      background:#0b1220;
       border:2px solid rgba(34,197,94,0.70);
       box-shadow:
-        0 0 0 1px rgba(34,197,94,0.35),
-        0 30px 60px rgba(0,0,0,0.45);
-      background:#0b1220;
-      transition: transform .2s ease;
+        0 0 0 1px rgba(34,197,94,0.32),
+        0 34px 70px rgba(0,0,0,0.48);
+      transition: transform .22s ease;
     }
     .avatar:hover{ transform: scale(1.01); }
 
@@ -291,24 +296,21 @@
       display:grid;
       gap:10px;
     }
-    .quick .row{
-      display:flex;
-      gap:10px;
-      align-items:center;
+    .row{
       padding:10px 12px;
       border-radius:12px;
       border:1px solid rgba(34,197,94,0.16);
       background: rgba(34,197,94,0.05);
     }
-    .label{ color: rgba(167,243,208,0.85); font-size:12px; }
-    .small{ color: rgba(214,247,231,0.92); font-size:13px; line-height:1.4; }
+    .label{ color: rgba(167,243,208,0.86); font-size:12px; }
+    .small{ color: rgba(214,247,231,0.95); font-size:13px; line-height:1.4; }
 
-    /* Sections layout */
+    /* ===== Sections ===== */
     .grid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:14px;
-      margin-top:18px;
+      margin-top:16px;
     }
 
     .card{
@@ -316,28 +318,24 @@
       border-radius:18px;
       border:1px solid rgba(34,197,94,0.18);
       background: var(--card);
-      box-shadow: 0 16px 45px rgba(0,0,0,.35);
       padding:18px;
-      position:relative;
-      overflow:hidden;
+      box-shadow: 0 16px 45px rgba(0,0,0,.35);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
     .card:hover{
       transform: translateY(-3px);
       border-color: rgba(34,197,94,0.55);
-      background: rgba(10, 18, 22, 0.84);
+      background: rgba(10, 16, 24, 0.74);
     }
+
     .card h2{
       margin:0 0 10px;
       font-size:18px;
-      letter-spacing:.2px;
     }
-    .card p{ margin:0 0 10px; color: rgba(214,247,231,0.92); line-height:1.7; }
-
-    /* NEW: portfolio gradient for the "below-hero" cards */
-    .section-card{
-      background: linear-gradient(180deg, rgba(15,23,42,0.85), rgba(2,44,34,0.82));
-      border-radius:18px;
+    .card p{
+      margin:0;
+      color: rgba(214,247,231,0.95);
+      line-height:1.7;
     }
 
     .tags{
@@ -351,23 +349,14 @@
       border-radius:999px;
       border:1px solid rgba(34,197,94,0.20);
       background: rgba(34,197,94,0.07);
-      color: rgba(214,247,231,0.92);
+      color: rgba(214,247,231,0.95);
       font-size:12px;
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-    }
-    .tag:hover{
-      transform: translateY(-1px);
-      border-color: rgba(34,197,94,0.65);
-      background: rgba(34,197,94,0.11);
-      text-decoration:none;
     }
 
-    /* Experience timeline */
-    .timeline{
-      display:grid;
-      gap:12px;
-      margin-top:12px;
-    }
+    /* Single full-width cards */
+    .full{ grid-column: span 12; }
+
+    .timeline{ display:grid; gap:12px; margin-top:12px; }
     .step{
       padding:14px;
       border-radius:16px;
@@ -382,23 +371,21 @@
       margin-bottom:8px;
     }
     .step strong{ font-size:14px; }
-    .step .time{
-      color: rgba(167,243,208,0.85);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .bullets{
-      margin:0;
-      padding-left:18px;
-      color: rgba(214,247,231,0.95);
-      line-height:1.7;
-    }
+    .step .time{ color: rgba(167,243,208,0.85); font-size:12px; white-space:nowrap; }
+    .bullets{ margin:0; padding-left:18px; line-height:1.7; color: rgba(214,247,231,0.95); }
     .bullets li{ margin:6px 0; }
 
-    /* Reveal animation on scroll */
+    .footer{
+      margin-top:16px;
+      text-align:center;
+      color: rgba(214,247,231,0.70);
+      font-size:13px;
+    }
+
+    /* ===== Scroll reveal ===== */
     .reveal{
       opacity:0;
-      transform: translateY(14px);
+      transform: translateY(16px);
       transition: opacity .75s ease, transform .75s ease;
     }
     .reveal.show{
@@ -406,47 +393,40 @@
       transform: translateY(0);
     }
 
-    .footer{
-      margin-top:18px;
-      text-align:center;
-      color: rgba(214,247,231,0.72);
-      font-size:13px;
-    }
-
-    /* Responsive */
+    /* ===== Responsive ===== */
     @media (max-width: 980px){
       .hero-grid{
         flex-direction:column-reverse;
         gap:18px;
         text-align:center;
       }
-      .hero-content{ max-width:100%; }
       .profile-tile{ width:min(420px, 100%); }
-      .avatar{ height:260px; }
+      .roleline{ margin-left:auto; margin-right:auto; }
+      .avatar{ height:270px; }
     }
     @media (max-width: 760px){
       h1{ font-size:36px; }
       .card{ grid-column: span 12; }
-      .topbar{ gap:10px; }
       .brand{ min-width:unset; }
     }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
+      .bg-anim{ animation:none !important; }
       .hero::before{ animation:none !important; }
       .avatar-wrap{ animation:none !important; }
-      .role{ animation:none !important; width:auto !important; border-right:none !important; }
+      .roleline{ animation:none !important; width:auto !important; border-right:none !important; }
       .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
-      .nav a, .btn, .tag, .card, .hero-actions a, .avatar{ transition:none !important; }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-anim"></div>
+
   <div class="container">
 
-    <!-- Topbar -->
     <div class="topbar reveal show">
       <div class="brand">
         <span class="dot"></span>
@@ -468,20 +448,18 @@
       </div>
     </div>
 
-    <!-- Hero -->
     <section class="hero reveal show" id="about">
       <div class="hero-grid">
 
-        <div class="hero-content">
-          <div class="kicker">⚡ Portfolio • Software Developer</div>
-
+        <div>
+          <div class="kicker">⚡ Portfolio • Java Full Stack Developer</div>
           <h1><span class="grad">Amrutha Priya</span></h1>
-          <div class="role">Software Developer • Enterprise Applications • Full SDLC</div>
+          <div class="roleline">Software Developer • Enterprise Applications • Full SDLC</div>
 
           <p>
-            Software Developer with 7+ years of experience designing, building, and supporting scalable web and
-            enterprise applications across the complete software development lifecycle. Proven in converting complex
-            requirements into reliable technical solutions across Agile and Waterfall delivery models.
+            Java Full Stack Developer with 7+ years of experience designing, building, and supporting scalable web and enterprise
+            applications across the complete software development lifecycle. Proven in converting complex requirements into reliable
+            technical solutions across Agile and Waterfall delivery models.
           </p>
 
           <div class="hero-actions">
@@ -493,34 +471,22 @@
 
         <aside class="profile-tile">
           <div class="avatar-wrap">
-            <!-- IMPORTANT: match your file name exactly -->
-            <img class="avatar" src="Profile.jpg" alt="Amrutha Priya - Profile Photo">
+            <!-- IMPORTANT: keep the file name EXACTLY "profile.jpg" in your repo root -->
+            <img class="avatar" src="profile.jpg" alt="Amrutha Priya - Profile Photo">
           </div>
 
           <div class="quick">
             <div class="row">
-              <div>
-                <div class="label">Email</div>
-                <div class="small"><a href="mailto:b.amruthapriya@gmail.com">b.amruthapriya@gmail.com</a></div>
-              </div>
+              <div class="label">Email</div>
+              <div class="small"><a href="mailto:b.amruthapriya@gmail.com">b.amruthapriya@gmail.com</a></div>
             </div>
-
             <div class="row">
-              <div>
-                <div class="label">LinkedIn</div>
-                <div class="small">
-                  <a href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">
-                    linkedin.com/in/amruthapriya98
-                  </a>
-                </div>
-              </div>
+              <div class="label">LinkedIn</div>
+              <div class="small"><a href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">linkedin.com/in/amruthapriya98</a></div>
             </div>
-
             <div class="row">
-              <div>
-                <div class="label">Now</div>
-                <div class="small">Client: Citi Bank • Nov 2024 – Present</div>
-              </div>
+              <div class="label">Now</div>
+              <div class="small">Client: Citi Bank • Nov 2024 – Present</div>
             </div>
           </div>
         </aside>
@@ -528,14 +494,10 @@
       </div>
     </section>
 
-    <!-- Summary cards (now portfolio-styled) -->
     <section class="grid">
-      <div class="card reveal section-card">
+      <div class="card reveal">
         <h2>What I’m Known For</h2>
-        <p>
-          Building reliable server-side solutions, designing secure and high-performance APIs, and crafting responsive
-          user experiences for enterprise platforms.
-        </p>
+        <p>Building reliable server-side solutions, designing secure and high-performance APIs, and crafting responsive user experiences for enterprise platforms.</p>
         <div class="tags">
           <span class="tag">Production Support</span>
           <span class="tag">Performance Tuning</span>
@@ -544,200 +506,149 @@
         </div>
       </div>
 
-      <div class="card reveal section-card">
+      <div class="card reveal">
         <h2>Cloud & Delivery</h2>
-        <p>
-          Hands-on exposure to cloud environments and modern delivery practices, including CI/CD and container-based
-          deployments, with a focus on stability, maintainability, and release readiness.
-        </p>
+        <p>Hands-on exposure to cloud environments and modern delivery practices, including CI/CD and container-based deployments, with focus on stability and release readiness.</p>
         <div class="tags">
           <span class="tag">CI/CD</span>
-          <span class="tag">Containers & Orchestration</span>
-          <span class="tag">Monitoring & Logging</span>
+          <span class="tag">Containers</span>
+          <span class="tag">Monitoring</span>
           <span class="tag">Release Readiness</span>
         </div>
       </div>
-    </section>
 
-    <!-- Skills -->
-    <section class="card reveal" id="skills" style="margin-top:14px;">
-      <h2>Technical Skills</h2>
-      <p>High-level snapshot of tools and technologies used across roles.</p>
-
-      <div class="grid" style="margin-top:12px;">
-        <div class="card section-card" style="grid-column: span 6;">
-          <h2>Core</h2>
-          <div class="tags">
-            <span class="tag">SDLC</span><span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Waterfall</span><span class="tag">TDD</span>
-            <span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">SQL</span>
-          </div>
+      <div class="card reveal full" id="skills">
+        <h2>Technical Skills</h2>
+        <div class="tags">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Microservices</span><span class="tag">REST APIs</span>
+          <span class="tag">React</span><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span>
+          <span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MongoDB</span>
+          <span class="tag">Kafka</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Docker</span><span class="tag">Kubernetes</span>
+          <span class="tag">Jenkins</span><span class="tag">Git</span><span class="tag">JUnit</span><span class="tag">Mockito</span><span class="tag">Postman</span>
         </div>
+      </div>
 
-        <div class="card section-card" style="grid-column: span 6;">
-          <h2>Frontend</h2>
-          <div class="tags">
-            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap</span>
-            <span class="tag">Angular</span><span class="tag">React</span><span class="tag">Redux</span>
+      <div class="card reveal full" id="experience">
+        <h2>Experience</h2>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="top">
+              <strong>Client: Citi Bank — Software Developer</strong>
+              <span class="time">Nov 2024 – Present</span>
+            </div>
+            <ul class="bullets">
+              <li>Contributing to enterprise web applications supporting core operational workflows.</li>
+              <li>Implementing server-side functionality for validations and data processing.</li>
+              <li>Designing service interfaces for dashboards and reporting capabilities.</li>
+              <li>Enhancing UI components with focus on usability and consistency.</li>
+              <li>Improving reliability through refactoring and stronger exception handling.</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="card section-card" style="grid-column: span 6;">
-          <h2>Backend</h2>
-          <div class="tags">
-            <span class="tag">Spring Boot</span><span class="tag">Spring MVC</span><span class="tag">Spring Data</span><span class="tag">Spring Security</span>
-            <span class="tag">Hibernate</span><span class="tag">J2EE</span><span class="tag">REST APIs</span><span class="tag">JDBC</span>
+          <div class="step">
+            <div class="top">
+              <strong>Client: Verizon (Remote) — Software Developer</strong>
+              <span class="time">Sept 2023 – Oct 2024</span>
+            </div>
+            <ul class="bullets">
+              <li>Worked on systems supporting billing, payments, and account lifecycle workflows.</li>
+              <li>Maintained backend components responsible for business processing and data handling.</li>
+              <li>Helped redesign workflows to improve scalability and stability.</li>
+              <li>Handled production issues with root-cause analysis and permanent fixes.</li>
+              <li>Supported monitoring and post-deployment stabilization during releases.</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="card section-card" style="grid-column: span 6;">
-          <h2>Data & DevOps</h2>
-          <div class="tags">
-            <span class="tag">MySQL</span><span class="tag">Postgres</span><span class="tag">Oracle</span><span class="tag">MongoDB</span>
-            <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span>
-            <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Jenkins</span>
+          <div class="step">
+            <div class="top">
+              <strong>Client: LTI Mindtree — Software Developer</strong>
+              <span class="time">Oct 2021 – Jul 2023</span>
+            </div>
+            <ul class="bullets">
+              <li>Handled implementation of features supporting enterprise business workflows.</li>
+              <li>Executed server-side logic for validations and data transformations.</li>
+              <li>Enhanced presentation-layer components to improve consistency.</li>
+              <li>Stabilized systems by reworking legacy modules and tightening error handling.</li>
+              <li>Reviewed peer code and maintained documentation for ongoing support.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <div class="top">
+              <strong>Client: Atos Syntel — Associate Software Engineer</strong>
+              <span class="time">Dec 2019 – Sept 2021</span>
+            </div>
+            <ul class="bullets">
+              <li>Owned assigned implementation tasks across multiple functional areas.</li>
+              <li>Constructed backend logic for transactional workflows and validations.</li>
+              <li>Partnered with testing teams to ensure release readiness and stability.</li>
+              <li>Diagnosed issues by analyzing logs and system behavior; applied corrective fixes.</li>
+              <li>Documented functional flows and assisted in production support practices.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <div class="top">
+              <strong>Syntax Tree Software Solutions — Software Engineer</strong>
+              <span class="time">Sept 2018 – Nov 2019</span>
+            </div>
+            <ul class="bullets">
+              <li>Assisted in building application features for internal and client-facing workflows.</li>
+              <li>Integrated service outputs with presentation layers and supported API integration.</li>
+              <li>Prepared queries and supported schema updates for functional enhancements.</li>
+              <li>Resolved defects and maintained documentation for modules and fixes.</li>
+              <li>Adapted to tools and delivery processes within sprint cycles.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <div class="top">
+              <strong>Syntax Tree Software Solutions — Software Engineer Intern</strong>
+              <span class="time">Jan 2018 – Aug 2018</span>
+            </div>
+            <ul class="bullets">
+              <li>Observed enterprise workflows and supported guided implementation tasks.</li>
+              <li>Executed functional testing and reported defects with clear steps.</li>
+              <li>Reviewed code standards, patterns, and version control basics.</li>
+              <li>Assisted with minor UI updates and documentation preparation.</li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Experience -->
-    <section class="card reveal" id="experience" style="margin-top:14px;">
-      <h2>Experience</h2>
-      <p>Client engagements and roles across enterprise delivery environments.</p>
-
-      <div class="timeline">
-
-        <div class="step">
-          <div class="top">
-            <strong>Client: Citi Bank — Software Developer</strong>
-            <span class="time">Nov 2024 – Present</span>
-          </div>
-          <ul class="bullets">
-            <li>Contributing to enterprise web applications supporting core operational workflows.</li>
-            <li>Implementing server-side functionality for business logic, validations, and data processing.</li>
-            <li>Designing structured service interfaces for dashboards and reporting capabilities.</li>
-            <li>Enhancing user-facing components with focus on usability and consistency.</li>
-            <li>Improving reliability through refactoring and stronger exception handling.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <div class="top">
-            <strong>Client: Verizon (Remote) — Software Developer</strong>
-            <span class="time">Sept 2023 – Oct 2024</span>
-          </div>
-          <ul class="bullets">
-            <li>Worked on large-scale systems supporting billing, payments, and account lifecycle workflows.</li>
-            <li>Maintained backend components responsible for core business processing and data handling.</li>
-            <li>Helped redesign workflows to improve performance, scalability, and reliability.</li>
-            <li>Handled complex production issues with root-cause analysis and permanent fixes.</li>
-            <li>Supported monitoring, post-deployment stability, and release documentation.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <div class="top">
-            <strong>Client: LTI Mindtree — Software Developer</strong>
-            <span class="time">Oct 2021 – Jul 2023</span>
-          </div>
-          <ul class="bullets">
-            <li>Handled end-to-end implementation of features supporting enterprise business workflows.</li>
-            <li>Executed server-side logic for operational rules, validations, and data transformations.</li>
-            <li>Enhanced presentation-layer components to improve usability and consistency.</li>
-            <li>Stabilized systems by reworking legacy modules and strengthening exception handling.</li>
-            <li>Reviewed peer implementations and maintained documentation for ongoing support.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <div class="top">
-            <strong>Client: Atos Syntel — Associate Software Engineer</strong>
-            <span class="time">Dec 2019 – Sept 2021</span>
-          </div>
-          <ul class="bullets">
-            <li>Owned assigned implementation tasks across multiple functional areas.</li>
-            <li>Constructed backend logic for transactional workflows and validations.</li>
-            <li>Partnered with testing teams to ensure release readiness and stability.</li>
-            <li>Diagnosed issues by analyzing logs and system behavior; applied corrective fixes.</li>
-            <li>Documented functional flows and assisted in production support practices.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <div class="top">
-            <strong>Syntax Tree Software Solutions — Software Engineer</strong>
-            <span class="time">Sept 2018 – Nov 2019</span>
-          </div>
-          <ul class="bullets">
-            <li>Assisted in building application features for internal and client-facing workflows.</li>
-            <li>Integrated service outputs with presentation layers and supported API integration.</li>
-            <li>Prepared queries and supported schema updates for functional enhancements.</li>
-            <li>Resolved defects and maintained clear documentation for modules and fixes.</li>
-            <li>Adapted to tools and delivery processes within sprint cycles.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <div class="top">
-            <strong>Syntax Tree Software Solutions — Software Engineer Intern</strong>
-            <span class="time">Jan 2018 – Aug 2018</span>
-          </div>
-          <ul class="bullets">
-            <li>Observed enterprise development workflows and supported guided implementation tasks.</li>
-            <li>Executed functional testing and reported defects with clear reproduction steps.</li>
-            <li>Reviewed code to learn standards, patterns, and version control workflows.</li>
-            <li>Assisted with minor UI updates and documentation preparation.</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Education + Cert -->
-    <section class="grid" id="education">
-      <div class="card reveal section-card">
+      <div class="card reveal" id="education">
         <h2>Education</h2>
-        <p><strong>Master of Computer Applications (MCA) — Computer Science</strong><br/>
-          Florida Atlantic University
-        </p>
-        <p style="margin-top:10px;"><strong>Bachelor’s Degree — Computer Engineering (CSE)</strong><br/>
-          Vivekananda College of Engineering for Women
+        <p><strong>Master of Computer Applications (MCA) — Computer Science</strong><br/>Florida Atlantic University</p>
+        <p style="margin-top:10px;"><strong>Bachelor’s Degree — Computer Engineering (CSE)</strong><br/>Vivekananda College of Engineering for Women</p>
+      </div>
+
+      <div class="card reveal" id="certs">
+        <h2>Licenses & Certifications</h2>
+        <p><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong><br/>Issued by Microsoft</p>
+        <p style="margin-top:10px; color: rgba(214,247,231,0.92); line-height:1.7;">
+          Validated foundational knowledge of cloud concepts, security, governance, core Azure services, pricing models, compliance principles, and service-level agreements.
         </p>
       </div>
 
-      <div class="card reveal section-card" id="certs">
-        <h2>Certification</h2>
-        <p><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong><br/>
-          Issued by Microsoft
-        </p>
-        <p style="margin-top:10px;">
-          Validated foundational knowledge of cloud concepts, security, governance, core Azure services, pricing models,
-          compliance principles, and service-level agreements.
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="card reveal section-card" id="contact" style="margin-top:14px;">
-      <h2>Contact</h2>
-      <p>If you’d like to connect about Software Developer opportunities, email is the fastest way to reach me.</p>
-
-      <div class="tags" style="margin-top:12px;">
-        <span class="tag">📧 <a href="mailto:b.amruthapriya@gmail.com">b.amruthapriya@gmail.com</a></span>
-        <span class="tag">🔗 <a href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">linkedin.com/in/amruthapriya98</a></span>
+      <div class="card reveal full" id="contact">
+        <h2>Contact</h2>
+        <p>If you’d like to connect about Software Developer opportunities, email is the fastest way to reach me.</p>
+        <div class="tags">
+          <span class="tag">📧 <a href="mailto:b.amruthapriya@gmail.com">b.amruthapriya@gmail.com</a></span>
+          <span class="tag">🔗 <a href="https://linkedin.com/in/amruthapriya98" target="_blank" rel="noreferrer">linkedin.com/in/amruthapriya98</a></span>
+        </div>
       </div>
     </section>
 
-    <div class="footer">
-      © <span id="year"></span> Amrutha Priya • Portfolio
-    </div>
+    <div class="footer">© <span id="year"></span> Amrutha Priya • Portfolio</div>
   </div>
 
   <script>
-    // Footer year
+    // footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Scroll reveal
+    // scroll reveal
     const items = document.querySelectorAll(".reveal");
     if(!("IntersectionObserver" in window)){
       items.forEach(el => el.classList.add("show"));
