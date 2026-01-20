@@ -25,8 +25,8 @@
       --shadow: 0 34px 110px rgba(0,0,0,.62);
       --shadow2: 0 18px 55px rgba(0,0,0,.42);
 
-      --r: 28px;
-      --r2: 20px;
+      --r: 34px;
+      --r2: 26px;
       --max: 1180px;
 
       --ease: cubic-bezier(.22,.9,.26,1);
@@ -54,7 +54,7 @@
     }
     .mesh{
       position:fixed; inset:-120px;
-      z-index:-4; pointer-events:none;
+      z-index:-5; pointer-events:none;
       background:
         radial-gradient(900px 520px at 15% 18%, rgba(0,255,157,0.18), transparent 60%),
         radial-gradient(900px 560px at 85% 22%, rgba(34,197,94,0.14), transparent 62%),
@@ -69,13 +69,13 @@
       50%{ transform: translate3d(0,-22px,0) scale(1.02); }
     }
     .grid{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
+      position:fixed; inset:0; z-index:-4; pointer-events:none;
       background:
         linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
       background-size: 64px 64px;
       mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,0) 62%);
-      opacity:.20;
+      opacity:.18;
       animation: gridMove 10s linear infinite;
     }
     @keyframes gridMove{
@@ -83,47 +83,56 @@
       to{ background-position: 64px 64px, 64px 64px; }
     }
     .grain{
-      position:fixed; inset:0; z-index:-2; pointer-events:none;
+      position:fixed; inset:0; z-index:-3; pointer-events:none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      opacity:.07; mix-blend-mode: overlay;
+      opacity:.06; mix-blend-mode: overlay;
     }
+
+    /* cursor spotlight */
     .spotlight{
-      position:fixed; inset:0; z-index:-1; pointer-events:none;
-      background: radial-gradient(420px 420px at var(--sx,50%) var(--sy,30%), rgba(0,255,157,0.11), transparent 60%);
+      position:fixed; inset:0; z-index:-2; pointer-events:none;
+      background: radial-gradient(440px 440px at var(--sx,50%) var(--sy,30%), rgba(0,255,157,0.12), transparent 62%);
       mix-blend-mode: screen;
-      opacity:.9;
+      opacity:.92;
       transition: background .05s linear;
     }
 
-    /* ===== Layout (NO square boxes) ===== */
+    /* ===== Remove ALL square boxes ===== */
+    section, .profile, .row, .feature, .job, .card, .flow-item, .pill, .btn, .chip, .navshell{
+      border-radius: 999px;
+    }
+    section, .profile{ border-radius: var(--r); }
+    .row, .feature, .job, .card, .flow-item{ border-radius: var(--r2); }
+    .btn, .pill, .chip, .navshell{ border-radius: 999px; }
+
+    /* ===== Section shells ===== */
     section{
       margin-top:34px;
-      border-radius: var(--r);
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       box-shadow: var(--shadow2);
       overflow:hidden;
       position:relative;
+      transform: translateZ(0);
     }
 
-    /* animated edge glow */
+    /* animated neon edge */
     section::before{
       content:""; position:absolute; inset:-2px;
       background: conic-gradient(from 90deg,
         rgba(0,255,157,0.00),
-        rgba(0,255,157,0.18),
-        rgba(51,214,255,0.14),
-        rgba(167,139,250,0.12),
+        rgba(0,255,157,0.22),
+        rgba(51,214,255,0.18),
+        rgba(167,139,250,0.14),
         rgba(0,255,157,0.00)
       );
-      filter: blur(12px);
-      opacity:.70;
-      animation: spin 7s linear infinite;
+      filter: blur(14px);
+      opacity:.62;
+      animation: spin 6.6s linear infinite;
       pointer-events:none;
     }
     @keyframes spin{ to{ transform: rotate(1turn); } }
 
-    /* inner layer + vignette */
     section::after{
       content:""; position:absolute; inset:0;
       background:
@@ -137,7 +146,7 @@
 
     .eyebrow{
       display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px; border-radius:999px;
+      padding:8px 12px;
       border:1px solid rgba(0,255,157,0.26);
       background: rgba(0,255,157,0.07);
       color: rgba(244,255,249,0.86);
@@ -160,14 +169,14 @@
       font-size: clamp(15px, 1.6vw, 18px);
       line-height:1.9;
       color: var(--muted);
-      max-width: 72ch;
+      max-width: 74ch;
     }
 
     /* ===== Nav ===== */
     .topbar{ position:sticky; top:14px; z-index:50; padding:10px; }
     .navshell{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 14px; border-radius:999px;
+      padding:12px 14px;
       background: rgba(8, 12, 16, 0.56);
       border:1px solid rgba(0,255,157,0.22);
       backdrop-filter: blur(14px);
@@ -186,7 +195,7 @@
 
     .navlinks{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
     .navlinks a{
-      font-size:13px; padding:8px 12px; border-radius:999px;
+      font-size:13px; padding:8px 12px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       text-decoration:none; opacity:.86;
@@ -207,7 +216,7 @@
 
     .cta{ display:flex; gap:10px; flex-wrap:wrap; padding-right:6px; }
     .btn{
-      font-size:13px; padding:8px 12px; border-radius:999px;
+      font-size:13px; padding:8px 12px;
       border:1px solid rgba(0,255,157,0.55);
       background: rgba(0,255,157,0.10);
       text-decoration:none;
@@ -266,7 +275,7 @@
 
     .hero-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .pill{
-      padding:10px 14px; border-radius:999px;
+      padding:10px 14px;
       border:1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.03);
       text-decoration:none;
@@ -285,14 +294,13 @@
       border-color: rgba(51,214,255,0.40);
     }
 
-    /* ===== Fancy curved cards (ALL sections use this) ===== */
+    /* ===== Curved flow cards (used everywhere) ===== */
     .flow{
       margin-top:18px;
       display:grid;
       gap:14px;
     }
     .flow-item{
-      border-radius: 26px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       padding:18px 18px 16px;
@@ -302,21 +310,11 @@
       transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
       transform: translateZ(0);
     }
-    .flow-item::before{
-      content:""; position:absolute; inset:-2px;
-      background: radial-gradient(680px 280px at var(--mx, 50%) var(--my, 40%),
-        rgba(0,255,157,0.14), transparent 58%);
-      opacity:0;
-      transition: opacity .18s var(--ease);
-      pointer-events:none;
-    }
     .flow-item:hover{
       transform: translateY(-6px);
       border-color: rgba(0,255,157,0.26);
       background: rgba(0,255,157,0.05);
     }
-    .flow-item:hover::before{ opacity:1; }
-
     .flow-head{
       display:flex;
       justify-content:space-between;
@@ -339,12 +337,10 @@
       font-size:12px;
       color: rgba(191,247,223,0.82);
       padding:7px 10px;
-      border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       white-space:nowrap;
     }
-
     .flow-bullets{
       margin:10px 0 0;
       padding-left:18px;
@@ -356,7 +352,6 @@
     /* ===== Skills marquee ===== */
     .marquee{
       margin-top:18px;
-      border-radius: 999px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       overflow:hidden;
@@ -386,7 +381,6 @@
     }
     .chip{
       padding:7px 10px;
-      border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       color: rgba(244,255,249,0.90);
@@ -402,7 +396,6 @@
 
     /* ===== Profile card ===== */
     .profile{
-      border-radius: 30px;
       border: 1px solid rgba(0,255,157,0.20);
       background: rgba(8,12,16,0.52);
       padding:16px;
@@ -412,15 +405,8 @@
       position:relative;
       overflow:hidden;
     }
-    .profile::before{
-      content:""; position:absolute; inset:-2px;
-      background: radial-gradient(700px 280px at var(--mx, 50%) var(--my, 40%),
-        rgba(0,255,157,0.18), transparent 58%);
-      opacity:.85;
-      pointer-events:none;
-    }
     .imgframe{
-      border-radius: 24px;
+      border-radius: 26px;
       padding:2px;
       background: linear-gradient(135deg, rgba(0,255,157,0.10), rgba(0,255,157,0.85), rgba(51,214,255,0.10), rgba(167,139,250,0.10));
       animation: glow 4.6s ease-in-out infinite;
@@ -434,7 +420,7 @@
       width:100%;
       height: 330px;
       object-fit:cover;
-      border-radius: 22px;
+      border-radius: 24px;
       background:#0b1220;
       display:block;
       border: 2px solid rgba(0,255,157,0.55);
@@ -446,14 +432,47 @@
     .rows{ margin-top:12px; display:grid; gap:10px; position:relative; z-index:1; }
     .row{
       padding:10px 12px;
-      border-radius: 18px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
     }
     .label{ font-size:12px; color: rgba(191,247,223,0.86); }
     .val{ margin-top:3px; font-size:13px; color: rgba(244,255,249,0.92); line-height:1.4; }
 
-    /* ===== Reveal ===== */
+    /* ===== Recruiter WOW effect (applied to everything via JS) ===== */
+    .fx{
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+    .fx::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: conic-gradient(from 90deg,
+        rgba(0,255,157,0.0),
+        rgba(0,255,157,0.22),
+        rgba(51,214,255,0.18),
+        rgba(167,139,250,0.14),
+        rgba(0,255,157,0.0)
+      );
+      filter: blur(14px);
+      opacity:.55;
+      animation: spin 6.5s linear infinite;
+      pointer-events:none;
+    }
+    .fx::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(700px 280px at var(--mx, 50%) var(--my, 40%),
+        rgba(0,255,157,0.16), transparent 60%);
+      opacity:0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+    .fx:hover::before{ opacity:1; }
+
+    /* reveal */
     .reveal{
       opacity:0;
       transform: translateY(18px) scale(.985);
@@ -498,7 +517,7 @@
       .hero-grid{ grid-template-columns: 1fr; }
       .section-inner{ padding:26px; }
       .avatar{ height: 280px; }
-      .navshell{ border-radius: 20px; }
+      .navshell{ border-radius: 22px; }
       .brand{ display:none; }
     }
 
@@ -544,7 +563,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero" id="home">
+  <section class="hero reveal show" id="home">
     <div class="wrap">
       <div class="section-inner">
         <div class="hero-grid">
@@ -561,6 +580,10 @@
               and production stability. My focus is clean architecture, performance, and smooth delivery across Agile teams.
             </p>
 
+            <p class="lead" style="margin-top:10px; font-size:15px;">
+              Built this portfolio from scratch using HTML/CSS/JS — custom animations, interactive UI effects, and responsive layout.
+            </p>
+
             <div class="hero-actions">
               <a class="pill primary magnetic" href="#experience">Explore Experience →</a>
               <a class="pill magnetic" href="#skills">View Skills →</a>
@@ -570,6 +593,7 @@
 
           <aside class="profile reveal show" id="profileCard">
             <div class="imgframe">
+              <!-- In your repo, image must be named EXACTLY: profile.jpg -->
               <img class="avatar" src="profile.jpg" alt="Amrutha Priya profile photo">
             </div>
 
@@ -693,7 +717,7 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE (NO LINE / NO UNDERSCORE, Verizon Remote removed) -->
+  <!-- EXPERIENCE (no line underscores, Verizon Remote removed) -->
   <section id="experience">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -796,7 +820,7 @@
     </div>
   </section>
 
-  <!-- EDUCATION (also changed to same fancy format) -->
+  <!-- EDUCATION -->
   <section id="education">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -937,7 +961,8 @@
     }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
     sections.forEach(s => navIO.observe(s));
 
-    // glow follow for ALL curved cards
+    // profile tilt + glow follow
+    const profileCard = document.getElementById('profileCard');
     const glowFollow = (el, ev) => {
       const r = el.getBoundingClientRect();
       const x = ((ev.clientX - r.left) / r.width) * 100;
@@ -945,17 +970,7 @@
       el.style.setProperty('--mx', x + '%');
       el.style.setProperty('--my', y + '%');
     };
-    document.querySelectorAll('.flow-item, .profile').forEach(card => {
-      card.addEventListener('mousemove', (e) => glowFollow(card, e), { passive:true });
-      card.addEventListener('mouseleave', () => {
-        card.style.removeProperty('--mx');
-        card.style.removeProperty('--my');
-        card.style.transform = '';
-      });
-    });
 
-    // profile tilt
-    const profileCard = document.getElementById('profileCard');
     if(profileCard){
       profileCard.addEventListener('mousemove', (e) => {
         const r = profileCard.getBoundingClientRect();
@@ -982,7 +997,7 @@
     });
 
     // ripple on click
-    const rippleTargets = document.querySelectorAll('.btn, .pill, .navlinks a, .flow-item');
+    const rippleTargets = document.querySelectorAll('.btn, .pill, .navlinks a, .flow-item, section, .profile, .row');
     rippleTargets.forEach(el => {
       el.addEventListener('click', (e) => {
         const r = el.getBoundingClientRect();
@@ -994,6 +1009,17 @@
         s.style.top = y + 'px';
         el.appendChild(s);
         setTimeout(() => s.remove(), 900);
+      });
+    });
+
+    // Apply recruiter WOW effect everywhere
+    const premiumTargets = document.querySelectorAll('section, .profile, .row, .flow-item, .navshell');
+    premiumTargets.forEach(el => el.classList.add('fx'));
+    premiumTargets.forEach(el => {
+      el.addEventListener('mousemove', (e) => glowFollow(el, e), { passive:true });
+      el.addEventListener('mouseleave', () => {
+        el.style.removeProperty('--mx');
+        el.style.removeProperty('--my');
       });
     });
   </script>
