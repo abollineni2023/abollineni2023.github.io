@@ -25,8 +25,8 @@
       --shadow: 0 34px 110px rgba(0,0,0,.62);
       --shadow2: 0 18px 55px rgba(0,0,0,.42);
 
-      --r: 26px;
-      --r2: 18px;
+      --r: 28px;
+      --r2: 20px;
       --max: 1180px;
 
       --ease: cubic-bezier(.22,.9,.26,1);
@@ -44,7 +44,7 @@
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
 
-    /* ===== Fancy Background Layers ===== */
+    /* ===== Premium Background ===== */
     .progress{
       position:fixed; top:0; left:0; height:3px; width:0%;
       background: linear-gradient(90deg, var(--g), var(--m), var(--c), var(--v));
@@ -52,7 +52,6 @@
       z-index:9999;
       transition: width .08s linear;
     }
-
     .mesh{
       position:fixed; inset:-120px;
       z-index:-4; pointer-events:none;
@@ -69,8 +68,6 @@
       0%,100%{ transform: translate3d(0,0,0) scale(1); }
       50%{ transform: translate3d(0,-22px,0) scale(1.02); }
     }
-
-    /* subtle animated grid */
     .grid{
       position:fixed; inset:0; z-index:-3; pointer-events:none;
       background:
@@ -79,48 +76,94 @@
       background-size: 64px 64px;
       mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,0) 62%);
       opacity:.20;
-      transform: translateZ(0);
       animation: gridMove 10s linear infinite;
     }
     @keyframes gridMove{
       from{ background-position: 0 0, 0 0; }
       to{ background-position: 64px 64px, 64px 64px; }
     }
-
-    /* grain */
     .grain{
       position:fixed; inset:0; z-index:-2; pointer-events:none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
       opacity:.07; mix-blend-mode: overlay;
     }
-
-    /* cursor glow */
-    .cursor{
-      position:fixed; left:0; top:0; width:18px; height:18px;
-      border-radius:999px;
-      background: radial-gradient(circle, rgba(0,255,157,0.55), transparent 70%);
-      box-shadow: 0 0 42px rgba(0,255,157,.18);
-      pointer-events:none;
-      transform: translate(-50%,-50%);
-      z-index:9998;
-      filter: blur(.2px);
-    }
     .spotlight{
       position:fixed; inset:0; z-index:-1; pointer-events:none;
       background: radial-gradient(420px 420px at var(--sx,50%) var(--sy,30%), rgba(0,255,157,0.11), transparent 60%);
-      transition: background .05s linear;
       mix-blend-mode: screen;
       opacity:.9;
+      transition: background .05s linear;
     }
 
-    /* particle canvas layer */
-    #particles{
-      position:fixed; inset:0;
-      z-index:-5;
+    /* ===== Layout (NO square boxes) ===== */
+    section{
+      margin-top:34px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* animated edge glow */
+    section::before{
+      content:""; position:absolute; inset:-2px;
+      background: conic-gradient(from 90deg,
+        rgba(0,255,157,0.00),
+        rgba(0,255,157,0.18),
+        rgba(51,214,255,0.14),
+        rgba(167,139,250,0.12),
+        rgba(0,255,157,0.00)
+      );
+      filter: blur(12px);
+      opacity:.70;
+      animation: spin 7s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes spin{ to{ transform: rotate(1turn); } }
+
+    /* inner layer + vignette */
+    section::after{
+      content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(900px 420px at 18% 18%, rgba(0,255,157,0.10), transparent 60%),
+        radial-gradient(900px 420px at 86% 34%, rgba(51,214,255,0.08), transparent 62%);
+      opacity:.9;
       pointer-events:none;
     }
 
-    /* ===== Top Nav ===== */
+    .section-inner{ padding:38px; position:relative; z-index:1; }
+
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(0,255,157,0.26);
+      background: rgba(0,255,157,0.07);
+      color: rgba(244,255,249,0.86);
+      font-size:13px;
+    }
+
+    h1{
+      margin:14px 0 0;
+      font-size: clamp(42px, 5vw, 74px);
+      line-height:1.02;
+      letter-spacing:-0.8px;
+    }
+    .grad{
+      background: linear-gradient(90deg, #f6fff9, #bff7df, #7fffd3, #33d6ff, #a78bfa);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+
+    .lead{
+      margin:14px 0 0;
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height:1.9;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    /* ===== Nav ===== */
     .topbar{ position:sticky; top:14px; z-index:50; padding:10px; }
     .navshell{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -129,13 +172,10 @@
       border:1px solid rgba(0,255,157,0.22);
       backdrop-filter: blur(14px);
       box-shadow: 0 18px 52px rgba(0,0,0,.35);
-      transform: translateY(0);
       transition: border-color .2s var(--ease), transform .2s var(--ease);
     }
-    .navshell.scrolled{
-      border-color: rgba(51,214,255,0.24);
-      transform: translateY(-1px);
-    }
+    .navshell.scrolled{ border-color: rgba(51,214,255,0.24); transform: translateY(-1px); }
+
     .brand{ display:flex; align-items:center; gap:10px; padding-left:6px; white-space:nowrap; }
     .dot{
       width:10px;height:10px;border-radius:999px;
@@ -189,91 +229,10 @@
       transform: rotate(18deg);
       opacity:0; transition: opacity .18s var(--ease); pointer-events:none;
     }
-    .btn:hover::after, .navlinks a:hover::after, .pill:hover::after{ opacity:1; animation: shine .9s var(--ease) forwards; }
+    .btn:hover::after, .navlinks a:hover::after, .pill:hover::after{
+      opacity:1; animation: shine .9s var(--ease) forwards;
+    }
     @keyframes shine{ from{ left:-70%; } to{ left:150%; } }
-
-    /* ===== Sections ===== */
-    section{
-      margin-top:34px;
-      border-radius: var(--r);
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.028));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-
-    /* animated gradient border (fancy) */
-    section::before{
-      content:""; position:absolute; inset:-2px;
-      background: conic-gradient(from 90deg, rgba(0,255,157,0.0), rgba(0,255,157,0.22), rgba(51,214,255,0.18), rgba(167,139,250,0.14), rgba(0,255,157,0.0));
-      filter: blur(10px);
-      opacity:.75;
-      animation: spin 6.5s linear infinite;
-      pointer-events:none;
-    }
-    @keyframes spin{ to{ transform: rotate(1turn); } }
-
-    .section-inner{ padding:38px; position:relative; z-index:1; }
-
-    /* separators */
-    .divider{
-      height:1px; width:100%;
-      background: linear-gradient(90deg, transparent, rgba(0,255,157,0.35), rgba(51,214,255,0.30), transparent);
-      margin:18px 0 0;
-      opacity:.9;
-    }
-
-    .eyebrow{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px; border-radius:999px;
-      border:1px solid rgba(0,255,157,0.26);
-      background: rgba(0,255,157,0.07);
-      color: rgba(244,255,249,0.86);
-      font-size:13px;
-    }
-
-    h1{
-      margin:14px 0 0;
-      font-size: clamp(42px, 5vw, 74px);
-      line-height:1.02;
-      letter-spacing:-0.8px;
-    }
-    .grad{
-      background: linear-gradient(90deg, #f6fff9, #bff7df, #7fffd3, #33d6ff, #a78bfa);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-
-    /* shimmering highlight for titles */
-    .shimmer{
-      position:relative;
-      display:inline-block;
-      isolation:isolate;
-    }
-    .shimmer::after{
-      content:"";
-      position:absolute; inset:-6px -12px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
-      transform: skewX(-18deg) translateX(-140%);
-      animation: shimmer 3.8s var(--ease) infinite;
-      mix-blend-mode: overlay;
-      pointer-events:none;
-      border-radius: 999px;
-      opacity:.85;
-    }
-    @keyframes shimmer{
-      0%{ transform: skewX(-18deg) translateX(-160%); }
-      45%{ transform: skewX(-18deg) translateX(160%); }
-      100%{ transform: skewX(-18deg) translateX(160%); }
-    }
-
-    .lead{
-      margin:14px 0 0;
-      font-size: clamp(15px, 1.6vw, 18px);
-      line-height:1.9;
-      color: var(--muted);
-      max-width: 72ch;
-    }
 
     /* ===== Hero ===== */
     .hero{
@@ -288,7 +247,6 @@
       gap:34px;
       align-items:center;
     }
-
     .type{
       margin-top:10px;
       color: rgba(244,255,249,0.86);
@@ -327,150 +285,75 @@
       border-color: rgba(51,214,255,0.40);
     }
 
-    /* stats row (count-up) */
-    .stats{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
+    /* ===== Fancy curved cards (ALL sections use this) ===== */
+    .flow{
       margin-top:18px;
-      max-width: 600px;
+      display:grid;
+      gap:14px;
     }
-    .stat{
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,0.10);
+    .flow-item{
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
-      padding:12px 14px;
+      padding:18px 18px 16px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 16px 45px rgba(0,0,0,.28);
       transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
-      position:relative; overflow:hidden;
+      transform: translateZ(0);
     }
-    .stat::before{
+    .flow-item::before{
       content:""; position:absolute; inset:-2px;
-      background: radial-gradient(520px 220px at var(--mx, 50%) var(--my, 40%), rgba(0,255,157,0.14), transparent 55%);
+      background: radial-gradient(680px 280px at var(--mx, 50%) var(--my, 40%),
+        rgba(0,255,157,0.14), transparent 58%);
       opacity:0;
       transition: opacity .18s var(--ease);
       pointer-events:none;
     }
-    .stat:hover{
-      transform: translateY(-4px);
-      border-color: rgba(0,255,157,0.28);
+    .flow-item:hover{
+      transform: translateY(-6px);
+      border-color: rgba(0,255,157,0.26);
       background: rgba(0,255,157,0.05);
     }
-    .stat:hover::before{ opacity:1; }
-    .stat .k{ font-size:18px; font-weight:750; letter-spacing:-0.3px; }
-    .stat .t{ margin-top:2px; font-size:12px; color: rgba(191,247,223,0.82); }
+    .flow-item:hover::before{ opacity:1; }
 
-    /* floating icons */
-    .floaters{
-      position:absolute; inset:0; pointer-events:none;
-      z-index:0;
-      opacity:.9;
+    .flow-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:flex-start;
     }
-    .floater{
-      position:absolute;
+    .flow-title{
+      font-size:15px;
+      font-weight:700;
+      letter-spacing:-0.1px;
+    }
+    .flow-sub{
+      margin-top:4px;
+      font-size:12.5px;
+      color: rgba(191,247,223,0.78);
+      line-height:1.5;
+    }
+    .flow-time{
       font-size:12px;
-      padding:8px 10px;
+      color: rgba(191,247,223,0.82);
+      padding:7px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
-      color: rgba(244,255,249,0.86);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 28px rgba(0,0,0,.25);
-      animation: bob 6s var(--ease) infinite;
-      transform: translateZ(0);
-    }
-    .floater:nth-child(2){ animation-duration: 7.5s; }
-    .floater:nth-child(3){ animation-duration: 8.8s; }
-    .floater:nth-child(4){ animation-duration: 7.2s; }
-    @keyframes bob{
-      0%,100%{ transform: translate3d(0,0,0); }
-      50%{ transform: translate3d(0,-14px,0); }
+      white-space:nowrap;
     }
 
-    /* ===== Profile Card (Ultra) ===== */
-    .profile{
-      border-radius: var(--r);
-      border: 1px solid rgba(0,255,157,0.22);
-      background: rgba(8,12,16,0.52);
-      padding:16px;
-      box-shadow: var(--shadow2);
-      transform-style:preserve-3d;
-      transition: transform .18s var(--ease), border-color .18s var(--ease);
-      position:relative;
-      overflow:hidden;
+    .flow-bullets{
+      margin:10px 0 0;
+      padding-left:18px;
+      color: rgba(244,255,249,0.88);
+      line-height:1.85;
     }
-    .profile::before{
-      content:""; position:absolute; inset:-2px;
-      background: radial-gradient(700px 280px at var(--mx, 50%) var(--my, 40%),
-        rgba(0,255,157,0.18), transparent 58%);
-      opacity:.85;
-      pointer-events:none;
-    }
+    .flow-bullets li{ margin:7px 0; }
 
-    .imgframe{
-      border-radius: 22px;
-      padding:2px;
-      background: linear-gradient(135deg, rgba(0,255,157,0.10), rgba(0,255,157,0.85), rgba(51,214,255,0.10), rgba(167,139,250,0.10));
-      animation: glow 4.6s ease-in-out infinite;
-      transform: translateZ(16px);
-    }
-    @keyframes glow{
-      0%,100%{ filter: drop-shadow(0 0 0 rgba(0,255,157,0)); }
-      50%{ filter: drop-shadow(0 0 30px rgba(0,255,157,0.34)); }
-    }
-    .avatar{
-      width:100%;
-      height: 330px;
-      object-fit:cover;
-      border-radius: 20px;
-      background:#0b1220;
-      display:block;
-      border: 2px solid rgba(0,255,157,0.55);
-      box-shadow: 0 36px 80px rgba(0,0,0,0.50);
-      transition: transform .22s var(--ease), filter .22s var(--ease);
-    }
-    .avatar:hover{ transform: scale(1.02); filter: saturate(1.08) contrast(1.06); }
-
-    .rows{ margin-top:12px; display:grid; gap:10px; position:relative; z-index:1; }
-    .row{
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-    }
-    .label{ font-size:12px; color: rgba(191,247,223,0.86); }
-    .val{ margin-top:3px; font-size:13px; color: rgba(244,255,249,0.92); line-height:1.4; }
-
-    /* ===== Cards/Grids ===== */
-    .split{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
-
-    .card{
-      border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      padding:20px;
-      box-shadow: 0 14px 34px rgba(0,0,0,.25);
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
-      position:relative; overflow:hidden;
-      transform: translateZ(0);
-    }
-    .card::before{
-      content:""; position:absolute; inset:-2px;
-      background: radial-gradient(640px 240px at var(--mx, 50%) var(--my, 40%),
-        rgba(0,255,157,0.12), transparent 58%);
-      opacity:0;
-      transition: opacity .18s var(--ease);
-      pointer-events:none;
-    }
-    .card:hover{
-      transform: translateY(-6px);
-      border-color: rgba(0,255,157,0.28);
-      background: rgba(0,255,157,0.05);
-    }
-    .card:hover::before{ opacity:1; }
-    .card h3{ margin:0 0 8px; font-size:16px; letter-spacing:.1px; }
-    .card p{ margin:0; color: var(--muted); line-height:1.8; }
-
-    /* ===== Skill marquee (fancy) ===== */
+    /* ===== Skills marquee ===== */
     .marquee{
       margin-top:18px;
       border-radius: 999px;
@@ -491,10 +374,8 @@
       right:0;
       background: linear-gradient(270deg, rgba(7,11,16,1), rgba(7,11,16,0));
     }
-
     .track{
-      display:flex;
-      gap:10px;
+      display:flex; gap:10px;
       padding:12px 14px;
       width:max-content;
       animation: scroll 20s linear infinite;
@@ -519,55 +400,60 @@
       background: rgba(0,255,157,0.08);
     }
 
-    /* ===== Timeline (with animated line) ===== */
-    .timeline{
-      margin-top:16px;
-      display:grid;
-      gap:12px;
+    /* ===== Profile card ===== */
+    .profile{
+      border-radius: 30px;
+      border: 1px solid rgba(0,255,157,0.20);
+      background: rgba(8,12,16,0.52);
+      padding:16px;
+      box-shadow: var(--shadow2);
+      transform-style:preserve-3d;
+      transition: transform .18s var(--ease), border-color .18s var(--ease);
       position:relative;
-    }
-    .timeline::before{
-      content:""; position:absolute; left:14px; top:0; bottom:0;
-      width:2px;
-      background: linear-gradient(180deg, rgba(0,255,157,0.0), rgba(0,255,157,0.35), rgba(51,214,255,0.28), rgba(0,255,157,0.0));
-      opacity:.9;
-    }
-    .job{
-      position:relative;
-      padding:18px 18px 18px 46px;
-      border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
       overflow:hidden;
     }
-    .job::before{
-      content:""; position:absolute; left:8px; top:22px;
-      width:14px; height:14px; border-radius:999px;
-      background: linear-gradient(135deg, var(--g), var(--m), var(--c));
-      box-shadow: 0 0 18px rgba(0,255,157,0.35);
-    }
-    .job::after{
+    .profile::before{
       content:""; position:absolute; inset:-2px;
-      background: radial-gradient(640px 260px at var(--mx, 50%) var(--my, 40%), rgba(51,214,255,0.10), transparent 58%);
-      opacity:0;
-      transition: opacity .18s var(--ease);
+      background: radial-gradient(700px 280px at var(--mx, 50%) var(--my, 40%),
+        rgba(0,255,157,0.18), transparent 58%);
+      opacity:.85;
       pointer-events:none;
     }
-    .job:hover{
-      transform: translateY(-6px);
-      border-color: rgba(0,255,157,0.25);
-      background: rgba(0,255,157,0.05);
+    .imgframe{
+      border-radius: 24px;
+      padding:2px;
+      background: linear-gradient(135deg, rgba(0,255,157,0.10), rgba(0,255,157,0.85), rgba(51,214,255,0.10), rgba(167,139,250,0.10));
+      animation: glow 4.6s ease-in-out infinite;
+      transform: translateZ(16px);
     }
-    .job:hover::after{ opacity:1; }
+    @keyframes glow{
+      0%,100%{ filter: drop-shadow(0 0 0 rgba(0,255,157,0)); }
+      50%{ filter: drop-shadow(0 0 30px rgba(0,255,157,0.34)); }
+    }
+    .avatar{
+      width:100%;
+      height: 330px;
+      object-fit:cover;
+      border-radius: 22px;
+      background:#0b1220;
+      display:block;
+      border: 2px solid rgba(0,255,157,0.55);
+      box-shadow: 0 36px 80px rgba(0,0,0,0.50);
+      transition: transform .22s var(--ease), filter .22s var(--ease);
+    }
+    .avatar:hover{ transform: scale(1.02); filter: saturate(1.08) contrast(1.06); }
 
-    .jobtop{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
-    .job strong{ font-size:14.5px; }
-    .time{ font-size:12px; color: rgba(191,247,223,0.80); white-space:nowrap; }
-    .bullets{ margin:8px 0 0; padding-left:18px; color: rgba(244,255,249,0.88); line-height:1.8; }
-    .bullets li{ margin:6px 0; }
+    .rows{ margin-top:12px; display:grid; gap:10px; position:relative; z-index:1; }
+    .row{
+      padding:10px 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+    .label{ font-size:12px; color: rgba(191,247,223,0.86); }
+    .val{ margin-top:3px; font-size:13px; color: rgba(244,255,249,0.92); line-height:1.4; }
 
-    /* ===== Reveal (stagger) ===== */
+    /* ===== Reveal ===== */
     .reveal{
       opacity:0;
       transform: translateY(18px) scale(.985);
@@ -580,15 +466,7 @@
       filter: blur(0);
     }
 
-    footer{
-      margin-top:30px;
-      padding:18px 0 30px;
-      text-align:center;
-      color: rgba(244,255,249,0.65);
-      font-size:13px;
-    }
-
-    /* ===== Ripple effect (click) ===== */
+    /* ripple */
     .ripple{
       position:absolute;
       border-radius:999px;
@@ -607,19 +485,21 @@
       }
     }
 
-    /* ===== Responsive ===== */
+    footer{
+      margin-top:30px;
+      padding:18px 0 30px;
+      text-align:center;
+      color: rgba(244,255,249,0.65);
+      font-size:13px;
+    }
+
     @media (max-width: 980px){
       .hero{ min-height:auto; }
       .hero-grid{ grid-template-columns: 1fr; }
-      .split{ grid-template-columns: 1fr; }
       .section-inner{ padding:26px; }
       .avatar{ height: 280px; }
       .navshell{ border-radius: 20px; }
       .brand{ display:none; }
-      .stats{ grid-template-columns: 1fr; max-width: 100%; }
-      .timeline::before{ left:10px; }
-      .job{ padding-left:42px; }
-      .job::before{ left:4px; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -628,20 +508,17 @@
       .track{ animation:none !important; transform:none !important; }
       .type{ animation:none !important; width:auto !important; border-right:none !important; }
       .reveal{ opacity:1 !important; transform:none !important; filter:none !important; transition:none !important; }
-      .cursor, .spotlight{ display:none !important; }
-      #particles{ display:none !important; }
+      .spotlight{ display:none !important; }
     }
   </style>
 </head>
 
 <body>
   <div class="progress" id="progress"></div>
-  <canvas id="particles"></canvas>
   <div class="mesh" aria-hidden="true"></div>
   <div class="grid" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
   <div class="spotlight" id="spotlight" aria-hidden="true"></div>
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
 
   <div class="topbar">
     <div class="wrap">
@@ -666,21 +543,16 @@
     </div>
   </div>
 
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="wrap">
-      <div class="section-inner" style="position:relative;">
-        <div class="floaters" aria-hidden="true">
-          <div class="floater" style="left:6%; top:26%;">⚙️ Spring Boot</div>
-          <div class="floater" style="left:18%; top:76%;">🧩 Microservices</div>
-          <div class="floater" style="left:78%; top:18%;">📈 Production</div>
-          <div class="floater" style="left:72%; top:78%;">☁️ Azure (AZ-900)</div>
-        </div>
-
+      <div class="section-inner">
         <div class="hero-grid">
+
           <div class="reveal show">
             <div class="eyebrow">⚡ Java Full Stack • Enterprise • Full SDLC</div>
 
-            <h1 class="shimmer"><span class="grad">Amrutha Priya</span></h1>
+            <h1><span class="grad">Amrutha Priya</span></h1>
 
             <div class="type"><span>Software Developer • Spring Boot • React / Angular • APIs • Production Support</span></div>
 
@@ -689,33 +561,15 @@
               and production stability. My focus is clean architecture, performance, and smooth delivery across Agile teams.
             </p>
 
-            <div class="stats">
-              <div class="stat glow">
-                <div class="k"><span class="count" data-to="7">0</span>+ yrs</div>
-                <div class="t">Full-stack delivery</div>
-              </div>
-              <div class="stat glow">
-                <div class="k"><span class="count" data-to="25">0</span>+ skills</div>
-                <div class="t">Java + UI + Cloud</div>
-              </div>
-              <div class="stat glow">
-                <div class="k"><span class="count" data-to="3">0</span> clients</div>
-                <div class="t">Enterprise teams</div>
-              </div>
-            </div>
-
             <div class="hero-actions">
               <a class="pill primary magnetic" href="#experience">Explore Experience →</a>
               <a class="pill magnetic" href="#skills">View Skills →</a>
               <a class="pill magnetic" href="#contact">Contact →</a>
             </div>
-
-            <div class="divider"></div>
           </div>
 
           <aside class="profile reveal show" id="profileCard">
             <div class="imgframe">
-              <!-- In your repo, image must be named EXACTLY: profile.jpg -->
               <img class="avatar" src="profile.jpg" alt="Amrutha Priya profile photo">
             </div>
 
@@ -734,11 +588,13 @@
               </div>
             </div>
           </aside>
+
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FOCUS -->
   <section id="focus">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -748,37 +604,73 @@
           I take ownership across requirements → implementation → deployments → production fixes. I build systems that are stable, readable, and easy to extend.
         </p>
 
-        <div class="split" style="margin-top:18px;">
-          <div class="card">
-            <h3>Backend & APIs</h3>
-            <p>Service layers, validations, structured responses, secure endpoints, and integrations that won’t break under production pressure.</p>
+        <div class="flow">
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Backend & APIs</div>
+                <div class="flow-sub">Service design • validations • secure endpoints • integrations</div>
+              </div>
+              <div class="flow-time">Spring Boot</div>
+            </div>
+            <p class="lead" style="margin-top:10px; font-size:14.5px;">
+              Service layers, structured responses, and integrations that stay stable under production pressure.
+            </p>
           </div>
-          <div class="card">
-            <h3>Front-end Experience</h3>
-            <p>Responsive UI in React/Angular, consistent components, smooth integrations, and dashboards that feel fast and clean.</p>
+
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Front-end Experience</div>
+                <div class="flow-sub">Responsive UI • reusable components • clean UX</div>
+              </div>
+              <div class="flow-time">React / Angular</div>
+            </div>
+            <p class="lead" style="margin-top:10px; font-size:14.5px;">
+              Dashboards that feel fast: UI consistency, API integration, and polished interactions.
+            </p>
           </div>
-          <div class="card">
-            <h3>Quality & Stability</h3>
-            <p>Bug fixing, refactoring, error handling, monitoring, and root-cause analysis with a focus on long-term reliability.</p>
+
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Quality & Stability</div>
+                <div class="flow-sub">Monitoring • logs • RCA • refactoring</div>
+              </div>
+              <div class="flow-time">Prod Support</div>
+            </div>
+            <p class="lead" style="margin-top:10px; font-size:14.5px;">
+              Faster fixes with better exception handling, clean logging, and root-cause analysis.
+            </p>
           </div>
-          <div class="card">
-            <h3>Delivery</h3>
-            <p>Release readiness, CI/CD exposure, collaboration with QA/DevOps, and sprint-based delivery with predictable outcomes.</p>
+
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Delivery</div>
+                <div class="flow-sub">Agile sprints • collaboration • release readiness</div>
+              </div>
+              <div class="flow-time">CI/CD</div>
+            </div>
+            <p class="lead" style="margin-top:10px; font-size:14.5px;">
+              Predictable delivery through sprint planning, QA alignment, and stable deployments.
+            </p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- SKILLS -->
   <section id="skills">
     <div class="wrap">
       <div class="section-inner reveal">
         <div class="eyebrow">Stack</div>
         <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Tools I use</h2>
 
-        <!-- Skill marquee (duplicates for infinite scroll) -->
         <div class="marquee">
-          <div class="track" id="track">
+          <div class="track">
             <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">Microservices</span>
             <span class="chip">React</span><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
             <span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">Oracle</span>
@@ -787,7 +679,7 @@
             <span class="chip">Jenkins</span><span class="chip">Git</span>
             <span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Postman</span>
 
-            <!-- duplicate once for smooth loop -->
+            <!-- duplicate for loop -->
             <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">Microservices</span>
             <span class="chip">React</span><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
             <span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">Oracle</span>
@@ -797,132 +689,174 @@
             <span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Postman</span>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
+  <!-- EXPERIENCE (NO LINE / NO UNDERSCORE, Verizon Remote removed) -->
   <section id="experience">
     <div class="wrap">
       <div class="section-inner reveal">
         <div class="eyebrow">Experience</div>
         <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Client work</h2>
 
-        <div class="timeline">
-          <div class="job">
-            <div class="jobtop">
-              <strong>Citi Bank — Software Developer</strong>
-              <span class="time">Nov 2024 – Present</span>
+        <div class="flow">
+          <article class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Citi Bank — Software Developer</div>
+                <div class="flow-sub">Enterprise workflows • UI + services • Production support</div>
+              </div>
+              <div class="flow-time">Nov 2024 – Present</div>
             </div>
-            <ul class="bullets">
+            <ul class="flow-bullets">
               <li>Building enterprise web workflows across UI + service layers.</li>
               <li>Implementing validations, service orchestration, and structured API responses.</li>
               <li>Improving stability via refactoring and stronger exception handling.</li>
               <li>Supporting releases and resolving production issues within SLAs.</li>
               <li>Working with QA/DevOps/BA teams through Agile cycles.</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="job">
-            <div class="jobtop">
-              <strong>Verizon (Remote) — Software Developer</strong>
-              <span class="time">Sept 2023 – Oct 2024</span>
+          <article class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Verizon — Software Developer</div>
+                <div class="flow-sub">Billing & payments • Monitoring • RCA</div>
+              </div>
+              <div class="flow-time">Sept 2023 – Oct 2024</div>
             </div>
-            <ul class="bullets">
+            <ul class="flow-bullets">
               <li>Worked on billing and payment workflow modules in an enterprise environment.</li>
               <li>Handled production troubleshooting and root-cause analysis for recurring issues.</li>
               <li>Supported release readiness and post-deployment monitoring.</li>
               <li>Improved maintainability through modular updates and documentation.</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="job">
-            <div class="jobtop">
-              <strong>LTI Mindtree — Software Developer</strong>
-              <span class="time">Oct 2021 – Jul 2023</span>
+          <article class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">LTI Mindtree — Software Developer</div>
+                <div class="flow-sub">Workflow features • Integrations • Stabilization</div>
+              </div>
+              <div class="flow-time">Oct 2021 – Jul 2023</div>
             </div>
-            <ul class="bullets">
+            <ul class="flow-bullets">
               <li>Implemented enterprise workflow features and strengthened validation logic.</li>
               <li>Enhanced integration behavior for smoother UI + service alignment.</li>
               <li>Supported stabilization fixes and delivery checkpoints across releases.</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="job">
-            <div class="jobtop">
-              <strong>Atos Syntel — Associate Software Developer</strong>
-              <span class="time">Dec 2019 – Sept 2021</span>
+          <article class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Atos Syntel — Associate Software Developer</div>
+                <div class="flow-sub">Defect closure • QA collaboration • Support</div>
+              </div>
+              <div class="flow-time">Dec 2019 – Sept 2021</div>
             </div>
-            <ul class="bullets">
+            <ul class="flow-bullets">
               <li>Handled assigned module tasks with focus on correctness and maintainability.</li>
               <li>Worked closely with QA to close defects and improve release stability.</li>
               <li>Supported debugging and documentation to help production support workflows.</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="job">
-            <div class="jobtop">
-              <strong>Syntax Tree — Associate Software Developer</strong>
-              <span class="time">Sept 2018 – Nov 2019</span>
+          <article class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Syntax Tree — Associate Software Developer</div>
+                <div class="flow-sub">API integration • UI updates • Testing</div>
+              </div>
+              <div class="flow-time">Sept 2018 – Nov 2019</div>
             </div>
-            <ul class="bullets">
+            <ul class="flow-bullets">
               <li>Supported feature work using Java + REST + frontend technologies.</li>
               <li>Assisted with API integration, UI updates, and system testing.</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="job">
-            <div class="jobtop">
-              <strong>Syntax Tree — Software Engineer Intern</strong>
-              <span class="time">Jan 2018 – Aug 2018</span>
+          <article class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Syntax Tree — Software Engineer Intern</div>
+                <div class="flow-sub">Testing • Documentation • UI enhancements</div>
+              </div>
+              <div class="flow-time">Jan 2018 – Aug 2018</div>
             </div>
-            <ul class="bullets">
+            <ul class="flow-bullets">
               <li>Assisted with testing, documentation, and minor UI enhancements.</li>
             </ul>
-          </div>
+          </article>
         </div>
 
       </div>
     </div>
   </section>
 
+  <!-- EDUCATION (also changed to same fancy format) -->
   <section id="education">
     <div class="wrap">
       <div class="section-inner reveal">
         <div class="eyebrow">Education</div>
         <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Academic background</h2>
 
-        <div class="split" style="margin-top:18px;">
-          <div class="card">
-            <h3>Florida Atlantic University</h3>
-            <p>Master of Computer Applications (MCA) — Computer Science</p>
+        <div class="flow">
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Florida Atlantic University</div>
+                <div class="flow-sub">Master of Computer Applications (MCA) — Computer Science</div>
+              </div>
+              <div class="flow-time">USA</div>
+            </div>
           </div>
-          <div class="card">
-            <h3>Vivekananda College of Engineering for Women</h3>
-            <p>Computer Engineering (CSE)</p>
+
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Vivekananda College of Engineering for Women</div>
+                <div class="flow-sub">Computer Engineering (CSE)</div>
+              </div>
+              <div class="flow-time">India</div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- CERTIFICATION -->
   <section id="certs">
     <div class="wrap">
       <div class="section-inner reveal">
         <div class="eyebrow">Certification</div>
         <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">AZ-900</h2>
 
-        <div class="card" style="margin-top:18px;">
-          <h3>Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
-          <p style="color:rgba(244,255,249,0.82); line-height:1.85;">
-            Validated foundational understanding of cloud concepts, core Azure services, security and governance,
-            pricing models, compliance principles, and service-level agreements.
-          </p>
+        <div class="flow">
+          <div class="flow-item">
+            <div class="flow-head">
+              <div>
+                <div class="flow-title">Microsoft Certified: Azure Fundamentals (AZ-900)</div>
+                <div class="flow-sub">Cloud concepts • Core services • Security & governance • Pricing & compliance</div>
+              </div>
+              <div class="flow-time">Microsoft</div>
+            </div>
+            <p class="lead" style="margin-top:10px; font-size:14.5px;">
+              Validated foundational understanding of cloud concepts, core Azure services, security and governance,
+              pricing models, compliance principles, and service-level agreements.
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <div class="wrap">
       <div class="section-inner reveal">
@@ -945,10 +879,9 @@
   </footer>
 
   <script>
-    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // progress bar + nav shell state
+    // progress + nav shell
     const progress = document.getElementById("progress");
     const navshell = document.getElementById("navshell");
     const onScroll = () => {
@@ -957,26 +890,21 @@
       progress.style.width = `${Math.min(100, Math.max(0, scrolled * 100))}%`;
       navshell.classList.toggle("scrolled", h.scrollTop > 8);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive:true });
     onScroll();
 
-    // spotlight + cursor follow
+    // spotlight follow
     const spotlight = document.getElementById("spotlight");
-    const cursor = document.getElementById("cursor");
-    let cx = innerWidth/2, cy = innerHeight/3;
     window.addEventListener("mousemove", (e) => {
-      cx = e.clientX; cy = e.clientY;
-      cursor.style.left = cx + "px";
-      cursor.style.top = cy + "px";
-      spotlight.style.setProperty("--sx", cx + "px");
-      spotlight.style.setProperty("--sy", cy + "px");
+      spotlight.style.setProperty("--sx", e.clientX + "px");
+      spotlight.style.setProperty("--sy", e.clientY + "px");
     }, { passive:true });
 
-    // reveal animation (stagger)
+    // reveal
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
+      entries.forEach(e => {
+        if(e.isIntersecting){
           e.target.classList.add("show");
           io.unobserve(e.target);
         }
@@ -984,7 +912,7 @@
     }, { threshold: 0.14 });
     revealEls.forEach(el => { if(!el.classList.contains("show")) io.observe(el); });
 
-    // smooth scroll nav (clean url)
+    // smooth scroll for nav
     document.querySelectorAll('.navlinks a').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -1009,7 +937,7 @@
     }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
     sections.forEach(s => navIO.observe(s));
 
-    // glow follows mouse on cards
+    // glow follow for ALL curved cards
     const glowFollow = (el, ev) => {
       const r = el.getBoundingClientRect();
       const x = ((ev.clientX - r.left) / r.width) * 100;
@@ -1017,11 +945,12 @@
       el.style.setProperty('--mx', x + '%');
       el.style.setProperty('--my', y + '%');
     };
-    document.querySelectorAll('.card, .job, .profile, .stat').forEach(card => {
-      card.addEventListener('mousemove', (e) => glowFollow(card, e), { passive: true });
+    document.querySelectorAll('.flow-item, .profile').forEach(card => {
+      card.addEventListener('mousemove', (e) => glowFollow(card, e), { passive:true });
       card.addEventListener('mouseleave', () => {
         card.style.removeProperty('--mx');
         card.style.removeProperty('--my');
+        card.style.transform = '';
       });
     });
 
@@ -1037,9 +966,7 @@
         profileCard.style.transform = `translateY(-4px) rotateX(${rx}deg) rotateY(${ry}deg)`;
         glowFollow(profileCard, e);
       }, { passive:true });
-      profileCard.addEventListener('mouseleave', () => {
-        profileCard.style.transform = '';
-      });
+      profileCard.addEventListener('mouseleave', () => { profileCard.style.transform = ''; });
     }
 
     // magnetic buttons
@@ -1054,10 +981,9 @@
       btn.addEventListener('mouseleave', () => btn.style.transform = '');
     });
 
-    // click ripple (buttons + pills + nav links)
-    const rippleTargets = document.querySelectorAll('.btn, .pill, .navlinks a, .card, .job');
+    // ripple on click
+    const rippleTargets = document.querySelectorAll('.btn, .pill, .navlinks a, .flow-item');
     rippleTargets.forEach(el => {
-      el.style.position = el.style.position || 'relative';
       el.addEventListener('click', (e) => {
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left;
@@ -1070,107 +996,6 @@
         setTimeout(() => s.remove(), 900);
       });
     });
-
-    // count-up stats (when first visible)
-    const counters = document.querySelectorAll('.count');
-    const countIO = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        const el = entry.target;
-        const to = Number(el.dataset.to || 0);
-        let start = 0;
-        const dur = 900;
-        const t0 = performance.now();
-        const tick = (t) => {
-          const p = Math.min(1, (t - t0) / dur);
-          // easeOutCubic
-          const eased = 1 - Math.pow(1 - p, 3);
-          const val = Math.round(start + (to - start) * eased);
-          el.textContent = val;
-          if(p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        countIO.unobserve(el);
-      });
-    }, { threshold: 0.35 });
-    counters.forEach(c => countIO.observe(c));
-
-    // ===== Canvas Particles (premium) =====
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d', { alpha:true });
-    let W=0, H=0, DPR=1, particles=[];
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function resize(){
-      DPR = Math.min(2, window.devicePixelRatio || 1);
-      W = innerWidth; H = innerHeight;
-      canvas.width = Math.floor(W * DPR);
-      canvas.height = Math.floor(H * DPR);
-      canvas.style.width = W + 'px';
-      canvas.style.height = H + 'px';
-      ctx.setTransform(DPR,0,0,DPR,0,0);
-      // build particles
-      const count = Math.floor(Math.min(120, (W*H) / 16000));
-      particles = Array.from({length: count}, () => ({
-        x: Math.random()*W,
-        y: Math.random()*H,
-        vx: (Math.random()*0.6 + 0.2) * (Math.random()<0.5?-1:1),
-        vy: (Math.random()*0.6 + 0.2) * (Math.random()<0.5?-1:1),
-        r: Math.random()*1.6 + 0.6,
-        a: Math.random()*0.45 + 0.18
-      }));
-    }
-    window.addEventListener('resize', resize);
-
-    function step(){
-      if(prefersReduced) return;
-      ctx.clearRect(0,0,W,H);
-
-      // particles
-      for(const p of particles){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x< -20) p.x=W+20; if(p.x>W+20) p.x=-20;
-        if(p.y< -20) p.y=H+20; if(p.y>H+20) p.y=-20;
-
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle = `rgba(0,255,157,${p.a})`;
-        ctx.fill();
-      }
-
-      // connections near cursor
-      const maxD = 120;
-      for(let i=0;i<particles.length;i++){
-        for(let j=i+1;j<particles.length;j++){
-          const a = particles[i], b = particles[j];
-          const dx = a.x-b.x, dy = a.y-b.y;
-          const d = Math.hypot(dx,dy);
-          if(d < maxD){
-            const alpha = (1 - d/maxD) * 0.12;
-            ctx.strokeStyle = `rgba(51,214,255,${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo(b.x,b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // cursor attract glow
-      ctx.beginPath();
-      ctx.arc(cx, cy, 120, 0, Math.PI*2);
-      const g = ctx.createRadialGradient(cx,cy,0,cx,cy,120);
-      g.addColorStop(0,'rgba(0,255,157,0.09)');
-      g.addColorStop(1,'rgba(0,255,157,0)');
-      ctx.fillStyle = g;
-      ctx.fill();
-
-      requestAnimationFrame(step);
-    }
-
-    resize();
-    step();
   </script>
 </body>
 </html>
