@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Amrutha Priya | Java Full Stack Developer</title>
-  <meta name="description" content="Amrutha Priya — Java Full Stack Developer (Spring Boot, Microservices, React/Angular). Enterprise delivery & production support." />
+  <title>Amrutha Priya | Portfolio</title>
 
   <style>
     :root{
-      /* premium blue palette */
-      --bg0:#060b18;
-      --bg1:#071126;
-      --bg2:#071a33;
+      --bg0:#050a18;
+      --bg1:#07122a;
+      --bg2:#081b36;
 
       --glass: rgba(255,255,255,.08);
       --glass2: rgba(255,255,255,.05);
@@ -21,8 +19,9 @@
       --muted: rgba(238,246,255,.78);
 
       --blue:#4cc3ff;
-      --blue2:#7b6cff;
+      --violet:#7b6cff;
       --cyan:#22f0ff;
+      --ok:#25d36f;
 
       --shadow: 0 30px 90px rgba(0,0,0,.55);
       --shadow2: 0 18px 60px rgba(0,0,0,.45);
@@ -31,7 +30,6 @@
       --r2: 18px;
       --max: 1180px;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -48,93 +46,54 @@
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
 
-    /* ====== animated background blobs ====== */
-    .blobs{
-      position:fixed; inset:-80px; z-index:-2; pointer-events:none;
-      filter: blur(26px);
-      opacity:.9;
-    }
+    /* animated background */
+    .blobs{position:fixed; inset:-90px; z-index:-2; pointer-events:none; filter: blur(26px); opacity:.92;}
     .blob{
-      position:absolute;
-      width: 520px; height: 520px;
+      position:absolute; width:520px; height:520px;
       border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
       background: radial-gradient(circle at 30% 30%, rgba(76,195,255,.35), rgba(76,195,255,.03) 60%, transparent 70%);
       animation: blobFloat 10s ease-in-out infinite;
       mix-blend-mode: screen;
     }
-    .blob.b2{
-      width: 620px; height: 620px;
-      left: 58%; top: 6%;
+    .b1{left:-6%; top:-6%;}
+    .b2{
+      width:640px;height:640px; left:56%; top:4%;
       background: radial-gradient(circle at 30% 30%, rgba(123,108,255,.32), rgba(123,108,255,.03) 62%, transparent 70%);
-      animation-duration: 12s;
-      animation-delay: -2s;
+      animation-duration: 12s; animation-delay:-2s;
     }
-    .blob.b3{
-      width: 720px; height: 720px;
-      left: 18%; top: 62%;
+    .b3{
+      width:760px;height:760px; left:18%; top:60%;
       background: radial-gradient(circle at 30% 30%, rgba(34,240,255,.22), rgba(34,240,255,.03) 62%, transparent 72%);
-      animation-duration: 14s;
-      animation-delay: -4s;
+      animation-duration: 14s; animation-delay:-4s;
     }
-    .blob.b1{left:-6%; top: -6%;}
     @keyframes blobFloat{
       0%,100%{ transform: translate3d(0,0,0) rotate(0deg) scale(1); }
       50%{ transform: translate3d(0,-18px,0) rotate(8deg) scale(1.03); }
     }
 
-    /* subtle moving grid */
-    .grid{
-      position:fixed; inset:0; z-index:-1; pointer-events:none;
-      background:
-        linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,.85), transparent 70%);
-      opacity:.14;
-      animation: gridMove 16s linear infinite;
-    }
-    @keyframes gridMove{
-      from{ transform: translate3d(0,0,0); }
-      to{ transform: translate3d(-60px,-60px,0); }
-    }
-
-    /* ====== navbar ====== */
+    /* top store nav */
     .topbar{position:sticky; top:14px; z-index:50; padding:10px;}
     .navshell{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 14px;
-      border-radius: 999px;
+      padding:12px 14px; border-radius:999px;
       background: rgba(8, 16, 36, 0.58);
       border:1px solid rgba(76,195,255,.22);
       backdrop-filter: blur(12px);
       box-shadow: 0 14px 44px rgba(0,0,0,.35);
     }
     .brand{display:flex; align-items:center; gap:10px; padding-left:6px; white-space:nowrap;}
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow:0 0 18px rgba(76,195,255,.55);
-    }
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--blue),var(--violet));box-shadow:0 0 18px rgba(76,195,255,.55);}
     .brand strong{font-size:13.5px; letter-spacing:.25px}
-
     .navlinks{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
     .navlinks a{
-      font-size:13px;
-      padding:8px 12px;
-      border-radius:999px;
+      font-size:13px; padding:8px 12px; border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
-      text-decoration:none;
-      opacity:.86;
+      text-decoration:none; opacity:.86;
       transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
       position:relative; overflow:hidden;
     }
-    .navlinks a:hover{
-      transform: translateY(-1px);
-      background: rgba(76,195,255,0.10);
-      border-color: rgba(76,195,255,0.55);
-      opacity:1;
-    }
+    .navlinks a:hover{transform: translateY(-1px); background: rgba(76,195,255,0.10); border-color: rgba(76,195,255,0.55); opacity:1;}
     .cta{display:flex; gap:10px; flex-wrap:wrap; padding-right:6px;}
     .btn{
       font-size:13px; padding:8px 12px; border-radius:999px;
@@ -145,33 +104,21 @@
       position:relative; overflow:hidden;
       white-space:nowrap;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(76,195,255,0.16);
-      border-color: rgba(76,195,255,0.90);
-    }
-    .btn.primary{
-      border-color: rgba(123,108,255,0.70);
-      background: rgba(123,108,255,0.14);
-    }
+    .btn:hover{transform: translateY(-1px); background: rgba(76,195,255,0.16); border-color: rgba(76,195,255,0.90);}
 
     /* shine */
-    .btn::after, .navlinks a::after, .pill::after{
-      content:"";
-      position:absolute; top:-50%; left:-70%;
+    .btn::after, .navlinks a::after, .pill::after, .addBtn::after{
+      content:""; position:absolute; top:-50%; left:-70%;
       width:60%; height:200%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
       transform: rotate(18deg);
       opacity:0; transition: opacity .18s ease;
       pointer-events:none;
     }
-    .btn:hover::after, .navlinks a:hover::after, .pill:hover::after{
-      opacity:1;
-      animation: shine .9s ease forwards;
-    }
+    .btn:hover::after, .navlinks a:hover::after, .pill:hover::after, .addBtn:hover::after{opacity:1; animation: shine .9s ease forwards;}
     @keyframes shine{ from{ left:-70%; } to{ left:140%; } }
 
-    /* ====== sections ====== */
+    /* store layout */
     section{
       margin-top:34px;
       border-radius: var(--r);
@@ -185,49 +132,23 @@
 
     .eyebrow{
       display:inline-flex; align-items:center; gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
+      padding:8px 12px; border-radius:999px;
       border:1px solid rgba(76,195,255,0.28);
       background: rgba(76,195,255,0.10);
       color: rgba(238,246,255,0.90);
       font-size:13px;
     }
+    h1{margin:14px 0 0; font-size: clamp(40px, 5vw, 66px); line-height:1.03; letter-spacing:-0.7px;}
+    .grad{background: linear-gradient(90deg, #f6fbff, #bfe9ff, #c6c1ff); -webkit-background-clip:text; background-clip:text; color:transparent;}
+    .lead{margin:14px 0 0; font-size: clamp(15px, 1.6vw, 18px); line-height:1.85; color: var(--muted); max-width: 70ch;}
 
-    h1{
-      margin:14px 0 0;
-      font-size: clamp(42px, 5vw, 68px);
-      line-height:1.02;
-      letter-spacing:-0.6px;
-    }
-    .grad{
-      background: linear-gradient(90deg, #f6fbff, #bfe9ff, #c6c1ff);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .lead{
-      margin:14px 0 0;
-      font-size: clamp(15px, 1.6vw, 18px);
-      line-height:1.85;
-      color: var(--muted);
-      max-width: 70ch;
-    }
-
-    /* hero */
     .hero{
       min-height: calc(100vh - 120px);
       display:flex; align-items:center;
-      background:
-        radial-gradient(980px 480px at 12% 18%, rgba(76,195,255,0.18), transparent 60%),
-        radial-gradient(840px 460px at 90% 24%, rgba(123,108,255,0.14), transparent 62%),
-        rgba(8,12,18,0.40);
+      background: rgba(8,12,18,0.38);
       box-shadow: var(--shadow);
     }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap:34px;
-      align-items:center;
-    }
-
+    .heroGrid{display:grid; grid-template-columns: 1.1fr 0.9fr; gap:20px; align-items:stretch;}
     .type{
       margin-top:10px;
       color: rgba(238,246,255,0.86);
@@ -241,10 +162,9 @@
     @keyframes typing{ to{ width:100%; } }
     @keyframes caret{ 50%{ border-color:transparent; } }
 
-    .hero-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+    .pillRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
     .pill{
-      padding:10px 14px;
-      border-radius:999px;
+      padding:10px 14px; border-radius:999px;
       border:1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.03);
       text-decoration:none;
@@ -252,212 +172,130 @@
       position:relative; overflow:hidden;
       font-size:14px;
     }
-    .pill.primary{
-      border-color: rgba(76,195,255,0.65);
-      background: rgba(76,195,255,0.12);
-    }
-    .pill:hover{
-      transform: translateY(-2px);
-      background: rgba(76,195,255,0.10);
-      border-color: rgba(76,195,255,0.72);
-    }
+    .pill.primary{border-color: rgba(76,195,255,0.65); background: rgba(76,195,255,0.12);}
+    .pill:hover{transform: translateY(-2px); background: rgba(76,195,255,0.10); border-color: rgba(76,195,255,0.72);}
 
-    /* profile card */
-    .profile{
+    /* store side cart */
+    .side{
       border-radius: var(--r);
       border: 1px solid rgba(76,195,255,0.22);
       background: rgba(8,12,20,0.52);
-      padding:16px;
       box-shadow: var(--shadow2);
-      transform-style:preserve-3d;
-      transition: transform .18s ease, border-color .18s ease;
+      overflow:hidden;
+      display:grid;
+      grid-template-rows: auto auto 1fr auto;
     }
-    .profile.tilt{
-      will-change: transform;
+    .sideTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
-    .imgframe{
-      border-radius: 22px;
-      padding:2px;
-      background: linear-gradient(135deg, rgba(76,195,255,0.20), rgba(123,108,255,0.85), rgba(34,240,255,0.18));
-      animation: glow 4.4s ease-in-out infinite;
+    .sideTop strong{font-size:14px; letter-spacing:.2px;}
+    .badge{
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(238,246,255,.92);
     }
-    @keyframes glow{
-      0%,100%{ filter: drop-shadow(0 0 0 rgba(76,195,255,0)); }
-      50%{ filter: drop-shadow(0 0 26px rgba(76,195,255,0.38)); }
-    }
-    .avatar{
-      width:100%;
-      height: 330px;
+    .profileWrap{padding:14px 16px; display:grid; gap:12px;}
+    .pfGrid{display:grid; grid-template-columns: 94px 1fr; gap:12px; align-items:center;}
+    .pfImg{
+      width:94px; height:94px; border-radius:20px;
       object-fit:cover;
-      border-radius: 20px;
-      background:#0b1220;
-      display:block;
-      border: 2px solid rgba(76,195,255,0.55);
-      box-shadow: 0 34px 70px rgba(0,0,0,0.46);
-      transition: transform .22s ease, filter .22s ease;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
     }
-    .avatar:hover{ transform: scale(1.02); filter: saturate(1.05) contrast(1.05); }
-
-    .rows{ margin-top:12px; display:grid; gap:10px; }
-    .row{
+    .pfName{font-weight:700; font-size:14.5px;}
+    .pfMeta{font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:4px;}
+    .miniList{display:grid; gap:10px; padding:0 16px 16px;}
+    .miniItem{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
       padding:10px 12px;
       border-radius: 16px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      transition: transform .16s ease, border-color .16s ease;
     }
-    .label{ font-size:12px; color: rgba(191,233,255,0.90); }
-    .val{ margin-top:3px; font-size:13px; color: rgba(238,246,255,0.92); line-height:1.4; overflow-wrap:anywhere;}
+    .miniItem:hover{ transform: translateY(-3px); border-color: rgba(34,240,255,.35); }
+    .miniItem .left{display:grid; gap:2px;}
+    .miniItem .title{font-size:13.5px; font-weight:650;}
+    .miniItem .sub{font-size:12px; color:var(--muted);}
+    .qty{
+      display:flex; align-items:center; gap:8px;
+      font-size:12px;
+      color: rgba(238,246,255,.92);
+    }
+    .dotOk{width:10px; height:10px; border-radius:999px; background: var(--ok); box-shadow:0 0 16px rgba(37,211,111,.45);}
+    .sideFoot{
+      padding:14px 16px;
+      border-top:1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      background: rgba(255,255,255,.03);
+    }
+    .total{font-size:12px; color:var(--muted);}
+    .total strong{color:rgba(238,246,255,.95); font-size:13px;}
+    .social{display:flex; gap:10px; font-size:12px; color:rgba(238,246,255,.82);}
+    .social a{opacity:.85; text-decoration:none;}
+    .social a:hover{opacity:1}
 
-    /* cards / icon blocks */
-    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    /* featured grid */
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:18px;}
     .card{
-      border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      box-shadow: 0 14px 34px rgba(0,0,0,.25);
+      position:relative;
+    }
+    .card:hover{transform: translateY(-5px); border-color: rgba(123,108,255,.45); background: rgba(123,108,255,.06);}
+    .cardPad{padding:16px;}
+    .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+    .tag{font-size:12px; padding:6px 9px; border-radius:999px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); color: rgba(238,246,255,.90);}
+    .thumb{width:100%; height: 170px; object-fit: cover; display:block; background: rgba(255,255,255,.06);}
+
+    /* big promo like "NEW WATCH COLLECTION" */
+    .promo{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:stretch;
+      margin-top:18px;
+    }
+    .promoLeft{
+      border-radius: 24px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
       padding:20px;
       box-shadow: 0 14px 34px rgba(0,0,0,.25);
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .bigTitle{font-size:26px; letter-spacing:-.2px; margin:10px 0 0;}
+    .price{font-size:13px; color:rgba(191,233,255,.92); margin-top:10px;}
+    .addRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+    .addBtn{
       position:relative; overflow:hidden;
-    }
-    .card:hover{
-      transform: translateY(-4px);
-      border-color: rgba(76,195,255,0.40);
-      background: rgba(76,195,255,0.06);
-    }
-    .card h3{ margin:0 0 8px; font-size:16px; letter-spacing:.1px; }
-    .card p{ margin:0; color: var(--muted); line-height:1.75; }
-
-    /* icon badge */
-    .iconBadge{
-      width:40px; height:40px; border-radius:14px;
-      display:grid; place-items:center;
-      background: rgba(76,195,255,.12);
-      border: 1px solid rgba(76,195,255,.28);
-      margin-bottom:10px;
-    }
-    .iconBadge svg{ width:22px; height:22px; opacity:.92; }
-
-    /* skills */
-    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      color: rgba(238,246,255,0.92);
-      font-size:13px;
-      transition: transform .14s ease, border-color .14s ease, background .14s ease;
-    }
-    .chip:hover{
-      transform: translateY(-1px);
-      border-color: rgba(76,195,255,0.40);
-      background: rgba(76,195,255,0.08);
-    }
-    .dotmini{
-      width:8px; height:8px; border-radius:999px;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow: 0 0 14px rgba(76,195,255,.55);
-    }
-
-    /* timeline experience */
-    .timeline{ display:grid; gap:12px; margin-top:16px; }
-    .job{
-      padding:18px;
-      border-radius: 20px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .job::before{
-      content:"";
-      position:absolute;
-      left:-40px; top:-40px;
-      width:120px; height:120px;
-      background: radial-gradient(circle at 30% 30%, rgba(76,195,255,.25), transparent 60%);
-      filter: blur(0px);
-      opacity:.7;
-      transform: rotate(10deg);
-    }
-    .job:hover{
-      transform: translateY(-4px);
-      border-color: rgba(76,195,255,0.35);
-      background: rgba(76,195,255,0.06);
-    }
-    .jobtop{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:baseline;}
-    .job strong{ font-size:15px; }
-    .job .time{ font-size:12px; color: rgba(191,233,255,0.88); white-space:nowrap; }
-    .bullets{ margin:10px 0 0; padding-left:18px; color: rgba(238,246,255,0.88); line-height:1.75; }
-    .bullets li{ margin:7px 0; }
-
-    /* projects */
-    .projGrid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:18px; }
-    .project{
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      overflow:hidden;
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-      box-shadow: 0 14px 34px rgba(0,0,0,.25);
-      position:relative;
-    }
-    .project:hover{
-      transform: translateY(-5px);
-      border-color: rgba(123,108,255,.45);
-      background: rgba(123,108,255,.06);
-    }
-    .thumb{
-      width:100%;
-      height: 170px;
-      object-fit: cover;
-      display:block;
-      background: rgba(255,255,255,.06);
-    }
-    .pbody{ padding:16px; }
-    .ptitle{ margin:0; font-size:15.5px; }
-    .pdesc{ margin:8px 0 0; color: var(--muted); line-height:1.65; font-size:13.5px; }
-    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-    .tag{
-      font-size:12px;
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: rgba(238,246,255,.90);
-    }
-    .plinkRow{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
-    .plink{
-      font-size:13px;
-      padding:8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(76,195,255,.45);
-      background: rgba(76,195,255,.10);
+      padding:10px 14px; border-radius:999px;
+      border:1px solid rgba(76,195,255,0.65);
+      background: rgba(76,195,255,0.12);
       text-decoration:none;
-      transition: transform .14s ease, background .14s ease, border-color .14s ease;
+      font-size:13px;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      cursor:pointer;
     }
-    .plink:hover{ transform: translateY(-1px); border-color: rgba(76,195,255,.85); background: rgba(76,195,255,.16); }
-
-    /* resume block */
-    .resumeWrap{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:18px; align-items:center; }
-    .resumeCard{
-      border-radius: 22px;
+    .addBtn:hover{transform: translateY(-2px); background: rgba(76,195,255,0.16); border-color: rgba(76,195,255,0.90);}
+    .promoRight{
+      border-radius: 24px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      padding:18px;
+      overflow:hidden;
+      box-shadow: 0 14px 34px rgba(0,0,0,.25);
     }
-    .resumeThumb{
-      width:100%;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      height: 260px;
-      object-fit: cover;
-      display:block;
-    }
+    .aboutImg{width:100%; height:100%; min-height: 260px; object-fit:cover; display:block;}
 
-    /* reveal animation */
+    /* reveal */
     .reveal{ opacity:0; transform: translateY(18px) scale(.99); transition: opacity .85s ease, transform .85s ease; }
     .reveal.show{ opacity:1; transform: translateY(0) scale(1); }
 
@@ -469,27 +307,22 @@
       font-size:13px;
     }
 
-    /* responsive */
-    @media (max-width: 1040px){
-      .projGrid{ grid-template-columns: 1fr 1fr; }
-    }
     @media (max-width: 980px){
       .hero{ min-height:auto; }
-      .hero-grid{ grid-template-columns: 1fr; }
-      .grid2{ grid-template-columns: 1fr; }
-      .resumeWrap{ grid-template-columns: 1fr; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .promo{ grid-template-columns: 1fr; }
       .section-inner{ padding:26px; }
-      .avatar{ height: 280px; }
-      .navshell{ border-radius: 20px; }
-      .brand{ display:none; }
-      .projGrid{ grid-template-columns: 1fr; }
       .type{ white-space:normal; border-right:none; width:auto; animation:none; }
+      .brand{ display:none; }
+      .navshell{ border-radius: 20px; }
     }
+
     @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .blob, .grid{ animation:none !important; }
-      .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
-      .type{ animation:none !important; width:auto !important; border-right:none !important; }
+      html{scroll-behavior:auto;}
+      .blob{animation:none !important;}
+      .type{animation:none !important; width:auto !important; border-right:none !important;}
+      .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
     }
   </style>
 </head>
@@ -500,9 +333,8 @@
     <div class="blob b2"></div>
     <div class="blob b3"></div>
   </div>
-  <div class="grid"></div>
 
-  <!-- NAV -->
+  <!-- STORE NAV -->
   <div class="topbar">
     <div class="wrap">
       <div class="navshell reveal show">
@@ -510,346 +342,247 @@
 
         <nav class="navlinks">
           <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#resume">Resume</a>
-          <a href="#contact">Contact</a>
+          <a href="#featured">Featured</a>
+          <a href="#products">Products</a>
+          <a href="#new">New</a>
+          <a href="#cart">My Cart</a>
         </nav>
 
         <div class="cta">
           <a class="btn" href="mailto:b.amruthapriya@gmail.com">Email</a>
-          <a class="btn primary" href="#contact">Hire Me</a>
+          <a class="btn" href="#products">Hire Me</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO + CART STYLE -->
   <section class="hero" id="home">
     <div class="wrap">
       <div class="section-inner">
-        <div class="hero-grid">
+        <div class="heroGrid">
           <div class="reveal show">
-            <div class="eyebrow">⚡ Java Full Stack • Spring Boot • Microservices • React / Angular</div>
-            <h1><span class="grad">Hi, I’m Amrutha Priya</span></h1>
-            <div class="type">Software Developer • APIs • UI • Deployments • Production Support</div>
-
+            <div class="eyebrow">NEW DEVELOPER • COLLECTIONS B720</div>
+            <h1><span class="grad">Java Full Stack Portfolio</span></h1>
+            <div class="type">Spring Boot • Microservices • React / Angular • APIs • Production Support</div>
             <p class="lead">
-              I build reliable enterprise applications end-to-end: backend services, API layers, modern UI,
-              CI/CD coordination, and production stability. I focus on clean architecture, performance, and smooth delivery.
+              Recruiter-ready premium portfolio with clean visuals, enterprise experience, and client project highlights.
+              (No confidential details.)
             </p>
 
-            <div class="hero-actions">
-              <a class="pill primary" href="#projects">View Projects →</a>
-              <a class="pill" href="#experience">Experience →</a>
-              <a class="pill" href="#resume">Resume →</a>
+            <div class="pillRow">
+              <a class="pill primary" href="#products">Discover →</a>
+              <a class="pill" href="#featured">Featured →</a>
+              <a class="pill" href="#new">New →</a>
             </div>
           </div>
 
-          <aside class="profile tilt reveal show" id="tiltCard">
-            <div class="imgframe">
-              <!-- put profile image here -->
-              <img class="avatar" src="assets/profile.jpg" alt="Amrutha Priya profile photo">
+          <!-- CART PANEL -->
+          <aside class="side reveal show" id="cart">
+            <div class="sideTop">
+              <strong>My Cart</strong>
+              <span class="badge"><span id="cartCount">3</span> items</span>
             </div>
 
-            <div class="rows">
-              <div class="row">
-                <div class="label">Email</div>
-                <div class="val"><a href="mailto:b.amruthapriya@gmail.com">b.amruthapriya@gmail.com</a></div>
+            <div class="profileWrap">
+              <div class="pfGrid">
+                <img class="pfImg" src="assets/profile.jpg" alt="Amrutha Priya">
+                <div>
+                  <div class="pfName">Amrutha Priya</div>
+                  <div class="pfMeta">Java Full Stack Developer<br>AZ-900 • Enterprise Delivery</div>
+                </div>
               </div>
-              <div class="row">
-                <div class="label">Role Focus</div>
-                <div class="val">Java • Spring Boot • Microservices • React/Angular • APIs</div>
+            </div>
+
+            <div class="miniList">
+              <div class="miniItem">
+                <div class="left">
+                  <div class="title">Spring Boot</div>
+                  <div class="sub">APIs + Validations</div>
+                </div>
+                <div class="qty"><span class="dotOk"></span>1</div>
               </div>
-              <div class="row">
-                <div class="label">Current Client</div>
-                <div class="val">Citi Bank • Nov 2024 – Present</div>
+              <div class="miniItem">
+                <div class="left">
+                  <div class="title">React / Angular</div>
+                  <div class="sub">UI + Integration</div>
+                </div>
+                <div class="qty"><span class="dotOk"></span>1</div>
+              </div>
+              <div class="miniItem">
+                <div class="left">
+                  <div class="title">Production Support</div>
+                  <div class="sub">RCA + Monitoring</div>
+                </div>
+                <div class="qty"><span class="dotOk"></span>1</div>
+              </div>
+            </div>
+
+            <div class="sideFoot">
+              <div class="total">3 items • <strong>Recruiter-ready</strong></div>
+              <div class="social">
+                <a href="#" onclick="alert('Add your links here');return false;">Facebook</a>
+                <a href="#" onclick="alert('Add your links here');return false;">Twitter</a>
+                <a href="#" onclick="alert('Add your links here');return false;">Instagram</a>
               </div>
             </div>
           </aside>
+
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
+  <!-- FEATURED -->
+  <section id="featured">
     <div class="wrap">
       <div class="section-inner reveal">
-        <div class="eyebrow">About</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Enterprise delivery + clean systems + polished UX</h2>
+        <div class="eyebrow">Featured</div>
+        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Featured Skills</h2>
         <p class="lead" style="margin-top:10px;">
-          I work across requirements → implementation → deployments → production fixes.
-          I build systems that are stable, readable, and easy to extend.
+          Premium “store-style” highlights so recruiters instantly understand what you’re strong in.
         </p>
 
-        <div class="grid2" style="margin-top:18px;">
-          <div class="card">
-            <div class="iconBadge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" opacity=".9"/>
-                <path d="M5 9V5h4" stroke="currentColor" stroke-width="2"/>
-                <path d="M19 15v4h-4" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>Backend & APIs</h3>
-            <p>Spring Boot services, validations, error handling, and secure REST APIs that stand up to production pressure.</p>
-          </div>
-
-          <div class="card">
-            <div class="iconBadge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2"/>
-                <path d="M8 18h8" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>Front-end Experience</h3>
-            <p>Responsive UI in React/Angular, reusable components, dashboards, and smooth API integrations.</p>
-          </div>
-
-          <div class="card">
-            <div class="iconBadge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="2"/>
-                <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>Quality & Stability</h3>
-            <p>Refactoring, monitoring support, RCA, and production issue fixes within SLA-focused teams.</p>
-          </div>
-
-          <div class="card">
-            <div class="iconBadge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 12h16" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 4v16" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>Delivery</h3>
-            <p>Agile delivery, sprint-based planning, release readiness, and collaboration with QA/DevOps/BA.</p>
-          </div>
-        </div>
-
-        <!-- about image -->
-        <div style="margin-top:18px;">
-          <div class="card" style="padding:14px;">
-            <img src="assets/about.jpg" alt="About image" style="width:100%; height:320px; object-fit:cover; border-radius:18px; border:1px solid rgba(255,255,255,.10);">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="wrap">
-      <div class="section-inner reveal">
-        <div class="eyebrow">Stack</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Skills I use</h2>
-
-        <div class="chips">
-          <span class="chip"><span class="dotmini"></span>Java</span>
-          <span class="chip"><span class="dotmini"></span>Spring Boot</span>
-          <span class="chip"><span class="dotmini"></span>REST APIs</span>
-          <span class="chip"><span class="dotmini"></span>Microservices</span>
-          <span class="chip"><span class="dotmini"></span>React</span>
-          <span class="chip"><span class="dotmini"></span>Angular</span>
-          <span class="chip"><span class="dotmini"></span>TypeScript</span>
-          <span class="chip"><span class="dotmini"></span>Kafka</span>
-          <span class="chip"><span class="dotmini"></span>SQL</span>
-          <span class="chip"><span class="dotmini"></span>PostgreSQL</span>
-          <span class="chip"><span class="dotmini"></span>Oracle</span>
-          <span class="chip"><span class="dotmini"></span>AWS</span>
-          <span class="chip"><span class="dotmini"></span>Docker</span>
-          <span class="chip"><span class="dotmini"></span>Kubernetes</span>
-          <span class="chip"><span class="dotmini"></span>Jenkins</span>
-          <span class="chip"><span class="dotmini"></span>Git</span>
-          <span class="chip"><span class="dotmini"></span>JUnit</span>
-          <span class="chip"><span class="dotmini"></span>Mockito</span>
-          <span class="chip"><span class="dotmini"></span>Postman</span>
-        </div>
-
-        <div style="margin-top:18px" class="card">
-          <h3 style="margin:0 0 8px;">Certification</h3>
-          <p>Microsoft Certified: Azure Fundamentals (AZ-900)</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="wrap">
-      <div class="section-inner reveal">
-        <div class="eyebrow">Experience</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Client work</h2>
-
-        <div class="timeline">
-          <div class="job">
-            <div class="jobtop">
-              <strong>Citi Bank — Software Developer</strong>
-              <span class="time">Nov 2024 – Present</span>
-            </div>
-            <ul class="bullets">
-              <li>Building enterprise web workflows across UI + service layers.</li>
-              <li>Implementing validations, service orchestration, and structured API responses.</li>
-              <li>Improving stability via refactoring and stronger exception handling.</li>
-              <li>Supporting releases and resolving production issues within SLAs.</li>
-              <li>Working with QA/DevOps/BA teams through Agile cycles.</li>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="jobtop">
-              <strong>Verizon — Software Developer</strong>
-              <span class="time">Sept 2023 – Oct 2024</span>
-            </div>
-            <ul class="bullets">
-              <li>Worked on billing and payment workflow modules in an enterprise environment.</li>
-              <li>Handled production troubleshooting and root-cause analysis for recurring issues.</li>
-              <li>Supported release readiness and post-deployment monitoring.</li>
-              <li>Improved maintainability through modular updates and documentation.</li>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="jobtop">
-              <strong>LTI Mindtree — Software Developer</strong>
-              <span class="time">Oct 2021 – Jul 2023</span>
-            </div>
-            <ul class="bullets">
-              <li>Implemented enterprise workflow features and strengthened validation logic.</li>
-              <li>Enhanced integration behavior for smoother UI + service alignment.</li>
-              <li>Supported stabilization fixes and delivery checkpoints across releases.</li>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="jobtop">
-              <strong>Atos Syntel — Associate Software Developer</strong>
-              <span class="time">Dec 2019 – Sept 2021</span>
-            </div>
-            <ul class="bullets">
-              <li>Handled module tasks with focus on correctness and maintainability.</li>
-              <li>Worked closely with QA to close defects and improve release stability.</li>
-              <li>Supported debugging and documentation to help production support workflows.</li>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="jobtop">
-              <strong>Syntax Tree — Associate Software Developer</strong>
-              <span class="time">Sept 2018 – Nov 2019</span>
-            </div>
-            <ul class="bullets">
-              <li>Supported feature work using Java + REST + frontend technologies.</li>
-              <li>Assisted with API integration, UI updates, and system testing.</li>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="jobtop">
-              <strong>Syntax Tree — Software Engineer Intern</strong>
-              <span class="time">Jan 2018 – Aug 2018</span>
-            </div>
-            <ul class="bullets">
-              <li>Assisted with testing, documentation, and minor UI enhancements.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-inner reveal">
-        <div class="eyebrow">Projects</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Featured work</h2>
-        <p class="lead" style="margin-top:10px;">
-          Add project thumbnails inside <b>assets/</b> (example: project1.jpg, project2.jpg).
-          If you don’t have images yet, keep the default placeholders.
-        </p>
-
-        <div class="projGrid">
-          <article class="project">
-            <img class="thumb" src="assets/project1.jpg" alt="Project 1 thumbnail" onerror="this.style.display='none'">
-            <div class="pbody">
-              <h3 class="ptitle">Enterprise Payments Workflow</h3>
-              <p class="pdesc">Spring Boot APIs + UI screens for payment flows, validations, and production stability improvements.</p>
-              <div class="tags">
-                <span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">SQL</span><span class="tag">RCA</span>
-              </div>
-              <div class="plinkRow">
-                <a class="plink" href="#" onclick="return false;">GitHub</a>
-                <a class="plink" href="#" onclick="return false;">Demo</a>
+        <div class="grid3">
+          <article class="card">
+            <img class="thumb" src="assets/about.jpg" alt="Backend thumbnail">
+            <div class="cardPad">
+              <h3 style="margin:0">Backend APIs</h3>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.65;">
+                Spring Boot REST APIs, validations, structured responses, error handling, and stability improvements.
+              </p>
+              <div class="tagRow">
+                <span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">Microservices</span>
               </div>
             </div>
           </article>
 
-          <article class="project">
-            <img class="thumb" src="assets/project2.jpg" alt="Project 2 thumbnail" onerror="this.style.display='none'">
-            <div class="pbody">
-              <h3 class="ptitle">Customer Onboarding UI</h3>
-              <p class="pdesc">React/Angular screens integrated with APIs; built reusable components and improved UX consistency.</p>
-              <div class="tags">
+          <article class="card">
+            <img class="thumb" src="assets/about.jpg" alt="UI thumbnail">
+            <div class="cardPad">
+              <h3 style="margin:0">Front-end</h3>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.65;">
+                React/Angular UI, reusable components, smooth UX, clean integrations, responsive layouts.
+              </p>
+              <div class="tagRow">
                 <span class="tag">React</span><span class="tag">Angular</span><span class="tag">TypeScript</span>
               </div>
-              <div class="plinkRow">
-                <a class="plink" href="#" onclick="return false;">GitHub</a>
-                <a class="plink" href="#" onclick="return false;">Demo</a>
-              </div>
             </div>
           </article>
 
-          <article class="project">
-            <img class="thumb" src="assets/project3.jpg" alt="Project 3 thumbnail" onerror="this.style.display='none'">
-            <div class="pbody">
-              <h3 class="ptitle">Monitoring & Production Fixes</h3>
-              <p class="pdesc">Improved logging, exception handling, and faster triage to reduce recurring incidents.</p>
-              <div class="tags">
-                <span class="tag">Java</span><span class="tag">Logs</span><span class="tag">SLA</span>
-              </div>
-              <div class="plinkRow">
-                <a class="plink" href="#" onclick="return false;">Notes</a>
-                <a class="plink" href="#" onclick="return false;">Details</a>
+          <article class="card">
+            <img class="thumb" src="assets/about.jpg" alt="Support thumbnail">
+            <div class="cardPad">
+              <h3 style="margin:0">Production Support</h3>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.65;">
+                RCA, incident fixes, monitoring, release readiness, and SLA-driven troubleshooting.
+              </p>
+              <div class="tagRow">
+                <span class="tag">RCA</span><span class="tag">SLA</span><span class="tag">Monitoring</span>
               </div>
             </div>
           </article>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- RESUME -->
-  <section id="resume">
+  <!-- PRODUCTS (CLIENT PROJECTS) -->
+  <section id="products">
     <div class="wrap">
       <div class="section-inner reveal">
-        <div class="eyebrow">Resume</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Download my resume</h2>
+        <div class="eyebrow">Products</div>
+        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Client Projects</h2>
         <p class="lead" style="margin-top:10px;">
-          Put your resume as <b>assets/resume.pdf</b> (optional). If you add <b>assets/resume.png</b> you’ll get a preview.
+          Presented like products (store style) so recruiters can scan quickly.
         </p>
 
-        <div class="resumeWrap">
-          <div class="resumeCard">
-            <h3 style="margin:0 0 8px;">Quick summary</h3>
-            <p style="margin:0; color:var(--muted); line-height:1.75;">
-              Java Full Stack Developer focused on Spring Boot microservices, UI integration, and production reliability
-              in enterprise environments (banking/telecom). AZ-900 certified.
+        <div class="grid3">
+          <article class="card">
+            <div class="cardPad">
+              <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start;">
+                <h3 style="margin:0">Citi Bank</h3>
+                <span class="badge">Nov 2024 – Present</span>
+              </div>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.65;">
+                Enterprise workflows across UI + service layers, validations, structured API responses,
+                production fixes aligned to SLAs.
+              </p>
+              <div class="tagRow">
+                <span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">SQL</span>
+              </div>
+              <div class="addRow">
+                <button class="addBtn" onclick="addToCart('Citi Bank')">ADD TO CART</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardPad">
+              <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start;">
+                <h3 style="margin:0">Verizon</h3>
+                <span class="badge">Sept 2023 – Oct 2024</span>
+              </div>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.65;">
+                Billing & payment workflow modules, RCA, release readiness, post-deployment monitoring,
+                maintainability improvements.
+              </p>
+              <div class="tagRow">
+                <span class="tag">Java</span><span class="tag">Microservices</span><span class="tag">RCA</span>
+              </div>
+              <div class="addRow">
+                <button class="addBtn" onclick="addToCart('Verizon')">ADD TO CART</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardPad">
+              <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start;">
+                <h3 style="margin:0">LTI Mindtree</h3>
+                <span class="badge">Oct 2021 – Jul 2023</span>
+              </div>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.65;">
+                Implemented workflow features, stronger validations, improved integration behavior,
+                stabilization fixes across releases.
+              </p>
+              <div class="tagRow">
+                <span class="tag">Spring</span><span class="tag">Validation</span><span class="tag">Agile</span>
+              </div>
+              <div class="addRow">
+                <button class="addBtn" onclick="addToCart('LTI Mindtree')">ADD TO CART</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW (PROMO) -->
+  <section id="new">
+    <div class="wrap">
+      <div class="section-inner reveal">
+        <div class="eyebrow">NEW WATCH</div>
+        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Our Story</h2>
+
+        <div class="promo">
+          <div class="promoLeft">
+            <div class="eyebrow">COLLECTIONS B720</div>
+            <div class="bigTitle">Inspirational Developer of this year</div>
+            <p class="lead" style="margin-top:10px;">
+              The latest and modern enterprise delivery style: clean architecture, stable APIs, fast UI, and production-ready fixes.
             </p>
-            <div class="hero-actions" style="margin-top:14px;">
-              <a class="pill primary" href="assets/resume.pdf" download>Download PDF →</a>
-              <a class="pill" href="#contact">Contact →</a>
+            <div class="price">Value: $1245</div>
+
+            <div class="addRow">
+              <a class="addBtn" href="mailto:b.amruthapriya@gmail.com">Discover</a>
+              <button class="addBtn" onclick="alert('Add Resume link or PDF later')">ADD TO CART</button>
             </div>
           </div>
 
-          <div class="resumeCard">
-            <img class="resumeThumb" src="assets/resume.png" alt="Resume preview"
-                 onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=&quot;padding:22px; color: rgba(238,246,255,.75); line-height:1.7;&quot;>Add <b>assets/resume.png</b> to show a preview here.</div>');">
+          <div class="promoRight">
+            <img class="aboutImg" src="assets/about.jpg" alt="About image">
           </div>
         </div>
 
@@ -857,30 +590,9 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-inner reveal">
-        <div class="eyebrow">Contact</div>
-        <h2 style="margin:14px 0 0; font-size:30px; letter-spacing:-0.2px;">Let’s connect</h2>
-        <p class="lead" style="margin-top:10px;">
-          If you’re hiring for Java Full Stack / Software Developer roles, email is the fastest way to reach me.
-        </p>
-
-        <div class="hero-actions">
-          <a class="pill primary" href="mailto:b.amruthapriya@gmail.com">Email →</a>
-          <a class="pill" href="#" onclick="navigator.clipboard.writeText('linkedin.com/in/amruthapriya98'); alert('Copied LinkedIn'); return false;">Copy LinkedIn →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © <span id="year"></span> Amrutha Priya • Portfolio
-  </footer>
+  <footer>© <span id="year"></span> Amrutha Priya • Portfolio Store</footer>
 
   <script>
-    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // reveal on scroll
@@ -895,7 +607,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => { if(!el.classList.contains("show")) io.observe(el); });
 
-    // smooth nav (keeps URL clean)
+    // smooth nav
     document.querySelectorAll('.navlinks a').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -908,24 +620,15 @@
       });
     });
 
-    // premium tilt effect for hero card
-    const card = document.getElementById("tiltCard");
-    if(card){
-      const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-      card.addEventListener("mousemove", (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        const rx = clamp((0.5 - py) * 10, -8, 8);
-        const ry = clamp((px - 0.5) * 10, -8, 8);
-        card.style.transform = `translateY(-4px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-        card.style.borderColor = "rgba(76,195,255,0.55)";
-      });
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-        card.style.borderColor = "rgba(76,195,255,0.22)";
-      });
+    // fake cart action (for store vibe)
+    let cart = new Set(["Spring Boot", "React / Angular", "Production Support"]);
+    const cartCountEl = document.getElementById("cartCount");
+    function addToCart(item){
+      cart.add(item);
+      cartCountEl.textContent = cart.size;
+      alert(item + " added to cart ✅");
     }
+    window.addToCart = addToCart;
   </script>
 </body>
 </html>
