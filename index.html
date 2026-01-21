@@ -70,6 +70,7 @@
       border:1px solid rgba(255,255,255,.12);
       transition: transform .15s ease, background .2s ease, border .2s ease;
       font-weight:700;
+      cursor:pointer;
     }
     .btn:hover{transform: translateY(-2px)}
     .btn-primary{
@@ -143,8 +144,20 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .profile-img{height: 260px; background: rgba(255,255,255,.03)}
-    .profile-img img{width:100%; height:100%; object-fit:cover}
+
+    /* ✅ FIXED IMAGE CROPPING */
+    .profile-img{
+      height: 320px;
+      background: rgba(255,255,255,.03);
+    }
+    .profile-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center top;
+      display:block;
+    }
+
     .profile-content{padding:18px}
     .profile-content h3{margin:0 0 6px}
     .chips{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0}
@@ -376,9 +389,11 @@
           Recently supporting enterprise platforms for <strong>Citi</strong> and <strong>Verizon</strong>.
         </p>
 
+        <!-- ✅ FIXED RESUME BUTTONS -->
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">Explore Projects</a>
-          <a class="btn btn-ghost" href="#resume">Download Resume</a>
+          <a class="btn btn-ghost" href="resume.pdf" download>Download Resume</a>
+          <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">View Resume</a>
         </div>
 
         <div class="hero-metrics">
@@ -400,6 +415,7 @@
       <aside class="hero-right reveal">
         <div class="profile-card">
           <div class="profile-img">
+            <!-- ✅ Make sure file name is EXACT: assets/profile.jpg -->
             <img src="assets/profile.jpg" alt="Amrutha Priya profile" />
           </div>
 
@@ -455,6 +471,7 @@
 
       <div class="about-grid">
         <div class="about-media reveal">
+          <!-- ✅ Make sure file name is EXACT: assets/about.jpg -->
           <img src="assets/about.jpg" alt="About image" />
           <div class="about-overlay">
             <div class="mini">
@@ -651,14 +668,14 @@
     <div class="container">
       <div class="section-head reveal">
         <h2>Resume</h2>
-        <p class="muted">Put your PDF in the root folder as <strong>resume.pdf</strong>.</p>
+        <p class="muted">Put your PDF in the root folder as <strong>resume.pdf</strong> (same folder as index.html).</p>
       </div>
 
       <div class="resume-card reveal">
         <div class="resume-left">
           <div class="resume-title">Amrutha Priya — Software Developer</div>
           <div class="resume-sub muted">Java • Spring Boot • Microservices • Angular/React • AWS • CI/CD</div>
-          <div class="resume-sub muted">AZ-900 Certified • M.S. Computer Science (FAU, May 2025)</div>
+          <div class="resume-sub muted">AZ-900 Certified • M.S. (May 2025)</div>
         </div>
         <div class="resume-right">
           <a class="btn btn-primary" href="resume.pdf" download>Download PDF</a>
